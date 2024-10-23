@@ -8,12 +8,15 @@ public class PlayerVisual : MonoBehaviour
     PlayerController m_playerController;
     [SerializeField] float m_rotationSpeed;
 
+    Material m_material;    
+
 
     Vector3 m_playerDir;
     Quaternion m_targetRotation;
     void Start()
     {
         m_playerController = GetComponent<PlayerController>();  
+        SetMaterial();
     }
 
     void Update()
@@ -31,5 +34,26 @@ public class PlayerVisual : MonoBehaviour
         }
        
         m_model.transform.rotation = Quaternion.Slerp(m_model.transform.rotation, m_targetRotation, m_rotationSpeed * Time.deltaTime);
+    }
+
+
+    void SetMaterial()
+    {
+        switch (m_playerController.PlayerId)
+        {
+            case 0:
+                m_material = GameManager.Instance.PLAYER1;
+            break;
+            case 1:
+                m_material = GameManager.Instance.PLAYER2;
+            break;
+            case 2:
+                m_material = GameManager.Instance.PLAYER3;
+            break;
+            case 3:
+                m_material = GameManager.Instance.PLAYER4;
+            break;
+        }
+       m_model.GetComponentInChildren<MeshRenderer>().material = m_material;
     }
 }

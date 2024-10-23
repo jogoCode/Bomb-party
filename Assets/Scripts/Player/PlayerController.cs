@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,25 +15,28 @@ public class PlayerController : MonoBehaviour
     bool m_jumped = false;
 
 
+
     public int PlayerId
     {
         get { return m_playerId;}
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    public void OnInputMove(InputAction.CallbackContext context)
     {
         m_inputDir = context.ReadValue<Vector2>();
     }
 
-    public void OnJump(InputAction.CallbackContext context)
+    public void OnInputJump(InputAction.CallbackContext context)
     {
         m_jumped = context.action.triggered;
+        Debug.Log(m_jumped);
     }
 
 
     void Awake()
     {
-        m_playerMovement = GetComponent<PlayerMovement>(); 
+        m_playerMovement = GetComponent<PlayerMovement>();
+
     }
 
 
@@ -41,6 +45,16 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             SceneManager.LoadScene(1);
+        }
+    }
+
+
+
+    public void Jump()
+    {
+        if (m_playerMovement.CoyoteTimer > 0)
+        {
+            m_playerMovement.Jump();
         }
     }
 

@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 6823534519106704398}
   - component: {fileID: 2414456577301957068}
   m_Layer: 6
-  m_Name: Capsule (1)
+  m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 3743460049072918961}
   - component: {fileID: 353147544532687049}
   m_Layer: 6
-  m_Name: Capsule
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -455,7 +455,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3176970474385277649}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnMove
+        m_MethodName: OnInputMove
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -471,7 +471,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3176970474385277649}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnJump
+        m_MethodName: OnInputJump
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -513,6 +513,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43195f52d830e8f4b9e7a0eece53552a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  JUMP_FORCE: 2
+  GRAVITY: 9.81
+  SPEED: 4
+  COYOTE_TIME: 0.0001
   m_vSpeed: 0
   m_vVelFactor: 4
 --- !u!114 &4928344797725933354
@@ -553,7 +557,7 @@ CharacterController:
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &7746858446333258263
 MonoBehaviour:
