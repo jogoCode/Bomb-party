@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
 
+    PlayerController m_playerController;
     CharacterController m_characterController;
 
     [SerializeField ]const float JUMP_FORCE = 2;
@@ -20,47 +21,37 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float m_vSpeed = 0;
     [SerializeField] float m_vVelFactor = 4f;
 
-    Vector2 m_inputDir = Vector2.zero;
-    bool m_jumped = false;
-
     bool Grounded;
 
 
     void Start()
     {
+        m_playerController = GetComponent<PlayerController>();
         m_characterController = GetComponent<CharacterController>();  
     }
 
 
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        m_inputDir = context.ReadValue<Vector2>();
-    }
-
-    public void OnJump(InputAction.CallbackContext context)
-    { 
-        m_jumped = context.action.triggered;  
-    }
 
     // Update is called once per frame
     void Update()
     {
+        Vector2 inputDir = m_playerController.GetInputDir();
+        bool jumped = m_playerController.GetJumped();
+        Vector3 dir = new Vector3(inputDir.x,m_vVel.y, inputDir.y);
 
-        Vector3 inputDir = new Vector3(m_inputDir.x,m_vVel.y, m_inputDir.y);
-        Debug.Log(inputDir);
         if (!IsGrounded())
         {
             gravity();
         }
         else
         {
-            if (m_jumped)
+            if (jumped)
             {
                 Jump();
             }        
         }
    
-        Movement(inputDir, 5);       
+        Movement(dir, 5);       
     }
 
     void gravity()

@@ -17,7 +17,6 @@ public class PlayerManager : MonoBehaviour
        
         m_players.Add(playerInput.gameObject);
 
-        // Affiche un message de confirmation dans la console
         Debug.Log("Nouveau joueur ajouté : " + playerInput.gameObject.name);
     }
 }
