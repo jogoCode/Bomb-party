@@ -2,16 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombTag : MonoBehaviour
+public class ParryBomb : MonoBehaviour
 {
     public float _bombTimer = 10;
     public bool _boom = false;
 
     void Update()
     {
+        BombTimer();
+
+    }
+    void BombTimer()
+    {
         if (_bombTimer > 0)
         {
-            _bombTimer = Mathf.Clamp(_bombTimer, 0, 10) - Time.deltaTime;
+            _bombTimer = Mathf.Clamp(_bombTimer, 0, 10) - Time.deltaTime; // diminue le titer de la bombe au fine du temps 
         }
         else
         {
