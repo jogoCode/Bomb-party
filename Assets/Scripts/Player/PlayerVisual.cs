@@ -10,7 +10,8 @@ public class PlayerVisual : MonoBehaviour
 
 
     Vector3 m_playerDir;
-   void Start()
+    Quaternion m_targetRotation;
+    void Start()
     {
         m_playerController = GetComponent<PlayerController>();  
     }
@@ -22,12 +23,13 @@ public class PlayerVisual : MonoBehaviour
 
     void RotateModel()
     {
+      
         if (m_playerController.GetInputDir() != Vector2.zero)
         {
             m_playerDir = new Vector3(m_playerController.GetInputDir().x, 0, m_playerController.GetInputDir().y);
+            m_targetRotation = Quaternion.LookRotation(m_playerDir);
         }
-        Quaternion targetRotation = Quaternion.LookRotation(m_playerDir);
-        m_model.transform.rotation = Quaternion.Slerp(m_model.transform.rotation, targetRotation, m_rotationSpeed * Time.deltaTime);
-        Debug.Log(targetRotation);
+       
+        m_model.transform.rotation = Quaternion.Slerp(m_model.transform.rotation, m_targetRotation, m_rotationSpeed * Time.deltaTime);
     }
 }
