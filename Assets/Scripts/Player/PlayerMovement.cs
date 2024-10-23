@@ -1,12 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
 
+    PlayerController m_playerController;
     CharacterController m_characterController;
 
     [SerializeField ]const float JUMP_FORCE = 2;
@@ -24,34 +27,39 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        m_playerController = GetComponent<PlayerController>();
         m_characterController = GetComponent<CharacterController>();  
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
+        Vector2 inputDir = m_playerController.GetInputDir();
+        bool jumped = m_playerController.GetJumped();
+        Vector3 dir = new Vector3(inputDir.x,m_vVel.y, inputDir.y);
 
-        Vector3 inputDir = new Vector3(Input.GetAxis("Horizontal"),m_vVel.y,Input.GetAxis("Vertical"));
         if (!IsGrounded())
         {
             gravity();
         }
         else
         {
-            if (Input.GetButtonDown("Jump"))
+            if (jumped)
             {
                 Jump();
             }        
         }
    
-        Movement(inputDir, 5);       
+        Movement(dir, 5);       
     }
 
     void gravity()
     {
         m_vSpeed += m_vVelFactor * Time.deltaTime;
         m_vVel += Vector3.down * m_vSpeed * GRAVITY * Time.deltaTime;
-        m_characterController.Move(m_vVel*Time.deltaTime);
+         m_characterController.Move(m_vVel*Time.deltaTime);
     }
 
     void Movement(Vector3 direction, float speed)
@@ -75,6 +83,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if (hit.collider != null)
             {
+                m_vVel = Vector3.zero;
+                m_vSpeed = 0;
                return true;
             }
         }
@@ -83,8 +93,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #region Get Variables
-    CharacterController GetCharacterController() => m_characterController;
+    public CharacterController GetCharacterController() => m_characterController;
     
     #endregion
+
+
+
 
 }
