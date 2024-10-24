@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerVisual : MonoBehaviour
 {
     [SerializeField]GameObject m_model;
+    [SerializeField] Renderer[] m_coloredParts;
     PlayerController m_playerController;
     [SerializeField] float m_rotationSpeed;
+    Animator m_animator;
 
     Material m_material;    
 
@@ -16,11 +18,21 @@ public class PlayerVisual : MonoBehaviour
     void Start()
     {
         m_playerController = GetComponent<PlayerController>();  
+        m_animator = GetComponentInChildren<Animator>();
         SetMaterial();
     }
 
     void Update()
     {
+        if(m_playerController.GetInputDir().magnitude > 0)
+        {
+            m_animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            m_animator.SetBool("isRunning", false);
+        }
+
         RotateModel();    
     }
 
@@ -54,6 +66,23 @@ public class PlayerVisual : MonoBehaviour
                 m_material = GameManager.Instance.PLAYER4;
             break;
         }
-       m_model.GetComponentInChildren<MeshRenderer>().material = m_material;
+       foreach (var part in m_coloredParts)
+        {
+
+            if (part.materials.Length > 1) 
+            {
+                Debug.Log(part.materials.Length);
+                Material[] mats = part.materials;
+                mats[1] = m_material;
+                part.gameObject.GetComponent<Renderer>().materials = mats;
+            }
+            else
+            {
+                part.gameObject.GetComponent<Renderer>().material = m_material;
+
+            }
+
+
+        }
     }
 }
