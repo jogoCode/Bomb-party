@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle
+      name: Fall
       takeName: VF|VFAction
       internalID: -920847073994483231
-      firstFrame: 0
-      lastFrame: 39
+      firstFrame: 140
+      lastFrame: 160
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

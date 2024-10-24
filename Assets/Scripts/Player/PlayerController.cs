@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     int m_playerId;
 
     [SerializeField] PlayerMovement m_playerMovement;
+    [SerializeField] PlayerVisual m_playerVisual;
     Vector2 m_inputDir = Vector2.zero;
     bool m_jumped = false;
 
@@ -21,6 +22,12 @@ public class PlayerController : MonoBehaviour
         get { return m_playerId;}
     }
 
+    public PlayerVisual PlayerVisual
+    {
+        get { return m_playerVisual;}
+    }
+
+
     public void OnInputMove(InputAction.CallbackContext context)
     {
         m_inputDir = context.ReadValue<Vector2>();
@@ -29,13 +36,13 @@ public class PlayerController : MonoBehaviour
     public void OnInputJump(InputAction.CallbackContext context)
     {
         m_jumped = context.action.triggered;
-        Debug.Log(m_jumped);
     }
 
 
     void Awake()
     {
         m_playerMovement = GetComponent<PlayerMovement>();
+        m_playerVisual = GetComponent<PlayerVisual>();
 
     }
 
@@ -78,6 +85,8 @@ public class PlayerController : MonoBehaviour
 
     #region ACCESORS
     public Vector2 GetInputDir()=> m_inputDir;
+
+    public float GetVerticalVelY() => m_playerMovement.GetVerticalVelY();
 
     public bool GetJumped() => m_jumped;
     #endregion

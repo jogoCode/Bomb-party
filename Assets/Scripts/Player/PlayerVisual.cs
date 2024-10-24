@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,10 @@ public class PlayerVisual : MonoBehaviour
     [SerializeField] float m_rotationSpeed;
     Animator m_animator;
 
-    Material m_material;    
+    Material m_material;
+
+
+    public event Action OnGrounded;
 
 
     Vector3 m_playerDir;
@@ -24,15 +28,8 @@ public class PlayerVisual : MonoBehaviour
 
     void Update()
     {
-        if(m_playerController.GetInputDir().magnitude > 0)
-        {
-            m_animator.SetBool("isRunning", true);
-        }
-        else
-        {
-            m_animator.SetBool("isRunning", false);
-        }
 
+        AnimationUpdate();
         RotateModel();    
     }
 
@@ -46,6 +43,14 @@ public class PlayerVisual : MonoBehaviour
         }
        
         m_model.transform.rotation = Quaternion.Slerp(m_model.transform.rotation, m_targetRotation, m_rotationSpeed * Time.deltaTime);
+    }
+
+
+    void AnimationUpdate()
+    {
+        PlayerController pc = m_playerController;
+        m_animator.SetFloat("Movement", pc.GetInputDir().magnitude);
+        m_animator.SetFloat("VMovement", Mathf.Sign(pc.GetVerticalVelY()));
     }
 
 
@@ -68,7 +73,6 @@ public class PlayerVisual : MonoBehaviour
         }
        foreach (var part in m_coloredParts)
         {
-
             if (part.materials.Length > 1) 
             {
                 Debug.Log(part.materials.Length);
@@ -81,8 +85,16 @@ public class PlayerVisual : MonoBehaviour
                 part.gameObject.GetComponent<Renderer>().material = m_material;
 
             }
-
-
         }
     }
+
+    #region
+
+
+    public void IsGrounded()
+    {
+       
+    }
+
+    #endregion
 }

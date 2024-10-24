@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayerController pc = m_playerController;
         Vector2 inputDir = m_playerController.GetInputDir();
         bool jumped = m_playerController.GetJumped();
         Vector3 dir = new Vector3(inputDir.x,m_vVel.y, inputDir.y);
@@ -118,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
     #region Get Variables
     public CharacterController GetCharacterController() => m_characterController;
 
+    public float GetVerticalVelY() => m_vVel.y;
     #endregion
 
 
