@@ -52,13 +52,15 @@ public class PlayerMovement : MonoBehaviour
         bool jumped = m_playerController.GetJumped();
         Vector3 dir = new Vector3(inputDir.x,m_vVel.y, inputDir.y);
 
-        if (!IsGrounded())
+        Debug.Log(m_characterController.isGrounded);
+        if (!m_characterController.isGrounded)
         {
             gravity();
             m_coyoteTimer -= Time.deltaTime*2;
         }
         else
         {
+            m_vSpeed = 0;
             if (jumped)
             {
                 Jump();
@@ -73,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
     {
         m_vSpeed += m_vVelFactor * Time.deltaTime;
         m_vVel += Vector3.down * m_vSpeed * GRAVITY * Time.deltaTime;
-         m_characterController.Move(m_vVel*Time.deltaTime);
+        m_characterController.Move(m_vVel*Time.deltaTime);
     }
 
     void Movement(Vector3 direction, float speed)
