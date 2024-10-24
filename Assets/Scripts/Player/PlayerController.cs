@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerVisual m_playerVisual;
     Vector2 m_inputDir = Vector2.zero;
     bool m_jumped = false;
+    public event Action OnJustGrounded;
 
 
 
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         m_playerMovement = GetComponent<PlayerMovement>();
         m_playerVisual = GetComponent<PlayerVisual>();
+        OnJustGrounded += m_playerVisual.JustGrounded;
 
     }
 
@@ -81,7 +83,14 @@ public class PlayerController : MonoBehaviour
         m_playerMovement.GetCharacterController().enabled = true;
     }
 
- 
+
+    public void JustGrounded()
+    {
+        OnJustGrounded?.Invoke();
+    }
+
+
+
 
     #region ACCESORS
     public Vector2 GetInputDir()=> m_inputDir;

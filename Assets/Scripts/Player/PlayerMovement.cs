@@ -19,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
 
     float m_coyoteTimer;
 
- 
 
 
     Vector3 m_vVel;
@@ -29,9 +28,18 @@ public class PlayerMovement : MonoBehaviour
 
 
     bool m_canJump = true;
-    bool Grounded;
+    bool m_wasGrounded;
 
 
+
+  
+
+    public float CoyoteTimer
+    {
+        get { return m_coyoteTimer; }
+    }
+
+    #region BUILT-IN
     void Start()
     {
         m_playerController = GetComponent<PlayerController>();
@@ -39,13 +47,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public float CoyoteTimer
-    {
-        get { return m_coyoteTimer; }
-    }
-
-
-    // Update is called once per frame
     void Update()
     {
         PlayerController pc = m_playerController;
@@ -53,17 +54,25 @@ public class PlayerMovement : MonoBehaviour
         bool jumped = m_playerController.GetJumped();
         Vector3 dir = new Vector3(inputDir.x,m_vVel.y, inputDir.y);
 
-        Debug.Log(m_characterController.isGrounded);
+        bool isGrounded =  m_characterController.isGrounded;
         pc.PlayerVisual.CheckGrounded(m_characterController.isGrounded);
+
+        if(!m_wasGrounded && isGrounded) {
+
+            pc.JustGrounded();
+
+        }
+        m_wasGrounded = isGrounded;
+
+
         if (!m_characterController.isGrounded)
-        {
-           
+        {      
             gravity();
-            m_coyoteTimer -= Time.deltaTime*2;
         }
         else
         {
-            m_vSpeed = 0;
+           
+            m_vSpeed = 0f;
             if (jumped)
             {
                 Jump();
@@ -73,6 +82,8 @@ public class PlayerMovement : MonoBehaviour
             
         Movement(dir, SPEED);       
     }
+
+    #endregion
 
     void gravity()
     {
@@ -91,7 +102,9 @@ public class PlayerMovement : MonoBehaviour
         m_vSpeed = 0;
         m_vVel.y = 0;
         m_vVel.y += JUMP_FORCE;
+        m_playerController.JustGrounded();
     }
+
 
 
 

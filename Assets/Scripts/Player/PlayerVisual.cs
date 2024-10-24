@@ -5,24 +5,39 @@ using UnityEngine;
 
 public class PlayerVisual : MonoBehaviour
 {
+
+    PlayerController m_playerController;
+    Animator m_animator;
+    Oscillator m_ocscillator;
+
     [SerializeField]GameObject m_model;
     [SerializeField] Renderer[] m_coloredParts;
-    PlayerController m_playerController;
-    [SerializeField] float m_rotationSpeed;
-    Animator m_animator;
-
     Material m_material;
+    [SerializeField] float m_rotationSpeed;
 
+
+   
+
+   
 
     public event Action OnGrounded;
 
 
     Vector3 m_playerDir;
     Quaternion m_targetRotation;
+
+
+    public Oscillator Oscillator
+    {
+        get { return m_ocscillator; }
+    }
+
+    #region BUILT-IN
     void Start()
     {
         m_playerController = GetComponent<PlayerController>();  
         m_animator = GetComponentInChildren<Animator>();
+        m_ocscillator = GetComponent<Oscillator>();
         SetMaterial();
     }
 
@@ -32,6 +47,7 @@ public class PlayerVisual : MonoBehaviour
         AnimationUpdate();
         RotateModel();    
     }
+    #endregion
 
     void RotateModel()
     {
@@ -89,6 +105,10 @@ public class PlayerVisual : MonoBehaviour
     }
 
     #region
+    public void JustGrounded()
+    {
+        Oscillator.StartOscillator(10);
+    }
 
 
     public void CheckGrounded(bool isGrounded)
