@@ -54,8 +54,10 @@ public class PlayerMovement : MonoBehaviour
         Vector3 dir = new Vector3(inputDir.x,m_vVel.y, inputDir.y);
 
         Debug.Log(m_characterController.isGrounded);
+        pc.PlayerVisual.CheckGrounded(m_characterController.isGrounded);
         if (!m_characterController.isGrounded)
         {
+           
             gravity();
             m_coyoteTimer -= Time.deltaTime*2;
         }

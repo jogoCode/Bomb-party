@@ -50,7 +50,7 @@ public class PlayerVisual : MonoBehaviour
     {
         PlayerController pc = m_playerController;
         m_animator.SetFloat("Movement", pc.GetInputDir().magnitude);
-        m_animator.SetFloat("VMovement", Mathf.Sign(pc.GetVerticalVelY()));
+        m_animator.SetFloat("VMovement", pc.GetVerticalVelY());
     }
 
 
@@ -91,9 +91,12 @@ public class PlayerVisual : MonoBehaviour
     #region
 
 
-    public void IsGrounded()
+    public void CheckGrounded(bool isGrounded)
     {
-       
+        if (m_animator != null)
+        {
+            m_animator.SetBool("isGrounded", isGrounded);
+        }
     }
 
     #endregion
