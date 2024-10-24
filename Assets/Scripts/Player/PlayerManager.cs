@@ -59,8 +59,6 @@ public class PlayerManager : MonoBehaviour
         OnPlayerManagerStateChanged?.Invoke();
     }
 
-
-
     void PlayerManagerStateChanged()
     {
         switch (m_playerManagerState)
@@ -73,6 +71,8 @@ public class PlayerManager : MonoBehaviour
             break;
         }
     }
+
+
 
 
 

@@ -1,40 +1,53 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerVisual : MonoBehaviour
 {
+
+    PlayerController m_playerController;
+    Animator m_animator;
+    Oscillator m_ocscillator;
+
     [SerializeField]GameObject m_model;
     [SerializeField] Renderer[] m_coloredParts;
-    PlayerController m_playerController;
+    Material m_material;
     [SerializeField] float m_rotationSpeed;
-    Animator m_animator;
 
-    Material m_material;    
+
+   
+
+   
+
+    public event Action OnGrounded;
 
 
     Vector3 m_playerDir;
     Quaternion m_targetRotation;
+
+
+    public Oscillator Oscillator
+    {
+        get { return m_ocscillator; }
+    }
+
+    #region BUILT-IN
     void Start()
     {
         m_playerController = GetComponent<PlayerController>();  
         m_animator = GetComponentInChildren<Animator>();
+        m_ocscillator = GetComponent<Oscillator>();
         SetMaterial();
     }
 
     void Update()
     {
-        if(m_playerController.GetInputDir().magnitude > 0)
-        {
-            m_animator.SetBool("isRunning", true);
-        }
-        else
-        {
-            m_animator.SetBool("isRunning", false);
-        }
 
+        AnimationUpdate();
         RotateModel();    
     }
+    #endregion
 
     void RotateModel()
     {
@@ -46,6 +59,14 @@ public class PlayerVisual : MonoBehaviour
         }
        
         m_model.transform.rotation = Quaternion.Slerp(m_model.transform.rotation, m_targetRotation, m_rotationSpeed * Time.deltaTime);
+    }
+
+
+    void AnimationUpdate()
+    {
+        PlayerController pc = m_playerController;
+        m_animator.SetFloat("Movement", pc.GetInputDir().magnitude);
+        m_animator.SetFloat("VMovement", pc.GetVerticalVelY());
     }
 
 
@@ -68,7 +89,6 @@ public class PlayerVisual : MonoBehaviour
         }
        foreach (var part in m_coloredParts)
         {
-
             if (part.materials.Length > 1) 
             {
                 Debug.Log(part.materials.Length);
@@ -81,8 +101,23 @@ public class PlayerVisual : MonoBehaviour
                 part.gameObject.GetComponent<Renderer>().material = m_material;
 
             }
-
-
         }
     }
+
+    #region
+    public void JustGrounded()
+    {
+        Oscillator.StartOscillator(10);
+    }
+
+
+    public void CheckGrounded(bool isGrounded)
+    {
+        if (m_animator != null)
+        {
+            m_animator.SetBool("isGrounded", isGrounded);
+        }
+    }
+
+    #endregion
 }
