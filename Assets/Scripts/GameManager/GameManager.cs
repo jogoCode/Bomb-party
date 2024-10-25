@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
 
 
+
+
     public void InitMaterials() //TODO Maybe deplace this in player manager
     {
         PLAYER1 = Resources.Load("Materials/PLAYERS/P1/Player1Material", typeof(Material)) as Material;
