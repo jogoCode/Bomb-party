@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class ParryBombManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private List<GameObject> _bombSpawnList;
+    [SerializeField] private GameObject _bomb;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        //_bombSpawn = 
     }
 }
