@@ -49,6 +49,8 @@ public class ParryBombManager : MonoBehaviour
 
     void GameFinished(string message)
     {
+        FeedBackManager fbm = FeedBackManager.Instance;
+        fbm.FreezeFrame(1f, 0.6f);
         Debug.Log(message);
        
     }

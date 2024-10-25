@@ -17,6 +17,9 @@ public class ParryBomb : MonoBehaviour
     PlayerController m_owner = null;
 
     public event Action OnPlayerTouched;
+    public event Action<float> OnParried;
+
+    Oscillator m_oscillator;
 
     public PlayerController Owner
     {
@@ -27,17 +30,14 @@ public class ParryBomb : MonoBehaviour
     {
         m_rb = GetComponent<Rigidbody>();
         m_trailRenderer = GetComponent<TrailRenderer>();
+        m_oscillator = GetComponent<Oscillator>();  
+        OnParried += m_oscillator.StartOscillator;
        
     }
 
     void Update()
     {
         BombTimer();
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            Debug.Log(GameManager.Instance.GetPlayerManager().GetActivePlayers().Count);
-        }
-
     }
 
 
@@ -81,7 +81,7 @@ public class ParryBomb : MonoBehaviour
             FeedBackManager.Instance.InstantiateParticle(FeedBackManager.Instance.m_explosionVfx,player.transform.position,player.transform.rotation);
             other.gameObject.SetActive(false);
             m_rb.velocity = Vector3.zero; //TODO METTRE DANS UN FONCTION RESET
-            m_owner = null;//TODO METTRE DANS UN FONCTION RESET
+            m_owner = null; //TODO METTRE DANS UN FONCTION RESET
             OnPlayerTouched?.Invoke();
         }
     }
@@ -93,7 +93,6 @@ public class ParryBomb : MonoBehaviour
         {
             m_owner.SetLayer(GameManager.PLAYER_LAYER);
         }
-        Debug.Log(direction);
         SetOwner(player);
         player.SetLayer(GameManager.PLAYER_PARRY_BOMB_LAYER);
         Vector3 oldVel = m_rb.velocity;
@@ -107,6 +106,7 @@ public class ParryBomb : MonoBehaviour
         {
             m_rb.AddForce(direction*25, ForceMode.Impulse); //TODO replace this hard value
         }
+        OnParried?.Invoke(-5);
          
     }
 
