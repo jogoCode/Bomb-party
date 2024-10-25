@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         m_inputDir = context.ReadValue<Vector2>();
         if(m_inputDir != Vector2.zero)
         {
-            m_lastInputDir = m_inputDir;
+            m_lastInputDir = new Vector2(Mathf.Sign(m_inputDir.x), Mathf.Sign(m_inputDir.y));
         }
     }
 
@@ -118,10 +118,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.name.Contains("ParryBomb"))
-        {
-            gameObject.SetActive(false);
-        }
+
     }
 
 
