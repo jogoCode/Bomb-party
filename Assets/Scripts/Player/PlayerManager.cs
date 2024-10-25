@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour
 {
 
 
-    public const int MAX_PLAYER_COUNT = 2;
+    public const int MAX_PLAYER_COUNT = 3;
 
     List<PlayerController> m_players = new List<PlayerController>();
     PlayerInputManager m_playerInputManager;
@@ -59,8 +59,6 @@ public class PlayerManager : MonoBehaviour
         OnPlayerManagerStateChanged?.Invoke();
     }
 
-
-
     void PlayerManagerStateChanged()
     {
         switch (m_playerManagerState)
@@ -73,6 +71,10 @@ public class PlayerManager : MonoBehaviour
             break;
         }
     }
+
+
+
+
 
 
 
