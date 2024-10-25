@@ -125,7 +125,7 @@
                 {
                     "name": "",
                     "id": "f4e4682a-a881-44f1-893a-9393734ff63d",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
