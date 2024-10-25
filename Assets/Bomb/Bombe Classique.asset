@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac12003d95013c419ae793ef4f18b59, type: 3}
   m_Name: Bombe Classique
   m_EditorClassIdentifier: 
-  _dropSpeed: 0
-  _timerExplosion: 0
+  _dropSpeed: 5
+  _timerExplosion: 1.5600014
   _fakeBomb: 0
-  _type: {fileID: 0}
+  _type: 0
   _radius: 0

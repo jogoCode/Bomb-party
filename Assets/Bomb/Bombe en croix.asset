@@ -15,5 +15,5 @@ MonoBehaviour:
   _dropSpeed: 0
   _timerExplosion: 0
   _fakeBomb: 0
-  _type: 0
+  _type: 1
   _radius: 0
