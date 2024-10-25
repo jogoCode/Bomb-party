@@ -91,7 +91,6 @@ public class PlayerVisual : MonoBehaviour
         {
             if (part.materials.Length > 1) 
             {
-                Debug.Log(part.materials.Length);
                 Material[] mats = part.materials;
                 mats[1] = m_material;
                 part.gameObject.GetComponent<Renderer>().materials = mats;

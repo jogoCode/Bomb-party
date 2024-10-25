@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 779199613336460910}
+  - component: {fileID: 3434248199682170530}
+  - component: {fileID: 8271953686839281190}
   m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
@@ -34,6 +36,39 @@ Transform:
   - {fileID: 7717808589851102719}
   m_Father: {fileID: 2211533420156232883}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3434248199682170530
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2764441552994800556}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 1.72}
+--- !u!114 &8271953686839281190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2764441552994800556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 241733cd516ba7746a01d0d497de9ef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3602793020241668286
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,10 +432,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2211533420156232883}
   - component: {fileID: 151584199217648088}
+  - component: {fileID: 5736486176146476312}
   - component: {fileID: 3176970474385277649}
   - component: {fileID: 3278899701764599895}
   - component: {fileID: 4928344797725933354}
-  - component: {fileID: 5736486176146476312}
   - component: {fileID: 7746858446333258263}
   - component: {fileID: 6906549202176105359}
   m_Layer: 6
@@ -485,11 +520,53 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 83224177-1402-42fb-a6c2-3f9d2b7a0202
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3176970474385277649}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a8f5dd09-4dab-4bff-91df-8027d0e70c33
+    m_ActionName: Player/Bat[/Mouse/leftButton,/XInputControllerWindows/buttonWest]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!143 &5736486176146476312
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7809745160527452721}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &3176970474385277649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,6 +581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerMovement: {fileID: 0}
   m_playerVisual: {fileID: 0}
+  m_playerParryBomb: {fileID: 0}
 --- !u!114 &3278899701764599895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,32 +617,6 @@ MonoBehaviour:
   - {fileID: 8955438948176813186}
   - {fileID: 4940690770942362755}
   m_rotationSpeed: 25
---- !u!143 &5736486176146476312
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7809745160527452721}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &7746858446333258263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1085,7 +1137,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ac33e59823aae0d4494737bdd1e8d4d4,
         type: 3}
       propertyPath: m_Name
-      value: BomberBoyAnim
+      value: Model
       objectReference: {fileID: 0}
     - target: {fileID: 1215944528368852099, guid: ac33e59823aae0d4494737bdd1e8d4d4,
         type: 3}
@@ -1413,7 +1465,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 1.9179921
