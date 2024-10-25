@@ -64,13 +64,19 @@ public class ParryBomb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         Debug.Log(other.gameObject.name);
+ 
         PlayerController player = other.gameObject.GetComponent<PlayerController>();
+        if(player == null) return;
         // Check if the owner
         if(m_owner !=null && player.name.Contains("Player") && player != m_owner)
         {
 
+            FeedBackManager.Instance.InstantiateParticle(FeedBackManager.Instance.m_explosionVfx,player.transform.position,player.transform.rotation);
             other.gameObject.SetActive(false);
+            m_rb.velocity = Vector3.zero; //TODO METTRE DANS UN FONCTION RESET
+            m_owner = null;//TODO METTRE DANS UN FONCTION RESET
         }
     }
 
@@ -82,11 +88,11 @@ public class ParryBomb : MonoBehaviour
         SetTrailRendererMat(player);
         if (oldVel != Vector3.zero)
         {
-            m_rb.AddForce(direction * oldVel.magnitude, ForceMode.Impulse); //TODO replace this hard value
+            m_rb.AddForce(direction * (oldVel.magnitude-4), ForceMode.Impulse); //TODO replace this hard value
         }
         else
         {
-            m_rb.AddForce(direction*15, ForceMode.Impulse);
+            m_rb.AddForce(direction*20, ForceMode.Impulse); //TODO replace this hard value
         }
          
     }

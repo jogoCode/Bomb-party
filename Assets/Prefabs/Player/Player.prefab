@@ -597,7 +597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JUMP_FORCE: 2
   GRAVITY: 9.81
-  SPEED: 8
+  SPEED: 12
   COYOTE_TIME: 0.0001
   m_vSpeed: 0
   m_vVelFactor: 4

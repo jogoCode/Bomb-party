@@ -37,6 +37,7 @@ public class PlayerParryBomb : MonoBehaviour
         // Set the owner of the bomb
         bomb.SetOwner(m_playerController);
         bomb.Parry(inputDir,m_playerController);
+        
 
     }
 
