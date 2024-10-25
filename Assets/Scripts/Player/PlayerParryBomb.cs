@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerParryBomb : MonoBehaviour
 {
     
-    PlayerController m_playeController;
+    PlayerController m_playerController;
 
     BoxCollider m_boxCollider;
 
@@ -14,7 +14,7 @@ public class PlayerParryBomb : MonoBehaviour
 
     void Start()
     {
-        m_playeController = GetComponentInParent<PlayerController>();
+        m_playerController = GetComponentInParent<PlayerController>();
         m_boxCollider = GetComponent<BoxCollider>();   
     }
 
@@ -30,18 +30,14 @@ public class PlayerParryBomb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
-        Vector3 inputDir = new Vector3(m_playeController.GetLastInputDir().x, 0, m_playeController.GetLastInputDir().y);
-        Vector3 oldVel = rb.velocity;
-        rb.velocity = Vector3.zero;
-        if (oldVel != Vector3.zero)
-        {
-            rb.AddForce(inputDir * 1.5f * oldVel.magnitude, ForceMode.Impulse); //TODO replace this hard value
-        }
-        else
-        {
-            rb.AddForce(inputDir * 15, ForceMode.Impulse);
-        }
+        Vector3 inputDir = new Vector3(m_playerController.GetLastInputDir().x, 0, m_playerController.GetLastInputDir().y);
+        ParryBomb bomb = other.GetComponent<ParryBomb>();
+
+        if (bomb.Owner == m_playerController) return;
+        // Set the owner of the bomb
+        bomb.SetOwner(m_playerController);
+        bomb.Parry(inputDir,m_playerController);
+
     }
 
 

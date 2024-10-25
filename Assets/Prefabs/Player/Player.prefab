@@ -438,6 +438,7 @@ GameObject:
   - component: {fileID: 4928344797725933354}
   - component: {fileID: 7746858446333258263}
   - component: {fileID: 6906549202176105359}
+  - component: {fileID: 4679795360305761275}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -644,6 +645,29 @@ MonoBehaviour:
   m_target: {fileID: 2764441552994800556}
   m_spring: 435.9
   m_damp: 18.6
+--- !u!136 &4679795360305761275
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7809745160527452721}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.87
+  m_Height: 3.61
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.48, z: 0}
 --- !u!1001 &2069900522395777404
 PrefabInstance:
   m_ObjectHideFlags: 0
