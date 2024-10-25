@@ -32,19 +32,15 @@ public class PlayerParryBomb : MonoBehaviour
     {
         Vector3 inputDir = new Vector3(m_playerController.GetLastInputDir().x, 0, m_playerController.GetLastInputDir().y);
         ParryBomb bomb = other.GetComponent<ParryBomb>();
-
-        if (bomb.Owner == m_playerController) return;
-        // Set the owner of the bomb
-        bomb.SetOwner(m_playerController);
+        if (bomb == null) return;
+        //if (bomb.Owner == m_playerController) return;
         bomb.Parry(inputDir,m_playerController);
-        
-
     }
 
 
     IEnumerator ResetBoxCollider()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         m_boxCollider.enabled = false;
     }
 }

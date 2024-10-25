@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 339165554855535200}
   - component: {fileID: 2565429712563356567}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 1937916074608246571}
   - component: {fileID: 4274006936517997615}
   - component: {fileID: 8458710375298503061}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ParryBomb Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}

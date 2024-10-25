@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour
 {
 
 
-    public const int MAX_PLAYER_COUNT = 4;
+    public const int MAX_PLAYER_COUNT = 2;
 
     List<PlayerController> m_players = new List<PlayerController>();
     PlayerInputManager m_playerInputManager;
@@ -72,6 +72,13 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public void ActiveAllPlayerController()
+    {
+        foreach (PlayerController player in m_players)
+        {
+            player.gameObject.SetActive(true);
+        }
+    }
 
 
 
@@ -80,7 +87,19 @@ public class PlayerManager : MonoBehaviour
 
 
     #region ACCESORS
-
     public List<PlayerController> GetPlayerList() => m_players;
+
+    public List<PlayerController> GetActivePlayers()
+    {
+        List<PlayerController> list = new List<PlayerController>();
+        foreach (PlayerController player in m_players)
+        {
+            if (player.gameObject.activeInHierarchy)
+            {
+                list.Add(player);
+            }
+        }
+        return list;
+    }
     #endregion
 }

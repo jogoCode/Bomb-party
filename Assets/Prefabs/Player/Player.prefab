@@ -55,8 +55,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 1.72}
+  m_Size: {x: 5.16, y: 2, z: 4.1}
+  m_Center: {x: 0, y: 0, z: 2.88}
 --- !u!114 &8271953686839281190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,7 +597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JUMP_FORCE: 2
   GRAVITY: 9.81
-  SPEED: 12
+  SPEED: 15.4
   COYOTE_TIME: 0.0001
   m_vSpeed: 0
   m_vVelFactor: 4

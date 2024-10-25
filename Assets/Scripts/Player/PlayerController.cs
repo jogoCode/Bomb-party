@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         m_inputDir = context.ReadValue<Vector2>();
         if(m_inputDir != Vector2.zero)
         {
-            m_lastInputDir = new Vector2(Mathf.Sign(m_inputDir.x), Mathf.Sign(m_inputDir.y));
+            m_lastInputDir = new Vector2(m_inputDir.x, m_inputDir.y).normalized;
         }
     }
 
@@ -92,6 +92,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    public void SetLayer(int newLayer)
+    {
+        gameObject.layer = newLayer;
+    }
 
     public void SetPlayerID(int newId)
     {
