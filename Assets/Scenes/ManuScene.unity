@@ -341,13 +341,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6087609, y: -0, z: -0, w: 0.79335374}
-  m_LocalPosition: {x: 0, y: 43.19, z: -13.92}
+  m_LocalRotation: {x: 0.49999964, y: -0, z: -0, w: 0.8660256}
+  m_LocalPosition: {x: 0, y: 29.6, z: -24.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 75, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -893,7 +893,7 @@ Transform:
   m_GameObject: {fileID: 752933397}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.42451552, z: 0, w: 0.9054207}
-  m_LocalPosition: {x: -5.42, y: 0.00000047683716, z: 3.7184334}
+  m_LocalPosition: {x: -5.42, y: -3, z: 3.7184334}
   m_LocalScale: {x: 19.35, y: 9.675, z: 9.675}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1242,7 +1242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_explosionVfx: {fileID: 2433282508523890284, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312,
     type: 3}
-  m_impactVfx: {fileID: 4021103657954561960, guid: 5c755f9bc5253ea418e919994537dcc7,
+  m_impactVfx: {fileID: 4021103657954561960, guid: 02729519bde3a324abde170c50dbb217,
     type: 3}
 --- !u!1001 &1561536755
 PrefabInstance:

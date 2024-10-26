@@ -34,7 +34,7 @@ BlendTree:
     m_Motion: {fileID: 7400000, guid: 2d03bd39459b64a4aa268e69b570e83d, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
-    m_TimeScale: 2
+    m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Movement
     m_Mirror: 0
@@ -42,7 +42,7 @@ BlendTree:
   m_BlendParameterY: Movement
   m_MinThreshold: 0
   m_MaxThreshold: 1
-  m_UseAutomaticThresholds: 1
+  m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 0
 --- !u!1102 &-4486618652928822347
@@ -140,13 +140,13 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: -7122806648994824053}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: SpeedPercent
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -173,6 +173,12 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - m_Name: isGrounded
     m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: SpeedPercent
+    m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -227,7 +233,7 @@ BlendTree:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blend Tree
+  m_Name: VMovement
   m_Childs:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: ebba085262c8daa45999156c41a2b546, type: 2}
@@ -300,7 +306,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: 1638564293402503569}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: SpeedPercent
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 

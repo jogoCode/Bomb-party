@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2764441552994800556}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -55,8 +55,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 5.16, y: 2, z: 4.1}
-  m_Center: {x: 0, y: 0, z: 2.88}
+  m_Size: {x: 5.16, y: 2, z: 2}
+  m_Center: {x: 0, y: 1.17, z: 1.81}
 --- !u!114 &8271953686839281190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,9 +597,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JUMP_FORCE: 2
   GRAVITY: 9.81
-  SPEED: 15.4
-  COYOTE_TIME: 0.0001
-  m_vSpeed: 0
+  SPEED: 10
+  COYOTE_TIME: 0.2
+  JUMP_BUFFER_TIME: 0.2
+  m_vSpeed: 0.01
   m_vVelFactor: 4
 --- !u!114 &4928344797725933354
 MonoBehaviour:
@@ -684,7 +685,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ac33e59823aae0d4494737bdd1e8d4d4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.938
+      value: 0.022000037
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ac33e59823aae0d4494737bdd1e8d4d4,
         type: 3}
@@ -1440,10 +1441,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 393545398055624358}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ac33e59823aae0d4494737bdd1e8d4d4,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7776258641539526835}
   m_SourcePrefab: {fileID: 100100000, guid: ac33e59823aae0d4494737bdd1e8d4d4, type: 3}
 --- !u!1 &1186885826974745645 stripped
 GameObject:
@@ -1472,29 +1469,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!136 &7776258641539526835
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1186885826974745645}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1.9179921
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.5097108, z: 0}
 --- !u!4 &1960045449405980311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ac33e59823aae0d4494737bdd1e8d4d4,

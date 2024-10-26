@@ -15,10 +15,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float JUMP_FORCE = 10000;
     [SerializeField] float GRAVITY = 9.81f;
     [SerializeField] float SPEED = 4;
-    [SerializeField] float COYOTE_TIME = 0.0001f;
+    [SerializeField] float COYOTE_TIME = 0.1f;
+    [SerializeField] float JUMP_BUFFER_TIME = 0.1f;
+
+
 
     float m_coyoteTimer;
-
+    float m_jumpBufferTimer =0;
 
 
     Vector3 m_vVel;
@@ -39,8 +42,14 @@ public class PlayerMovement : MonoBehaviour
         get { return m_coyoteTimer; }
     }
 
+    public float Speed
+    {
+        get { return SPEED; } 
+    }
+
+
     #region BUILT-IN
-    void Start()
+    void Awake()
     {
         m_playerController = GetComponent<PlayerController>();
         m_characterController = GetComponent<CharacterController>();
@@ -60,26 +69,23 @@ public class PlayerMovement : MonoBehaviour
         if(!m_wasGrounded && isGrounded) {
 
             pc.JustGrounded();
+            
 
         }
         m_wasGrounded = isGrounded;
 
 
-        if (!m_characterController.isGrounded)
-        {      
+        if (!m_characterController.isGrounded){      
             gravity();
-        }
-        else
-        {
-           
+            m_coyoteTimer -= Time.deltaTime;
+        }else{        
             m_vSpeed = 0f;
-            if (jumped)
-            {
-                Jump();
-            }
             ResetCoyoteTimer();
         }
-            
+
+
+
+        JumpBufferLogic();
         Movement(dir, SPEED);       
     }
 
@@ -97,34 +103,45 @@ public class PlayerMovement : MonoBehaviour
         m_characterController.Move(direction*speed*Time.deltaTime);
     }
 
+
+    public void JumpBufferLogic()
+    {
+        if(m_jumpBufferTimer > 0)
+        {
+            Jump();
+            m_jumpBufferTimer -= Time.deltaTime;
+
+        }
+    
+
+
+    }
+
     public void Jump()
     {
-        m_vSpeed = 0;
-        m_vVel.y = 0;
-        m_vVel.y += JUMP_FORCE;
-        m_playerController.JustGrounded();
-    }
-
-
-
-
-
-
-    bool IsGrounded()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 0.1f))
+        m_jumpBufferTimer = JUMP_BUFFER_TIME;
+        if (IsGrounded() && m_jumpBufferTimer > 0 || m_coyoteTimer > 0)
         {
-            if (hit.collider != null)
-            {
-                m_vVel = Vector3.zero;
-                m_vSpeed = 0;
-               return true;
-            }
+            //if (!IsGrounded() && m_jumpBufferTimer < 0 && m_coyoteTimer < 0) return;
+            m_jumpBufferTimer = 0;
+            ResetCoyoteTimer();
+            m_vSpeed = 0;
+            m_vVel.y = 0;
+            m_vVel.y += JUMP_FORCE;
+            m_playerController.JustGrounded();
         }
-        return false;
     }
 
+
+    public bool IsGrounded()
+    {
+        return m_characterController.isGrounded;
+    }
+
+    public void ResetJumpBufferTimer()
+    {
+        m_jumpBufferTimer = JUMP_BUFFER_TIME;
+    }
 
     public void ResetCoyoteTimer()
     {

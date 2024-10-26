@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour
 {
 
 
-    public const int MAX_PLAYER_COUNT = 2;
+    public const int MAX_PLAYER_COUNT = 4;
 
     List<PlayerController> m_players = new List<PlayerController>();
     PlayerInputManager m_playerInputManager;
