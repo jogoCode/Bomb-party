@@ -1252,6 +1252,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1937916074608246571, guid: 56f38920ea6c6a7438ff33b910466f55,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
     - target: {fileID: 6988508410914956994, guid: 56f38920ea6c6a7438ff33b910466f55,
         type: 3}
       propertyPath: m_Name
@@ -1306,6 +1311,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458710375298503061, guid: 56f38920ea6c6a7438ff33b910466f55,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime1
+      value: 65150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458710375298503061, guid: 56f38920ea6c6a7438ff33b910466f55,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].inSlope
+      value: -2.2030222
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458710375298503061, guid: 56f38920ea6c6a7438ff33b910466f55,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].inSlope
+      value: -0.26849237
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458710375298503061, guid: 56f38920ea6c6a7438ff33b910466f55,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].outSlope
+      value: -2.2030222
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458710375298503061, guid: 56f38920ea6c6a7438ff33b910466f55,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].inWeight
+      value: 0.48580444
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458710375298503061, guid: 56f38920ea6c6a7438ff33b910466f55,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].outSlope
+      value: -0.26849237
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458710375298503061, guid: 56f38920ea6c6a7438ff33b910466f55,
+        type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].outWeight
+      value: 0.92429024
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

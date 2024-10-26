@@ -89,7 +89,8 @@ public class ParryBomb : MonoBehaviour
 
     public void Parry(Vector3 direction,PlayerController player)
     {
-        if(m_owner != null)
+        FeedBackManager fbm = FeedBackManager.Instance;
+        if (m_owner != null)
         {
             m_owner.SetLayer(GameManager.PLAYER_LAYER);
         }
@@ -100,14 +101,16 @@ public class ParryBomb : MonoBehaviour
         SetTrailRendererMat(player);
         if (oldVel != Vector3.zero)
         {
-            m_rb.AddForce(direction * (oldVel.magnitude*1.05f), ForceMode.Impulse); //TODO replace this hard value
+            m_rb.AddForce(direction * (oldVel.magnitude*1.001f), ForceMode.Impulse); //TODO replace this hard value
         }
         else
         {
             m_rb.AddForce(direction*25, ForceMode.Impulse); //TODO replace this hard value
         }
         OnParried?.Invoke(-5);
-         
+        fbm.InstantiateParticle(fbm.m_impactVfx, transform.position, transform.rotation);
+        return;
+
     }
 
     public void SetOwner(PlayerController owner)
