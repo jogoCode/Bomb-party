@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerMovement m_playerMovement;
     [SerializeField] PlayerVisual m_playerVisual;
     [SerializeField] PlayerParryBomb m_playerParryBomb;
+    PlayerStateManager m_playerStateManager;
 
 
     Vector2 m_inputDir = Vector2.zero;
@@ -21,7 +22,9 @@ public class PlayerController : MonoBehaviour
 
 
     public event Action OnJustGrounded;
-    public event Action OnParry;
+    public event Action OnParried;
+    public event Action<float,float> OnMoved;
+    public event Action OnJumped;
 
 
 
@@ -35,43 +38,49 @@ public class PlayerController : MonoBehaviour
         get { return m_playerVisual;}
     }
 
-
+    #region INPUT EVENTS
     public void OnInputMove(InputAction.CallbackContext context)
     {
         m_inputDir = context.ReadValue<Vector2>();
+        OnMoved?.Invoke(m_inputDir.magnitude,m_playerMovement.Speed);
         if(m_inputDir != Vector2.zero)
         {
-            m_lastInputDir = new Vector2(Mathf.Sign(m_inputDir.x), Mathf.Sign(m_inputDir.y));
+            m_lastInputDir = new Vector2(m_inputDir.x, m_inputDir.y).normalized;
         }
     }
 
     public void OnInputJump(InputAction.CallbackContext context)
     {
-        m_jumped = context.action.triggered;
+        if (context.action.triggered ){
+            m_playerMovement.ResetJumpBufferTimer();    
+        }
     }
 
     public void OnAction(InputAction.CallbackContext context)
     {
         if (context.action.triggered) {
-
-            OnParry?.Invoke();  
+            OnParried?.Invoke();  
         }
     }
-
+    #endregion
 
     void Awake()
     {
         m_playerMovement = GetComponent<PlayerMovement>();
         m_playerVisual = GetComponent<PlayerVisual>();
         m_playerParryBomb = GetComponentInChildren<PlayerParryBomb>();
+        m_playerStateManager = GetComponentInChildren<PlayerStateManager>();
+
+
         OnJustGrounded += m_playerVisual.JustGrounded;
+        OnMoved += m_playerVisual.MoveAnimation;
+        OnJumped += m_playerMovement.Jump;
+        OnParried += m_playerParryBomb.Parry;
+        OnParried += m_playerVisual.BatAnimation;
     }
 
 
-    private void Start()
-    {
-        OnParry += m_playerParryBomb.Parry;
-    }
+   
 
 
     private void Update()
@@ -92,6 +101,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    public void SetLayer(int newLayer)
+    {
+        gameObject.layer = newLayer;
+    }
 
     public void SetPlayerID(int newId)
     {
@@ -123,6 +137,12 @@ public class PlayerController : MonoBehaviour
 
 
     #region ACCESORS
+    public PlayerVisual GetPlayerVisual() => m_playerVisual;
+
+    public PlayerMovement GetPlayerMovement() => m_playerMovement;
+
+    public PlayerStateManager GetPlayerStateManager() => m_playerStateManager;
+
     public Vector2 GetInputDir()=> m_inputDir;
 
     public Vector2 GetLastInputDir() => m_lastInputDir;

@@ -6,8 +6,9 @@ public class PlayerStateManager : MonoBehaviour
 {
 
     PlayerMovement m_pm;
+    PlayerStates m_actualState = PlayerStates.IDLE;
 
-    enum PlayerStates
+    public enum PlayerStates
     {
         IDLE,
         MOVE,
@@ -20,10 +21,6 @@ public class PlayerStateManager : MonoBehaviour
     void Start()
     {
         m_pm = GetComponent<PlayerMovement>();
-        if( m_pm == null)
-        {
-            Debug.LogError("No player movement component");
-        }
     }
 
     // Update is called once per frame
@@ -31,4 +28,12 @@ public class PlayerStateManager : MonoBehaviour
     {
         
     }
+
+    public void SetState(PlayerStates newState)
+    {
+        m_actualState = newState;
+    }
+    public PlayerStates GetState() => m_actualState;
+
 }
+
