@@ -74,13 +74,12 @@ public class PlayerController : MonoBehaviour
         OnJustGrounded += m_playerVisual.JustGrounded;
         OnMoved += m_playerVisual.MoveAnimation;
         OnJumped += m_playerMovement.Jump;
-    }
-
-
-    private void Start()
-    {
         OnParried += m_playerParryBomb.Parry;
+        OnParried += m_playerVisual.BatAnimation;
     }
+
+
+   
 
 
     private void Update()

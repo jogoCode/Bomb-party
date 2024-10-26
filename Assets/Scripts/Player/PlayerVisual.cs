@@ -61,7 +61,14 @@ public class PlayerVisual : MonoBehaviour
         m_model.transform.rotation = Quaternion.Slerp(m_model.transform.rotation, m_targetRotation, m_rotationSpeed * Time.deltaTime);
     }
 
-  
+
+    #region Animation
+
+    public void BatAnimation()
+    {
+        m_animator.SetTrigger("isBat");
+        Oscillator.StartOscillator(10);
+    }
     public void MoveAnimation(float x,float speedPercent) // x = xvel for horizontalAnim . y = yVel for verticalAnim . speedPercent = Speed ratio
     {
 
@@ -79,6 +86,8 @@ public class PlayerVisual : MonoBehaviour
         PlayerMovement playerMovement = m_playerController.GetPlayerMovement();
         m_animator.SetFloat("VMovement", playerMovement.GetVerticalVelY());
     }
+
+#endregion
 
     void SetMaterial()
     {

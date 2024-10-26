@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     bool m_canJump = true;
     bool m_wasGrounded;
 
-
+    public event Action JustGrounded;
 
   
 
@@ -68,8 +68,9 @@ public class PlayerMovement : MonoBehaviour
 
         if(!m_wasGrounded && isGrounded) {
 
-            pc.JustGrounded();
-            
+            Debug.Log("grounded");
+            m_vVel.y = -1;
+            pc.JustGrounded();         
 
         }
         m_wasGrounded = isGrounded;
@@ -78,8 +79,8 @@ public class PlayerMovement : MonoBehaviour
         if (!m_characterController.isGrounded){      
             gravity();
             m_coyoteTimer -= Time.deltaTime;
-        }else{
-            m_vVel.y = 0;
+        }else{   
+            
             m_vSpeed = 0f;
             ResetCoyoteTimer();
         }
