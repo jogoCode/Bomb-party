@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     public void OnInputJump(InputAction.CallbackContext context)
     {
         if (context.action.triggered ){
-            OnJumped?.Invoke();       
+            m_playerMovement.ResetJumpBufferTimer();    
         }
     }
 

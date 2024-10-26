@@ -34,7 +34,7 @@ public class PlayerVisual : MonoBehaviour
     }
 
     #region BUILT-IN
-    void Start()
+    void Awake()
     {
         m_playerController = GetComponent<PlayerController>();  
         m_animator = GetComponentInChildren<Animator>();

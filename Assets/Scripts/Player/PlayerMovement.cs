@@ -78,7 +78,8 @@ public class PlayerMovement : MonoBehaviour
         if (!m_characterController.isGrounded){      
             gravity();
             m_coyoteTimer -= Time.deltaTime;
-        }else{        
+        }else{
+            m_vVel.y = 0;
             m_vSpeed = 0f;
             ResetCoyoteTimer();
         }
@@ -106,30 +107,27 @@ public class PlayerMovement : MonoBehaviour
 
     public void JumpBufferLogic()
     {
-        if(m_jumpBufferTimer > 0)
+        if(m_jumpBufferTimer > 0 && m_coyoteTimer> 0)
         {
             Jump();
-            m_jumpBufferTimer -= Time.deltaTime;
-
+            
         }
-    
-
+        if (m_jumpBufferTimer >0)
+        {
+            m_jumpBufferTimer -= Time.deltaTime;
+        }
 
     }
 
     public void Jump()
     {
-        m_jumpBufferTimer = JUMP_BUFFER_TIME;
-        if (IsGrounded() && m_jumpBufferTimer > 0 || m_coyoteTimer > 0)
-        {
-            //if (!IsGrounded() && m_jumpBufferTimer < 0 && m_coyoteTimer < 0) return;
-            m_jumpBufferTimer = 0;
-            ResetCoyoteTimer();
-            m_vSpeed = 0;
-            m_vVel.y = 0;
-            m_vVel.y += JUMP_FORCE;
-            m_playerController.JustGrounded();
-        }
+        m_jumpBufferTimer = 0;
+        ResetCoyoteTimer();
+        m_vSpeed = 0;
+        m_vVel.y = 0;
+        m_vVel.y += JUMP_FORCE;
+        m_playerController.JustGrounded();
+        
     }
 
 
