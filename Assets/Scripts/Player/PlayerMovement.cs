@@ -59,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         PlayerController pc = m_playerController;
+        if (pc.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.ATK) return;
         Vector2 inputDir = m_playerController.GetInputDir();
         bool jumped = m_playerController.GetJumped();
         Vector3 dir = new Vector3(inputDir.x,m_vVel.y, inputDir.y);

@@ -22,7 +22,7 @@ public class PlayerParryBomb : MonoBehaviour
     public void Parry()
     {
         Debug.Log("BAT");
-        m_boxCollider.enabled = true;
+        //m_boxCollider.enabled = true;
         if (!m_playerController.GetPlayerVisual().isActiveAndEnabled) return;
         StartCoroutine(ResetBoxCollider());
     }

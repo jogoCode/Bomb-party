@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerMovement m_playerMovement;
     [SerializeField] PlayerVisual m_playerVisual;
     [SerializeField] PlayerParryBomb m_playerParryBomb;
+    PlayerStateManager m_playerStateManager;
 
 
     Vector2 m_inputDir = Vector2.zero;
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
         get { return m_playerVisual;}
     }
 
-
+    #region INPUT EVENTS
     public void OnInputMove(InputAction.CallbackContext context)
     {
         m_inputDir = context.ReadValue<Vector2>();
@@ -58,17 +59,17 @@ public class PlayerController : MonoBehaviour
     public void OnAction(InputAction.CallbackContext context)
     {
         if (context.action.triggered) {
-
             OnParried?.Invoke();  
         }
     }
-
+    #endregion
 
     void Awake()
     {
         m_playerMovement = GetComponent<PlayerMovement>();
         m_playerVisual = GetComponent<PlayerVisual>();
         m_playerParryBomb = GetComponentInChildren<PlayerParryBomb>();
+        m_playerStateManager = GetComponentInChildren<PlayerStateManager>();
 
 
         OnJustGrounded += m_playerVisual.JustGrounded;
@@ -139,6 +140,8 @@ public class PlayerController : MonoBehaviour
     public PlayerVisual GetPlayerVisual() => m_playerVisual;
 
     public PlayerMovement GetPlayerMovement() => m_playerMovement;
+
+    public PlayerStateManager GetPlayerStateManager() => m_playerStateManager;
 
     public Vector2 GetInputDir()=> m_inputDir;
 
