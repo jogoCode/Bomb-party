@@ -19,12 +19,7 @@ public class PlayerParryBomb : MonoBehaviour
     }
 
 
-    public void Parry()
-    {
-        Debug.Log("BAT");
-        if (!m_playerController.GetPlayerVisual().isActiveAndEnabled) return;
-        StartCoroutine(ResetBoxCollider());
-    }
+
 
 
 
@@ -42,9 +37,5 @@ public class PlayerParryBomb : MonoBehaviour
     }
 
 
-    IEnumerator ResetBoxCollider()
-    {
-        yield return new WaitForSeconds(0.1f);
-        m_boxCollider.enabled = false;
-    }
+
 }

@@ -490,7 +490,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3176970474385277649}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnAction
+        m_MethodName: OnInputAction
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -502,6 +502,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a8f5dd09-4dab-4bff-91df-8027d0e70c33
     m_ActionName: Player/Bat[/Mouse/leftButton,/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3176970474385277649}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnInputDash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e4c5629d-9800-4799-94d9-cc7a5a7c865c
+    m_ActionName: Player/Dash[/Keyboard/shift,/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Player
@@ -560,11 +576,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43195f52d830e8f4b9e7a0eece53552a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JUMP_FORCE: 2
-  GRAVITY: 9.81
-  SPEED: 12
-  COYOTE_TIME: 0.14
-  JUMP_BUFFER_TIME: 0.14
+  m_jumpForce: 2
+  m_gravity: 9.81
+  m_speed: 10
+  m_coyoteTime: 0.1
+  m_jumpBufferTime: 0.1
+  m_dashSpeed: 45
+  m_dashDuration: 0.15
+  m_dashCooldown: 1
   m_vSpeed: 0.01
   m_vVelFactor: 4
 --- !u!114 &4928344797725933354
@@ -874,7 +893,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ac33e59823aae0d4494737bdd1e8d4d4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.022000037
+      value: 0.044
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ac33e59823aae0d4494737bdd1e8d4d4,
         type: 3}

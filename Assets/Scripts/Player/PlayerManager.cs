@@ -18,7 +18,7 @@ public class PlayerManager : MonoBehaviour
 
     int m_playersCount = 0;
 
-    PlayerManagerState m_playerManagerState;
+    [SerializeField] PlayerManagerState m_playerManagerState;
     enum PlayerManagerState
     {
         DISABLE,
@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviour
     {
         m_playerInputManager = GetComponent<PlayerInputManager>();
         OnPlayerManagerStateChanged += PlayerManagerStateChanged;
+        OnPlayerManagerStateChanged?.Invoke();
     }
    
 
@@ -44,6 +45,8 @@ public class PlayerManager : MonoBehaviour
             SetPlayerManagerState(PlayerManagerState.DISABLE);
         }
     }
+
+
 
 
     void AddPlayerInPlayerList(PlayerController newPlayer)
