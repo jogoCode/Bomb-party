@@ -18,8 +18,8 @@ public class PlayerManager : MonoBehaviour
 
     int m_playersCount = 0;
 
-    PlayerManagerState m_playerManagerState;
-    enum PlayerManagerState
+    [SerializeField] PlayerManagerState m_playerManagerState;
+    public enum PlayerManagerState
     {
         DISABLE,
         SEARCHING
@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviour
     {
         m_playerInputManager = GetComponent<PlayerInputManager>();
         OnPlayerManagerStateChanged += PlayerManagerStateChanged;
+        OnPlayerManagerStateChanged?.Invoke();
     }
    
 
@@ -46,6 +47,8 @@ public class PlayerManager : MonoBehaviour
     }
 
 
+
+
     void AddPlayerInPlayerList(PlayerController newPlayer)
     {
         m_players.Add(newPlayer);
@@ -53,7 +56,7 @@ public class PlayerManager : MonoBehaviour
     }
 
 
-    void SetPlayerManagerState(PlayerManagerState newState)
+    public void SetPlayerManagerState(PlayerManagerState newState)
     {
         m_playerManagerState=newState;
         OnPlayerManagerStateChanged?.Invoke();
@@ -64,10 +67,10 @@ public class PlayerManager : MonoBehaviour
         switch (m_playerManagerState)
         {
             case PlayerManagerState.DISABLE:
-                m_playerInputManager.enabled=false; 
+                m_playerInputManager.DisableJoining();
             break;
             case PlayerManagerState.SEARCHING:
-                m_playerInputManager.enabled=true;
+                m_playerInputManager.EnableJoining();
             break;
         }
     }

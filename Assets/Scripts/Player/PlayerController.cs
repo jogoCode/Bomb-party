@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public event Action OnParried;
     public event Action<float,float> OnMoved;
     public event Action OnJumped;
+    public event Action OnDashed;
 
 
 
@@ -56,12 +57,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnAction(InputAction.CallbackContext context)
+    public void OnInputAction(InputAction.CallbackContext context)
     {
         if (context.action.triggered) {
-            OnParried?.Invoke();  
+            OnParried?.Invoke();
         }
     }
+
+    public void OnInputDash(InputAction.CallbackContext context)
+    {
+        if (context.action.triggered)
+        {
+            OnDashed?.Invoke();
+        }
+    }
+
     #endregion
 
     void Awake()
@@ -71,17 +81,14 @@ public class PlayerController : MonoBehaviour
         m_playerParryBomb = GetComponentInChildren<PlayerParryBomb>();
         m_playerStateManager = GetComponentInChildren<PlayerStateManager>();
 
+        OnDashed += m_playerMovement.Dash;
+        OnJumped += m_playerMovement.Jump;
 
         OnJustGrounded += m_playerVisual.JustGrounded;
-        OnMoved += m_playerVisual.MoveAnimation;
-        OnJumped += m_playerMovement.Jump;
-        OnParried += m_playerParryBomb.Parry;
         OnParried += m_playerVisual.BatAnimation;
+        OnMoved += m_playerVisual.MoveAnimation;
+
     }
-
-
-   
-
 
     private void Update()
     {
@@ -91,8 +98,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-
     public void Jump()
     {
         if (m_playerMovement.CoyoteTimer > 0)
@@ -100,7 +105,6 @@ public class PlayerController : MonoBehaviour
             m_playerMovement.Jump();
         }
     }
-
 
     public void SetLayer(int newLayer)
     {
@@ -112,7 +116,6 @@ public class PlayerController : MonoBehaviour
         m_playerId = newId;
     }
 
-
     Vector3 warpPosition = Vector3.zero;
     public void WarpToPosition(Vector3 newPosition)
     {
@@ -122,20 +125,12 @@ public class PlayerController : MonoBehaviour
         m_playerMovement.GetCharacterController().enabled = true;
     }
 
-
     public void JustGrounded()
     {
         OnJustGrounded?.Invoke();
     }
 
-
-
-    public void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-
-    }
-
-
+  
     #region ACCESORS
     public PlayerVisual GetPlayerVisual() => m_playerVisual;
 
