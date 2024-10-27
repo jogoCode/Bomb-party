@@ -12,6 +12,13 @@ public class GameManager : MonoBehaviour
     public const int PLAYER_LAYER = 6;
 
 
+    public static readonly Color BLUE = new Color32(68,176,243,1);
+    public static readonly Color GREEN = new Color32(82,211,106,1);
+    public static readonly Color YELLOW = new Color32(255,229,50,1); //TODO CHANGE THIS COLOR
+    public static readonly Color PURPLE = new Color32(155,43,253,1);
+
+
+
     public Material PLAYER1;
     public Material PLAYER2;
     public Material PLAYER3;

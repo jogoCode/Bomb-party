@@ -135,8 +135,8 @@ public class PlayerMovement : MonoBehaviour
 
         if(m_isDashing)
         {
-            Vector2 inputDir = m_playerController.GetInputDir();
-            Vector3 dir = new Vector3(inputDir.x, m_vVel.y, inputDir.y);
+            Vector2 inputDir = m_playerController.GetLastInputDir();
+            Vector3 dir = new Vector3(inputDir.x, /*m_vVel.y*/0, inputDir.y);
             m_characterController.Move(dir * m_dashSpeed * Time.deltaTime);
         }
     }
