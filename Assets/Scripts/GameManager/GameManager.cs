@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,7 +35,6 @@ public class GameManager : MonoBehaviour
         PLAYER2 = Resources.Load("Materials/PLAYERS/P2/Player2Material", typeof(Material)) as Material;
         PLAYER3 = Resources.Load("Materials/PLAYERS/P3/Player3Material", typeof(Material)) as Material;
         PLAYER4 = Resources.Load("Materials/PLAYERS/P4/Player4Material", typeof(Material)) as Material;
-        Debug.Log("suce");
     }
 
 
@@ -55,6 +55,23 @@ public class GameManager : MonoBehaviour
         }
 
         m_playerManager = GetComponent<PlayerManager>();
+    }
+
+
+    public void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.R)) {
+            RestartGame();
+        
+        }
+    }
+
+
+    public void RestartGame()
+    {
+        m_playerManager.Restart();
+        Destroy(gameObject);
+        SceneManager.LoadScene(0);
     }
 
 

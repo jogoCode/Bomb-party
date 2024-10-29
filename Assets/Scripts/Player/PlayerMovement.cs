@@ -78,8 +78,6 @@ public class PlayerMovement : MonoBehaviour
         pc.PlayerVisual.CheckGrounded(m_characterController.isGrounded);
 
         if(!m_wasGrounded && isGrounded) {
-
-            Debug.Log("grounded");
             m_vVel.y = -1;
             pc.JustGrounded();         
 

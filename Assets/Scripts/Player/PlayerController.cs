@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
 
 
+
     public int PlayerId
     {
         get { return m_playerId;}
@@ -60,7 +61,10 @@ public class PlayerController : MonoBehaviour
     public void OnInputAction(InputAction.CallbackContext context)
     {
         if (context.action.triggered) {
-            OnParried?.Invoke();
+            if (m_playerParryBomb.isActiveAndEnabled)
+            {
+                OnParried?.Invoke();
+            }
         }
     }
 
@@ -81,12 +85,15 @@ public class PlayerController : MonoBehaviour
         m_playerParryBomb = GetComponentInChildren<PlayerParryBomb>();
         m_playerStateManager = GetComponentInChildren<PlayerStateManager>();
 
+       
+
         OnDashed += m_playerMovement.Dash;
         OnJumped += m_playerMovement.Jump;
 
         OnJustGrounded += m_playerVisual.JustGrounded;
         OnParried += m_playerVisual.BatAnimation;
         OnMoved += m_playerVisual.MoveAnimation;
+
 
     }
 
@@ -130,7 +137,14 @@ public class PlayerController : MonoBehaviour
         OnJustGrounded?.Invoke();
     }
 
-  
+
+    public void EnabledPlayerParryBomb(bool state)
+    {
+        m_playerParryBomb.enabled = state;   
+    }
+
+ 
+
     #region ACCESORS
     public PlayerVisual GetPlayerVisual() => m_playerVisual;
 

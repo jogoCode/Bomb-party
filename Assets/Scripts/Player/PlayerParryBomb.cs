@@ -25,15 +25,12 @@ public class PlayerParryBomb : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //m_boxCollider.enabled = false;
         FeedBackManager fbm = FeedBackManager.Instance;
         Vector3 inputDir = new Vector3(m_playerController.GetLastInputDir().x, 0, m_playerController.GetLastInputDir().y);
         ParryBomb bomb = other.GetComponent<ParryBomb>();
         if (bomb == null) return;
-        //if (bomb.Owner == m_playerController) return;
         bomb.Parry(inputDir,m_playerController);
-        fbm.FreezeFrame(0.06f,0.5f);
-        
+        fbm.FreezeFrame(0.06f,0.5f);     
     }
 
 

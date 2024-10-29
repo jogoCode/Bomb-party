@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEditor.Experimental.GraphView.GraphView;
@@ -10,6 +12,8 @@ public class PlayerManager : MonoBehaviour
 
 
     public const int MAX_PLAYER_COUNT = 4;
+
+
 
     List<PlayerController> m_players = new List<PlayerController>();
     PlayerInputManager m_playerInputManager;
@@ -48,6 +52,25 @@ public class PlayerManager : MonoBehaviour
 
 
 
+    public void Restart()
+    {
+        m_playersCount = 0;
+        foreach (PlayerController player in m_players)
+        {
+            Destroy(player.gameObject);
+        }
+    }
+
+
+    public void SetActivePlayerParryBomb(bool state)
+    {
+        foreach(PlayerController player in m_players)
+        {
+            player.EnabledPlayerParryBomb(state);
+        }
+    }
+
+
 
     void AddPlayerInPlayerList(PlayerController newPlayer)
     {
@@ -82,6 +105,7 @@ public class PlayerManager : MonoBehaviour
             player.gameObject.SetActive(true);
         }
     }
+
 
 
 
