@@ -149,7 +149,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
     public void HandleJumpBuffer()
     {
         if(m_jumpBufferTimer > 0 && m_coyoteTimer> 0)
@@ -174,6 +173,14 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        
+    
+        Rigidbody body = hit.collider.attachedRigidbody;
+        if (body != null && !body.isKinematic)
+            body.velocity += (m_characterController.velocity*Time.deltaTime/body.mass);
+    }
 
     public bool IsGrounded()
     {
@@ -189,6 +196,8 @@ public class PlayerMovement : MonoBehaviour
     {
         m_coyoteTimer = m_coyoteTime;
     }
+
+
 
     #region Get Variables
     public CharacterController GetCharacterController() => m_characterController;

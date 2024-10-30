@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7b6bb1ca3f4f19b4ba39676b4d6c3650
+guid: 69daee67da326674c90433012e72f1f8
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -8,22 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Fades
-    second: {fileID: 2100000, guid: e6b6844c150504d468fd0b964ca962b9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Fades.001
-    second: {fileID: 2100000, guid: e6b6844c150504d468fd0b964ca962b9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Fades.002
     second: {fileID: 2100000, guid: 0fea89fac72d70f4fbb93b7e72dcf3f0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Fades.012
-    second: {fileID: 2100000, guid: e6b6844c150504d468fd0b964ca962b9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -110,7 +95,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 5
+    globalScale: 0.049999997
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
