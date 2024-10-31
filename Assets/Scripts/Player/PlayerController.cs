@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 {
 
     int m_playerId;
+    bool m_isReady = false;
 
     [SerializeField] PlayerMovement m_playerMovement;
     [SerializeField] PlayerVisual m_playerVisual;
@@ -26,9 +27,15 @@ public class PlayerController : MonoBehaviour
     public event Action<float,float> OnMoved;
     public event Action OnJumped;
     public event Action OnDashed;
+    public event Action<bool> OnReady;
 
 
 
+
+    public bool IsReady
+    {
+        get {return m_isReady;}
+    }
     public int PlayerId
     {
         get { return m_playerId;}
@@ -60,7 +67,10 @@ public class PlayerController : MonoBehaviour
     public void OnInputAction(InputAction.CallbackContext context)
     {
         if (context.action.triggered) {
-            OnParried?.Invoke();
+            if (m_playerParryBomb.isActiveAndEnabled)
+            {
+                OnParried?.Invoke();
+            }
         }
     }
 
@@ -69,6 +79,15 @@ public class PlayerController : MonoBehaviour
         if (context.action.triggered)
         {
             OnDashed?.Invoke();
+        }
+    }
+
+    public void OnInputReady(InputAction.CallbackContext context)
+    {
+        if (context.action.triggered)
+        {
+            m_isReady = !m_isReady;
+            OnReady?.Invoke(m_isReady);
         }
     }
 
@@ -81,6 +100,8 @@ public class PlayerController : MonoBehaviour
         m_playerParryBomb = GetComponentInChildren<PlayerParryBomb>();
         m_playerStateManager = GetComponentInChildren<PlayerStateManager>();
 
+       
+
         OnDashed += m_playerMovement.Dash;
         OnJumped += m_playerMovement.Jump;
 
@@ -88,14 +109,9 @@ public class PlayerController : MonoBehaviour
         OnParried += m_playerVisual.BatAnimation;
         OnMoved += m_playerVisual.MoveAnimation;
 
-    }
+        OnReady += GameManager.Instance.GetPlayerManager().PlayerInListIsReady;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            SceneManager.LoadScene(1);
-        }
+
     }
 
     public void Jump()
@@ -130,7 +146,15 @@ public class PlayerController : MonoBehaviour
         OnJustGrounded?.Invoke();
     }
 
+
+    public void EnabledPlayerParryBomb(bool state)
+    {
+        m_playerParryBomb.enabled = state;   
+    }
+
+ 
   
+
     #region ACCESORS
     public PlayerVisual GetPlayerVisual() => m_playerVisual;
 

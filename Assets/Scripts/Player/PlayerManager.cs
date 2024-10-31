@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEditor.Experimental.GraphView.GraphView;
@@ -11,10 +13,13 @@ public class PlayerManager : MonoBehaviour
 
     public const int MAX_PLAYER_COUNT = 4;
 
+
+
     List<PlayerController> m_players = new List<PlayerController>();
     PlayerInputManager m_playerInputManager;
 
     public event Action OnPlayerManagerStateChanged;
+    public event Action OnPlayerInListIsReady;
 
     int m_playersCount = 0;
 
@@ -29,6 +34,7 @@ public class PlayerManager : MonoBehaviour
     {
         m_playerInputManager = GetComponent<PlayerInputManager>();
         OnPlayerManagerStateChanged += PlayerManagerStateChanged;
+       
         OnPlayerManagerStateChanged?.Invoke();
     }
    
@@ -40,12 +46,34 @@ public class PlayerManager : MonoBehaviour
         AddPlayerInPlayerList(newPlayer);
         m_playersCount++;
         Debug.Log("Nouveau joueur ajouté : " + playerInput.gameObject.name);
-        if(m_playersCount == MAX_PLAYER_COUNT) // if player count equal max player count change player manager state
+        if(m_playersCount == MAX_PLAYER_COUNT) // if player count equal max playercount change the player manager state
         {
             SetPlayerManagerState(PlayerManagerState.DISABLE);
         }
     }
 
+    public void JoinAFakePlayer()
+    {
+
+    }
+
+    public void Restart()
+    {
+        m_playersCount = 0;
+        foreach (PlayerController player in m_players)
+        {
+            Destroy(player.gameObject);
+        }
+    }
+
+
+    public void SetActivePlayerParryBomb(bool state)
+    {
+        foreach(PlayerController player in m_players)
+        {
+            player.EnabledPlayerParryBomb(state);
+        }
+    }
 
 
 
@@ -75,6 +103,11 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public void PlayerInListIsReady(bool isReady)
+    {
+        OnPlayerInListIsReady?.Invoke();
+    }
+
     public void ActiveAllPlayerController()
     {
         foreach (PlayerController player in m_players)
@@ -85,11 +118,21 @@ public class PlayerManager : MonoBehaviour
 
 
 
-
-
-
-
     #region ACCESORS
+    public List<PlayerController> GetReadyPlayers()
+    {
+        List<PlayerController> players = m_players;
+        List<PlayerController> readyPlayer= new List<PlayerController>();
+        foreach (PlayerController player in players)
+        {
+            if (player.IsReady)
+            {
+                readyPlayer.Add(player);
+            }
+        }
+        return readyPlayer;
+    }
+
     public List<PlayerController> GetPlayerList() => m_players;
 
     public List<PlayerController> GetActivePlayers()
