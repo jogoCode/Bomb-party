@@ -16,10 +16,12 @@ public class VolleyBomb : MonoBehaviour
     [SerializeField] private bool _P4Lost = false;
     [SerializeField] private GameObject _bombCenterChecker;
     Rigidbody _RB;
+    VolleyBombManager _volleyBombManager;
 
     private void Start()
     {
         _RB = GetComponent<Rigidbody>();
+        _volleyBombManager = FindObjectOfType<VolleyBombManager>();
     }
 
     void Update()
@@ -29,6 +31,7 @@ public class VolleyBomb : MonoBehaviour
         if(_goundCollision == true || _boom == true)
         {
             Lost();
+            gameObject.SetActive(false);
         }
     }
     
@@ -38,24 +41,36 @@ public class VolleyBomb : MonoBehaviour
         
         switch (_playerId) 
         {
-            case 1:
+            case 0:
                 _P1Lost = true;
-                //Debug.Log("Player 1 Lost");
+                Debug.Log("Player 1 Lost");
+                _volleyBombManager._playersList.Remove(_volleyBombManager._playersList[_playerId]);
+                _goundCollision = false;
+                _boom = false;
+                break;
+            
+            case 1:
+                _P2Lost = true;
+                Debug.Log("Player 2 Lost");
+                _volleyBombManager._playersList.Remove(_volleyBombManager._playersList[_playerId]);
+                _goundCollision = false;
+                _boom = false;
                 break;
             
             case 2:
-                _P2Lost = true;
-                //Debug.Log("Player 2 Lost");
+                _P3Lost = true;
+                Debug.Log("Player 3 Lost");
+                _volleyBombManager._playersList.Remove(_volleyBombManager._playersList[_playerId]);
+                _goundCollision = false;
+                _boom = false;
                 break;
             
             case 3:
-                _P3Lost = true;
-                //Debug.Log("Player 3 Lost");
-                break;
-            
-            case 4:
                 _P4Lost = true;
-                //Debug.Log("Player 4 Lost");
+                Debug.Log("Player 4 Lost");
+                _volleyBombManager._playersList.Remove(_volleyBombManager._playersList[_playerId]);
+                _goundCollision = false;
+                _boom = false;
                 break;
         }
     }
@@ -79,6 +94,7 @@ public class VolleyBomb : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             _goundCollision = true;
+            _bombTimer = 0;
             //Debug.Log("Sol Touché !");
         }
     }

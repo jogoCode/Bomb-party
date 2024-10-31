@@ -8,10 +8,10 @@ public class VolleyBombManager : MonoBehaviour
 
     GameManager _gameManager;
 
-    [SerializeField] private List<GameObject> _bombSpawnList = new List<GameObject>();
+    [SerializeField] private List<GameObject> _bombSpawnList;
     [SerializeField] private GameObject _bomb;
     [SerializeField] private bool _bombDidntSpawn;
-    [SerializeField] private List<PlayerController> _playersList;
+    public List<PlayerController> _playersList;
     [SerializeField] private List<GameObject> _groundsList;
     [SerializeField] private List<VolleyBombZone> _zonesList;
     [SerializeField] private List<GameObject> _playersSpawners;
@@ -35,15 +35,13 @@ public class VolleyBombManager : MonoBehaviour
         _zone = FindObjectOfType<VolleyBombZone>();
         _bombDidntSpawn = true;
     }
-
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (Input.GetKeyDown(KeyCode.Backspace))
         {
             Init();
         }
     }
-
 
     private void Init()
     {
@@ -85,12 +83,12 @@ public class VolleyBombManager : MonoBehaviour
                 GameObject spawnerChoosed = _bombSpawnList[random];
                 Instantiate(_bomb, spawnerChoosed.transform.position,Quaternion.identity);
                 _bombDidntSpawn = false;
-                Debug.Log("Hell yee !");
+                //Debug.Log("Hell yee !");
             }
             else
             {
                 _bombDidntSpawn = true;
-                Debug.Log("nope");
+                //Debug.Log("nope");
             }
         }
 
@@ -105,7 +103,7 @@ public class VolleyBombManager : MonoBehaviour
                 _actualArena = _arenas[2];
                 break;
             case 3:
-                _actualArena = _arenas[1]; // TODO : a modifier
+                _actualArena = _arenas[1];
                 break;
             case 2:
                 _actualArena = _arenas[0];

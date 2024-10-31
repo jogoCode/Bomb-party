@@ -12,9 +12,9 @@ public class VolleyBombBombCenterChecker : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "VolleyBombZoneP1") { _volleyBomb._playerId = 1; }
-        if (other.tag == "VolleyBombZoneP2") { _volleyBomb._playerId = 2; }
-        if (other.tag == "VolleyBombZoneP3") { _volleyBomb._playerId = 3; }
-        if (other.tag == "VolleyBombZoneP4") { _volleyBomb._playerId = 4; }
+        if (other.tag == "VolleyBombZoneP1") { _volleyBomb._playerId = 0; }
+        if (other.tag == "VolleyBombZoneP2") { _volleyBomb._playerId = 1; }
+        if (other.tag == "VolleyBombZoneP3") { _volleyBomb._playerId = 2; }
+        if (other.tag == "VolleyBombZoneP4") { _volleyBomb._playerId = 3; }
     }
 }
