@@ -67,6 +67,7 @@ public class PlayerVisual : MonoBehaviour
     public void BatAnimation()
     {
         m_animator.SetTrigger("isBat");
+        if(m_playerController.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.ATK) return;
         Oscillator.StartOscillator(15);
     }
     public void MoveAnimation(float x,float speedPercent) // x = xvel for horizontalAnim . y = yVel for verticalAnim . speedPercent = Speed ratio

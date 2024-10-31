@@ -2,23 +2,37 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEditor.AnimatedValues;
 
 public class ParryBomb : MonoBehaviour
 {
+    public const float MAX_VEL_MAGNITUDE = 70;
+    public const float MIN_VEL_MAGNITUDE = 15;
 
     ParryBombManager m_parryBombManager;
-
-    public const float MAX_VEL_MAGNITUDE = 70;
-    public float _bombTimer = 10;
-    public bool _boom = false;
     Rigidbody m_rb;
 
-    TrailRenderer m_trailRenderer;
+
     PlayerController m_owner = null;
+    [SerializeField] float _explosionTime = 60;
+    [SerializeField] float _bombTimer = 0;
+    [SerializeField] bool _boom = false;
+    [SerializeField] float m_velMultiplier = 2f;
+
+
+    TrailRenderer m_trailRenderer;
+   
+
+
+
 
     public event Action OnPlayerTouched;
     public event Action<float> OnParried;
+    public event Action<PlayerController> OnExplode;
 
+
+    TMP_Text m_bombTimerDisplay;
     Oscillator m_oscillator;
 
     public PlayerController Owner
@@ -28,11 +42,13 @@ public class ParryBomb : MonoBehaviour
 
     void Start()
     {
+        ResetBombTimer();
         m_rb = GetComponent<Rigidbody>();
         m_trailRenderer = GetComponent<TrailRenderer>();
+        m_bombTimerDisplay = GetComponentInChildren<TMP_Text>();
         m_oscillator = GetComponent<Oscillator>();  
         OnParried += m_oscillator.StartOscillator;
-       
+        m_rb.AddForce(new Vector3(-1,0,1) * 15, ForceMode.Impulse); //TODO replace this hard value
     }
 
     void Update()
@@ -43,30 +59,34 @@ public class ParryBomb : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-     
-
-        //if (m_rb.velocity.magnitude > MAX_VEL_MAGNITUDE)
-        //{
-        //    // Réduire la vitesse à la limite maximale en conservant la direction
-        //    return;
-        //    m_rb.velocity = m_rb.velocity.normalized * MAX_VEL_MAGNITUDE;
-        //}
+        if (m_rb.velocity.magnitude < MIN_VEL_MAGNITUDE)
+        {
+            m_rb.velocity = m_rb.velocity.normalized * MIN_VEL_MAGNITUDE;
+        }
     }
+
+
+    void ResetBombTimer()
+    {
+        _bombTimer = _explosionTime;
+    }
+
+
     void BombTimer()
     {
         if (_bombTimer > 0)
         {
-            _bombTimer = Mathf.Clamp(_bombTimer, 0, 10) - Time.deltaTime; // diminue le titer de la bombe au fine du temps 
-        }
+            _bombTimer = Mathf.Clamp(_bombTimer, 0, _explosionTime) - Time.deltaTime; // diminue le timer de la bombe au fine du temps 
+            m_bombTimerDisplay.text = Math.Ceiling(_bombTimer).ToString();
+        }   
         else
         {
             _boom = true;
-            //Debug.Log("Timer of Bombe is = to : " + _bombTimer);
-            //Debug.Log("Boom !");
+            gameObject.SetActive(false);
+            FeedBackManager.Instance.InstantiateParticle(FeedBackManager.Instance.m_explosionVfx, transform.position, transform.rotation);
+            OnExplode?.Invoke(m_owner);
         }
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -75,11 +95,12 @@ public class ParryBomb : MonoBehaviour
  
         PlayerController player = other.gameObject.GetComponent<PlayerController>();
         if(player == null) return;
-        // Check if the owner
-        if(m_owner !=null && player.name.Contains("Player") && player != m_owner)
+        // Check if the owner 
+        if(player.name.Contains("Player") && player != m_owner)  //Player was touched
         {
             FeedBackManager.Instance.InstantiateParticle(FeedBackManager.Instance.m_explosionVfx,player.transform.position,player.transform.rotation);
             other.gameObject.SetActive(false);
+            ResetBombTimer();
             m_rb.velocity = Vector3.zero; //TODO METTRE DANS UN FONCTION RESET
             m_owner = null; //TODO METTRE DANS UN FONCTION RESET
             OnPlayerTouched?.Invoke();
@@ -101,7 +122,7 @@ public class ParryBomb : MonoBehaviour
         SetTrailRendererMat(player);
         if (oldVel != Vector3.zero)
         {
-            m_rb.AddForce(direction * (oldVel.magnitude*1.001f), ForceMode.Impulse); //TODO replace this hard value
+            m_rb.AddForce(direction * (oldVel.magnitude*m_velMultiplier), ForceMode.Impulse); //TODO replace this hard value
         }
         else
         {
