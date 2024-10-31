@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerMovement m_playerMovement;
     [SerializeField] PlayerVisual m_playerVisual;
     [SerializeField] PlayerParryBomb m_playerParryBomb;
+    PlayerStateManager m_playerStateManager;
 
 
     Vector2 m_inputDir = Vector2.zero;
@@ -21,7 +22,10 @@ public class PlayerController : MonoBehaviour
 
 
     public event Action OnJustGrounded;
-    public event Action OnParry;
+    public event Action OnParried;
+    public event Action<float,float> OnMoved;
+    public event Action OnJumped;
+    public event Action OnDashed;
 
 
 
@@ -35,44 +39,56 @@ public class PlayerController : MonoBehaviour
         get { return m_playerVisual;}
     }
 
-
+    #region INPUT EVENTS
     public void OnInputMove(InputAction.CallbackContext context)
     {
         m_inputDir = context.ReadValue<Vector2>();
+        OnMoved?.Invoke(m_inputDir.magnitude,m_playerMovement.Speed);
         if(m_inputDir != Vector2.zero)
         {
-            m_lastInputDir = new Vector2(Mathf.Sign(m_inputDir.x), Mathf.Sign(m_inputDir.y));
+            m_lastInputDir = new Vector2(m_inputDir.x, m_inputDir.y).normalized;
         }
     }
 
     public void OnInputJump(InputAction.CallbackContext context)
     {
-        m_jumped = context.action.triggered;
-    }
-
-    public void OnAction(InputAction.CallbackContext context)
-    {
-        if (context.action.triggered) {
-
-            OnParry?.Invoke();  
+        if (context.action.triggered ){
+            m_playerMovement.ResetJumpBufferTimer();    
         }
     }
 
+    public void OnInputAction(InputAction.CallbackContext context)
+    {
+        if (context.action.triggered) {
+            OnParried?.Invoke();
+        }
+    }
+
+    public void OnInputDash(InputAction.CallbackContext context)
+    {
+        if (context.action.triggered)
+        {
+            OnDashed?.Invoke();
+        }
+    }
+
+    #endregion
 
     void Awake()
     {
         m_playerMovement = GetComponent<PlayerMovement>();
         m_playerVisual = GetComponent<PlayerVisual>();
         m_playerParryBomb = GetComponentInChildren<PlayerParryBomb>();
+        m_playerStateManager = GetComponentInChildren<PlayerStateManager>();
+
+        OnDashed += m_playerMovement.Dash;
+        OnJumped += m_playerMovement.Jump;
+
         OnJustGrounded += m_playerVisual.JustGrounded;
+        OnParried += m_playerVisual.BatAnimation;
+        OnMoved += m_playerVisual.MoveAnimation;
+
     }
-
-
-    private void Start()
-    {
-        OnParry += m_playerParryBomb.Parry;
-    }
-
 
     private void Update()
     {
@@ -82,8 +98,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-
     public void Jump()
     {
         if (m_playerMovement.CoyoteTimer > 0)
@@ -92,12 +106,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void SetLayer(int newLayer)
+    {
+        gameObject.layer = newLayer;
+    }
 
     public void SetPlayerID(int newId)
     {
         m_playerId = newId;
     }
-
 
     Vector3 warpPosition = Vector3.zero;
     public void WarpToPosition(Vector3 newPosition)
@@ -108,21 +125,19 @@ public class PlayerController : MonoBehaviour
         m_playerMovement.GetCharacterController().enabled = true;
     }
 
-
     public void JustGrounded()
     {
         OnJustGrounded?.Invoke();
     }
 
-
-
-    public void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-
-    }
-
-
+  
     #region ACCESORS
+    public PlayerVisual GetPlayerVisual() => m_playerVisual;
+
+    public PlayerMovement GetPlayerMovement() => m_playerMovement;
+
+    public PlayerStateManager GetPlayerStateManager() => m_playerStateManager;
+
     public Vector2 GetInputDir()=> m_inputDir;
 
     public Vector2 GetLastInputDir() => m_lastInputDir;

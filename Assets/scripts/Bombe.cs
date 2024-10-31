@@ -30,13 +30,11 @@ public class Bombe : MonoBehaviour
         
         if (collision != null) // && collision != gameObject.GetComponent<PlayerController>())
         {
-            
-
             if (_bombe._timerExplosion <= 0)
             {
                 // explose  dans le radius check les players qui sont dedans
                   // anim de l'explosion 
-                Destroy(gameObject); 
+                //Destroy(gameObject); 
             }
         }
     }

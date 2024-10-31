@@ -15,11 +15,12 @@ public class PlayerVisual : MonoBehaviour
     Material m_material;
     [SerializeField] float m_rotationSpeed;
 
+    public const float SPEED_ANIM_RATIO = 5;
+
 
    
 
    
-
     public event Action OnGrounded;
 
 
@@ -33,7 +34,7 @@ public class PlayerVisual : MonoBehaviour
     }
 
     #region BUILT-IN
-    void Start()
+    void Awake()
     {
         m_playerController = GetComponent<PlayerController>();  
         m_animator = GetComponentInChildren<Animator>();
@@ -43,8 +44,7 @@ public class PlayerVisual : MonoBehaviour
 
     void Update()
     {
-
-        AnimationUpdate();
+        VerticalMoveAnimation();
         RotateModel();    
     }
     #endregion
@@ -62,13 +62,32 @@ public class PlayerVisual : MonoBehaviour
     }
 
 
-    void AnimationUpdate()
+    #region Animation
+
+    public void BatAnimation()
     {
-        PlayerController pc = m_playerController;
-        m_animator.SetFloat("Movement", pc.GetInputDir().magnitude);
-        m_animator.SetFloat("VMovement", pc.GetVerticalVelY());
+        m_animator.SetTrigger("isBat");
+        Oscillator.StartOscillator(15);
+    }
+    public void MoveAnimation(float x,float speedPercent) // x = xvel for horizontalAnim . y = yVel for verticalAnim . speedPercent = Speed ratio
+    {
+
+        float speed = speedPercent / SPEED_ANIM_RATIO;
+        if(x == 0)
+        {
+            speed = 1;
+        }
+        m_animator.SetFloat("SpeedPercent",speed);
+        m_animator.SetFloat("Movement", x);
     }
 
+    public void VerticalMoveAnimation()
+    {
+        PlayerMovement playerMovement = m_playerController.GetPlayerMovement();
+        m_animator.SetFloat("VMovement", playerMovement.GetVerticalVelY());
+    }
+
+#endregion
 
     void SetMaterial()
     {
