@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     PlayerManager m_playerManager;
+    CameraHandler m_camera;
 
 
     public const int PLAYER_PARRY_BOMB_LAYER = 8;
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
 
 
 
+    public event Action OnGameStarted;
 
 
     public void InitMaterials() //TODO Maybe deplace this in player manager
@@ -53,8 +56,8 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-
         m_playerManager = GetComponent<PlayerManager>();
+        m_camera = Camera.main.gameObject.GetComponent<CameraHandler>();
     }
 
 
@@ -66,7 +69,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     public void RestartGame()
     {
         m_playerManager.Restart();
@@ -75,6 +77,15 @@ public class GameManager : MonoBehaviour
     }
 
 
+    public void GameStart()
+    {
+        //TODO faire une fonction pour le mini jeux 
+        OnGameStarted?.Invoke();
+        SceneManager.LoadScene(1);
+    }
+
+
+    public CameraHandler GetCameraHandler() => m_camera;
     public PlayerManager GetPlayerManager()=> m_playerManager;
 
 }

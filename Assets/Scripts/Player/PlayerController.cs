@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 {
 
     int m_playerId;
+    bool m_isReady = false;
 
     [SerializeField] PlayerMovement m_playerMovement;
     [SerializeField] PlayerVisual m_playerVisual;
@@ -26,10 +27,15 @@ public class PlayerController : MonoBehaviour
     public event Action<float,float> OnMoved;
     public event Action OnJumped;
     public event Action OnDashed;
+    public event Action<bool> OnReady;
 
 
 
 
+    public bool IsReady
+    {
+        get {return m_isReady;}
+    }
     public int PlayerId
     {
         get { return m_playerId;}
@@ -76,6 +82,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnInputReady(InputAction.CallbackContext context)
+    {
+        if (context.action.triggered)
+        {
+            m_isReady = !m_isReady;
+            OnReady?.Invoke(m_isReady);
+        }
+    }
+
     #endregion
 
     void Awake()
@@ -94,15 +109,9 @@ public class PlayerController : MonoBehaviour
         OnParried += m_playerVisual.BatAnimation;
         OnMoved += m_playerVisual.MoveAnimation;
 
+        OnReady += GameManager.Instance.GetPlayerManager().PlayerInListIsReady;
 
-    }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            SceneManager.LoadScene(1);
-        }
     }
 
     public void Jump()
@@ -144,6 +153,7 @@ public class PlayerController : MonoBehaviour
     }
 
  
+  
 
     #region ACCESORS
     public PlayerVisual GetPlayerVisual() => m_playerVisual;
