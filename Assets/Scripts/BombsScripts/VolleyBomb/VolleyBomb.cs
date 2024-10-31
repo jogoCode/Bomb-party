@@ -64,7 +64,7 @@ public class VolleyBomb : MonoBehaviour
     {
         if (_bombTimer > 0)
         {
-            _bombTimer = Mathf.Clamp(_bombTimer, 0, 10) - Time.deltaTime; // diminue le titer de la bombe au fine du temps 
+            _bombTimer = Mathf.Clamp(_bombTimer, 0, _bombTimer) - Time.deltaTime; // diminue le titer de la bombe au fine du temps 
         }
         else
         {
