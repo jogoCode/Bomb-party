@@ -61,14 +61,14 @@ public class ParryBombManager : MonoBehaviour
             return;
         }
         GameFinished($"P{winner.PlayerId + 1} WIN !");
-
     }
 
     void GameFinished(string message)
     {
         FeedBackManager fbm = FeedBackManager.Instance;
         fbm.FreezeFrame(2f, 0.6f);
-        Debug.Log(message);  
+        Debug.Log(message);
+        GameManager.Instance.RestartGame();
     }
 
 

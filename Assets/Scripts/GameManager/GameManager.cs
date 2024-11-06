@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        Time.timeScale = 1.0f;
         m_playerManager.Restart();
         Destroy(gameObject);
         SceneManager.LoadScene(0);
@@ -80,6 +81,7 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         //TODO faire une fonction pour le mini jeux 
+        m_playerManager.SetPlayerManagerState(PlayerManager.PlayerManagerState.DISABLE);
         OnGameStarted?.Invoke();
         SceneManager.LoadScene(1);
     }
