@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0986fcc000a2d04790eec2e6cf53aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bombTimer: 10
+  _bombTimer: 30
   _boom: 0
   _goundCollision: 0
   _playerId: 0
