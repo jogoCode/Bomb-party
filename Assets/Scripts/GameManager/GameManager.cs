@@ -9,10 +9,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     PlayerManager m_playerManager;
     CameraHandler m_camera;
-
+    ScoreManager m_scoreManager;
 
     public const int PLAYER_PARRY_BOMB_LAYER = 8;
     public const int PLAYER_LAYER = 6;
+    
 
 
     public static readonly Color BLUE = new Color32(68,176,243,1);
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
         PLAYER2 = Resources.Load("Materials/PLAYERS/P2/Player2Material", typeof(Material)) as Material;
         PLAYER3 = Resources.Load("Materials/PLAYERS/P3/Player3Material", typeof(Material)) as Material;
         PLAYER4 = Resources.Load("Materials/PLAYERS/P4/Player4Material", typeof(Material)) as Material;
+        Debug.Log("sucepute.fr");
     }
 
 
@@ -58,6 +60,7 @@ public class GameManager : MonoBehaviour
         }
         m_playerManager = GetComponent<PlayerManager>();
         m_camera = Camera.main.gameObject.GetComponent<CameraHandler>();
+        m_scoreManager = GetComponent<ScoreManager>();
     }
 
 
@@ -65,9 +68,9 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.R)) {
             RestartGame();
-        
         }
     }
+
 
     public void RestartGame()
     {
@@ -89,5 +92,6 @@ public class GameManager : MonoBehaviour
 
     public CameraHandler GetCameraHandler() => m_camera;
     public PlayerManager GetPlayerManager()=> m_playerManager;
+    public ScoreManager GetScoreManager()=> m_scoreManager;
 
 }
