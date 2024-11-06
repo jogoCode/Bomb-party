@@ -11,6 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FredScene.unity
     guid: 3a749afa952284e468405b94d2e08392
+
   - enabled: 1
     path: Assets/Scenes/ManuScene.unity
     guid: 672cbcf3dce3d994e9b4023553192eb9

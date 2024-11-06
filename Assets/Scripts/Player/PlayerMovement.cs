@@ -176,10 +176,13 @@ public class PlayerMovement : MonoBehaviour
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         
-    
+        
         Rigidbody body = hit.collider.attachedRigidbody;
-        if (body != null && !body.isKinematic)
-            body.velocity += (m_characterController.velocity*Time.deltaTime/body.mass);
+        if (hit.gameObject.GetComponent<VolleyBomb>() == null)
+        {
+            if (body != null && !body.isKinematic)
+                body.velocity += (m_characterController.velocity * Time.deltaTime / body.mass);
+        }
     }
 
     public bool IsGrounded()

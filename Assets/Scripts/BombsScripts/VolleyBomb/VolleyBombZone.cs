@@ -5,9 +5,9 @@ using UnityEngine;
 public class VolleyBombZone : MonoBehaviour
 {
 
-    VolleyBombManager m_volleyBombManager;
+    //VolleyBombManager m_volleyBombManager;
     PlayerController m_owner;
-    Renderer _renderer;
+    [SerializeField] private Renderer _renderer;
     public PlayerSpawner _spawner;
 
 
