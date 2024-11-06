@@ -8,18 +8,19 @@ public class VolleyBombZone : MonoBehaviour
     VolleyBombManager m_volleyBombManager;
     PlayerController m_owner;
     Renderer _renderer;
+    public PlayerSpawner _spawner;
+
 
     int m_zoneID;
 
     private void Start()
     {
         _renderer = GetComponentInChildren<Renderer>();
+        _spawner = GetComponentInChildren<PlayerSpawner>();
     }
 
     public void SetZoneMaterial(int playerID)
     {
-
-        Debug.Log("zebi");
         switch (playerID)
         {
             case 0:
@@ -39,5 +40,11 @@ public class VolleyBombZone : MonoBehaviour
     public void SetOwner(PlayerController owner)
     {
         m_owner = owner;
+    }
+
+    public void SetSpawn(PlayerController player, Transform pos)
+    {
+        player.WarpToPosition(pos.position);
+
     }
 }
