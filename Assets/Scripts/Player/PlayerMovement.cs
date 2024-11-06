@@ -25,6 +25,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float m_dashDuration = 0.2f;
     [SerializeField] float m_dashCooldown = 1f;
 
+
+
+    [SerializeField] float m_impulseFriction = 2;
+    [SerializeField] float m_impulseForce = 15;
+    [SerializeField] Vector3 m_impulseVel;
+
+
     float m_dashTimeRemaining;
     float m_dashCooldownRemaining;
     bool m_isDashing;
@@ -69,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerController pc = m_playerController;
         HandleDash();
+        ImpulseHandler();
         if (pc.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.ATK) return;
         Vector2 inputDir = m_playerController.GetInputDir();
         bool jumped = m_playerController.GetJumped();
@@ -77,8 +85,11 @@ public class PlayerMovement : MonoBehaviour
         bool isGrounded =  m_characterController.isGrounded;
         pc.PlayerVisual.CheckGrounded(m_characterController.isGrounded);
 
+        Debug.Log(m_characterController.isGrounded);
+
         if(!m_wasGrounded && isGrounded) {
             m_vVel.y = -1;
+            m_vSpeed = 0;
             pc.JustGrounded();         
 
         }
@@ -94,6 +105,9 @@ public class PlayerMovement : MonoBehaviour
             ResetCoyoteTimer();
         }
 
+        if (Input.GetKey(KeyCode.KeypadEnter)){ 
+            ApplyImpulse(new Vector3(m_playerController.GetLastInputDir().x,0, m_playerController.GetLastInputDir().y), 15);
+        }
 
 
         HandleJumpBuffer();
@@ -112,6 +126,35 @@ public class PlayerMovement : MonoBehaviour
     void Movement(Vector3 direction, float speed)
     {
         m_characterController.Move(direction*speed*Time.deltaTime);
+    }
+
+
+    void ImpulseHandler()
+    {
+
+
+      
+        // Appliquer le mouvement en fonction de la vitesse
+        if (m_impulseVel.magnitude != 0)
+        {
+            m_characterController.Move(m_impulseVel * Time.deltaTime);
+        }
+        
+
+        // Réduire progressivement la vitesse horizontale avec la "décélération"
+        m_impulseVel.x = Mathf.Lerp(m_impulseVel.x, 0, m_impulseFriction * Time.deltaTime);
+        m_impulseVel.y = m_vVel.y;
+        m_impulseVel.z = Mathf.Lerp(m_impulseVel.z, 0, m_impulseFriction * Time.deltaTime);
+        
+
+    }
+
+
+    public void ApplyImpulse(Vector3 direction, float impulseForce)
+    {
+        // Ajouter l'impulsion dans la direction donnée
+        Debug.Log("aaaa");
+        m_impulseVel = direction.normalized * impulseForce;
     }
 
 

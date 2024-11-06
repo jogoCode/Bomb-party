@@ -780,6 +780,9 @@ MonoBehaviour:
   m_dashSpeed: 45
   m_dashDuration: 0.15
   m_dashCooldown: 1
+  m_impulseFriction: 15
+  m_impulseForce: 15
+  m_impulseVel: {x: 0, y: 0, z: 0}
   m_vSpeed: 0.01
   m_vVelFactor: 4
 --- !u!114 &4928344797725933354
@@ -1942,7 +1945,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186885826974745645}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 241733cd516ba7746a01d0d497de9ef7, type: 3}
   m_Name: 
@@ -1967,8 +1970,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 4.55, y: 2, z: 2}
-  m_Center: {x: 0, y: 1.17, z: 2.23}
+  m_Size: {x: 4.55, y: 2, z: 2.7293148}
+  m_Center: {x: 0, y: 1.1700001, z: 1.8653426}
 --- !u!114 &1059268299927992018
 MonoBehaviour:
   m_ObjectHideFlags: 0
