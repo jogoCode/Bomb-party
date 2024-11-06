@@ -13,6 +13,7 @@ public class BombShowerManager : MonoBehaviour
     private void Start()
     {
         m_gameManager = GameManager.Instance;
+
     }
 
     public void PlayerEliminated(PlayerController player)

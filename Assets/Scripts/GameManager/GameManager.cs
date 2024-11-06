@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
         }
         m_playerManager = GetComponent<PlayerManager>();
         m_camera = Camera.main.gameObject.GetComponent<CameraHandler>();
+        m_scoreManager = GetComponent<ScoreManager>();
     }
 
 
@@ -67,12 +68,10 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.R)) {
             RestartGame();
-        
         }
     }
 
-        m_playerManager = GetComponent<PlayerManager>();
-        m_scoreManager = GetComponent<ScoreManager>();
+
     public void RestartGame()
     {
         Time.timeScale = 1.0f;
