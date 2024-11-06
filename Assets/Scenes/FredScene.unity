@@ -470,10 +470,20 @@ PrefabInstance:
       propertyPath: m_PropertySheet.m_AnimationCurve.m_Array.Array.data[3].m_Value.m_Curve.Array.data[2].tangentMode
       value: 34
       objectReference: {fileID: 0}
+    - target: {fileID: 3075344575540763385, guid: b3e53096f2c6fa24ebede4dd00bc7962,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3075344575540763386, guid: b3e53096f2c6fa24ebede4dd00bc7962,
         type: 3}
       propertyPath: m_Name
       value: lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 3075344575540763386, guid: b3e53096f2c6fa24ebede4dd00bc7962,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3075344575540763391, guid: b3e53096f2c6fa24ebede4dd00bc7962,
         type: 3}
@@ -552,7 +562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &811608242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -881,6 +891,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BombeThermique
       objectReference: {fileID: 0}
+    - target: {fileID: 2736501902234959962, guid: 7fc634bcd0417ad4bb114ecfcc9d51fb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1104,7 +1119,7 @@ Transform:
   m_GameObject: {fileID: 1283608835}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -7.3, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1215,6 +1230,69 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &1414522462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1414522465}
+  - component: {fileID: 1414522464}
+  - component: {fileID: 1414522463}
+  m_Layer: 0
+  m_Name: '[BOMB SHOWER MANAGER]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1414522463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414522462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4b06809fc53d4c42aa6009b867d17cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_gameManager: {fileID: 0}
+--- !u!114 &1414522464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414522462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f067bf4660f70d649821e8cdee98482b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rangeDistance: 24
+  _BombPrefabs:
+  - {fileID: 2736501902234959962, guid: 7fc634bcd0417ad4bb114ecfcc9d51fb, type: 3}
+  - {fileID: 5061762887113759083, guid: 7badd64d43dcd2a409c18cdc8f06fc7d, type: 3}
+  _spawnCooldown: 2
+--- !u!4 &1414522465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414522462}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 8.72, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1539587789
 GameObject:
   m_ObjectHideFlags: 0
@@ -1471,3 +1549,4 @@ SceneRoots:
   - {fileID: 1388275623}
   - {fileID: 1016273037}
   - {fileID: 522540635}
+  - {fileID: 1414522465}
