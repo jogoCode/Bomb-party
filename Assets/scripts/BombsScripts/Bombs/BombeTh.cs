@@ -14,14 +14,12 @@ public class BombeTh : Bombe
     private GameObject currentVFX;
 
     public SphereCollider sphereCollider;
-    private float timer;
+    private float timer = 3f;
 
     void Update()
     {
         if (_isStarted)
         {
-            // Instancier le VFX d'explosion
-            TriggerExplosionVFX();
             // La sphère grandit jusqu'à la taille max
             if (sphereCollider.radius < maxRadius)
             {
@@ -32,44 +30,28 @@ public class BombeTh : Bombe
                     currentVFX.transform.localScale = new Vector3(scale, scale, scale);
                 }
             }
+            timer -= Time.deltaTime;
 
-
-
-
-            // Augmenter le timer
-            timer += Time.deltaTime;
-
-            // Après une certaine durée, détruire l'objet ou désactiver le collider
-            if (timer >= duration)
+            // Après une certaine durée, détruire l'objet
+            if (timer <= 0)
             {
-
-
                 // Détruire l'objet
                 Destroy(gameObject);
             }
         }
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision != null) // && collision != gameObject.GetComponent<PlayerController>())
         {
+            TriggerExplosionVFX();
+
             // Démarrer l'expansion de la sphère
             _isStarted = true;
         }
     }
 
-    void OnDrawGizmos()
-    {
-        if (sphereCollider != null)
-        {
-            // Couleur du gizmo
-            Gizmos.color = gizmoColor;
-
-            // Dessiner une sphère dans la scène, correspondant au collider
-            Gizmos.DrawWireSphere(transform.position, sphereCollider.radius);
-        }
-    }
 
     private void TriggerExplosionVFX()
     {
@@ -77,6 +59,16 @@ public class BombeTh : Bombe
         if (explosionVFXPrefab != null)
         {
             currentVFX = Instantiate(explosionVFXPrefab, transform.position, Quaternion.identity);
+        }
+    }
+    void OnDrawGizmos()
+    {
+        if (sphereCollider != null)
+        {
+            // Couleur du gizmo
+            Gizmos.color = gizmoColor;
+            // Dessiner une sphère dans la scène, correspondant au collider
+            Gizmos.DrawWireSphere(transform.position, sphereCollider.radius*3f);
         }
     }
 }

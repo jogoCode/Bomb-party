@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3075344575540763386}
-  m_LocalRotation: {x: -0, y: -0.8807569, z: -0, w: 0.47356874}
-  m_LocalPosition: {x: 1.79, y: 2.36, z: 4.31}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -123.468, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!2083052967 &3075344575540763384
 VisualEffect:
   m_ObjectHideFlags: 0
@@ -46,20 +46,24 @@ VisualEffect:
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
+  m_AllowInstancing: 1
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
       m_Array:
       - m_Value: 5
         m_Name: Duration
-        m_Overridden: 1
+        m_Overridden: 0
     m_Vector2f:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 10, y: 10, z: 10}
+      - m_Value: {x: 162, y: 162, z: 162}
         m_Name: VectorScale
         m_Overridden: 1
+      - m_Value: {x: 1, y: 1, z: 1}
+        m_Name: VectorScaleDome3
+        m_Overridden: 0
     m_Vector4f:
       m_Array:
       - m_Value: {x: 72.65929, y: 51.35604, z: 3.423736, w: 1}
@@ -68,7 +72,7 @@ VisualEffect:
       - m_Value: {x: 4.8005466, y: 0.17562975, z: 0, w: 1}
         m_Name: DomeColor
         m_Overridden: 1
-      - m_Value: {x: 445.74118, y: 12.047059, z: 0, w: 1}
+      - m_Value: {x: 432.28912, y: 315.7615, z: 311.98224, w: 1}
         m_Name: DomeSndColor
         m_Overridden: 1
     m_Uint:
@@ -83,64 +87,19 @@ VisualEffect:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
-            time: -0.012500001
-            value: 0.0056551695
-            inSlope: 6.892985
-            outSlope: 6.892985
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
             tangentMode: 34
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.14816287
-            value: 1.113102
-            inSlope: 0.5032032
-            outSlope: 0.5032032
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.355648
-            value: 0.8558337
-            inSlope: 0.13967326
-            outSlope: 0.13967326
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.46210003
-            value: 1.0669013
-            inSlope: 0.099859476
-            outSlope: 0.099859476
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.69616413
-            value: 0.97130215
-            inSlope: 0.058990538
-            outSlope: 0.058990538
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.8491844
-            value: 1.0432805
-            inSlope: 0.30048248
-            outSlope: 0.30048248
-            tangentMode: 0
             weightedMode: 0
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: -0.28697616
-            outSlope: -0.28697616
+            inSlope: 0
+            outSlope: 0
             tangentMode: 34
             weightedMode: 0
             inWeight: 0
@@ -149,69 +108,24 @@ VisualEffect:
           m_PostInfinity: 2
           m_RotationOrder: 4
         m_Name: ScaleOverLifeX
-        m_Overridden: 0
+        m_Overridden: 1
       - m_Value:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
-            time: -0.012500001
-            value: 0.0056551695
-            inSlope: 6.892985
-            outSlope: 6.892985
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
             tangentMode: 34
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.14816287
-            value: 1.113102
-            inSlope: 0.5032032
-            outSlope: 0.5032032
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.355648
-            value: 0.8558337
-            inSlope: 0.13967326
-            outSlope: 0.13967326
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.46210003
-            value: 1.0669013
-            inSlope: 0.099859476
-            outSlope: 0.099859476
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.69616413
-            value: 0.97130215
-            inSlope: 0.058990538
-            outSlope: 0.058990538
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.8491844
-            value: 1.0432805
-            inSlope: 0.30048248
-            outSlope: 0.30048248
-            tangentMode: 0
             weightedMode: 0
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: -0.28697616
-            outSlope: -0.28697616
+            inSlope: 0
+            outSlope: 0
             tangentMode: 34
             weightedMode: 0
             inWeight: 0
@@ -220,69 +134,24 @@ VisualEffect:
           m_PostInfinity: 2
           m_RotationOrder: 4
         m_Name: ScaleOverLifeY
-        m_Overridden: 0
+        m_Overridden: 1
       - m_Value:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
-            time: -0.012500001
-            value: 0.0056551695
-            inSlope: 6.892985
-            outSlope: 6.892985
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
             tangentMode: 34
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.14816287
-            value: 1.113102
-            inSlope: 0.5032032
-            outSlope: 0.5032032
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.355648
-            value: 0.8558337
-            inSlope: 0.13967326
-            outSlope: 0.13967326
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.46210003
-            value: 1.0669013
-            inSlope: 0.099859476
-            outSlope: 0.099859476
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.69616413
-            value: 0.97130215
-            inSlope: 0.058990538
-            outSlope: 0.058990538
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 0.8491844
-            value: 1.0432805
-            inSlope: 0.30048248
-            outSlope: 0.30048248
-            tangentMode: 0
             weightedMode: 0
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: -0.28697616
-            outSlope: -0.28697616
+            inSlope: 0
+            outSlope: 0
             tangentMode: 34
             weightedMode: 0
             inWeight: 0
@@ -291,7 +160,7 @@ VisualEffect:
           m_PostInfinity: 2
           m_RotationOrder: 4
         m_Name: ScaleOverLifeZ
-        m_Overridden: 0
+        m_Overridden: 1
     m_Gradient:
       m_Array: []
     m_NamedObject:

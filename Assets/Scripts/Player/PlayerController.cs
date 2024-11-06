@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerController : MonoBehaviour
 {
-
     int m_playerId;
 
     [SerializeField] PlayerMovement m_playerMovement;
@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerParryBomb m_playerParryBomb;
     PlayerStateManager m_playerStateManager;
 
+    public int _score;
+    public string m_nom;
 
     Vector2 m_inputDir = Vector2.zero;
     Vector2 m_lastInputDir = Vector2.zero;
@@ -27,7 +29,11 @@ public class PlayerController : MonoBehaviour
     public event Action OnJumped;
     public event Action OnDashed;
 
-
+    public PlayerController(string name, int score)
+    {
+        m_nom = name;
+        _score = score;
+    }
 
     public int PlayerId
     {

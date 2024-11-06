@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 4679795360305761275}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -565,6 +565,7 @@ MonoBehaviour:
   m_playerMovement: {fileID: 0}
   m_playerVisual: {fileID: 0}
   m_playerParryBomb: {fileID: 0}
+  _score: {fileID: 0}
 --- !u!114 &3278899701764599895
 MonoBehaviour:
   m_ObjectHideFlags: 0
