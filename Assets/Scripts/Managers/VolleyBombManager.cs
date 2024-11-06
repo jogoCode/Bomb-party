@@ -8,11 +8,13 @@ public class VolleyBombManager : MonoBehaviour
 
     GameManager _gameManager;
 
-    [SerializeField] private List<GameObject> _bombSpawnList;
+    [SerializeField] private List<GameObject> _bombSpawnList = new List<GameObject>();
     [SerializeField] private GameObject _bomb;
+    [SerializeField] private bool _bombDidntSpawn;
     [SerializeField] private List<PlayerController> _playersList;
     [SerializeField] private List<GameObject> _groundsList;
     [SerializeField] private List<VolleyBombZone> _zonesList;
+    [SerializeField] private List<GameObject> _playersSpawners;
 
     [SerializeField] private GameObject _actualArena;
     [SerializeField] private List<GameObject> _arenas;
@@ -20,17 +22,18 @@ public class VolleyBombManager : MonoBehaviour
     [SerializeField] private GameObject _map3J;
     [SerializeField] private GameObject _map4J;
 
+    VolleyBombZone _zone;
+
 
 
 
     private void Start()
     {
-
         _gameManager = GameManager.Instance;
         _playersList = _gameManager.GetPlayerManager().GetPlayerList();
-        _groundsList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Ground"));
- 
-
+        _playersSpawners = new List<GameObject>();
+        _zone = FindObjectOfType<VolleyBombZone>();
+        _bombDidntSpawn = true;
     }
 
     private void Update()
@@ -47,26 +50,50 @@ public class VolleyBombManager : MonoBehaviour
         _playersList = _gameManager.GetPlayerManager().GetPlayerList(); // TODO : replace avec un "GetActifPlayers"
         switch (_playersList.Count)
         {
-            case 1:
+            case 2:
                 _map2J.SetActive(true);
+                _map3J.SetActive(false);
+                _map4J.SetActive(false);
                 break;
             case 3:
+                _map2J.SetActive(false);
                 _map3J.SetActive(true);
+                _map4J.SetActive(false);
                 break;
             case 4:
+                _map2J.SetActive(false);
+                _map3J.SetActive(false);
                 _map4J.SetActive(true);
                 break;
         }
+        
         AssignArena();
+        _groundsList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Ground"));
         var i = 0;
         foreach (VolleyBombZone zone in _zonesList)
         {
-            zone.SetOwner(_playersList[0]);
-            zone.SetZoneMaterial(_playersList[0].PlayerId);
-            _playersList.RemoveAt(0);
-            
+            zone.SetOwner(_playersList[i]);
+            zone.SetZoneMaterial(_playersList[i].PlayerId);
+            zone.SetSpawn(_playersList[i],zone._spawner.transform);
+            i++;
         }
-        
+        while (_bombDidntSpawn == true)
+        {
+            int random = Random.Range(0, _bombSpawnList.Count);
+            if (_bombSpawnList[random].gameObject.activeInHierarchy == true)
+            {
+                GameObject spawnerChoosed = _bombSpawnList[random];
+                Instantiate(_bomb, spawnerChoosed.transform.position,Quaternion.identity);
+                _bombDidntSpawn = false;
+                Debug.Log("Hell yee !");
+            }
+            else
+            {
+                _bombDidntSpawn = true;
+                Debug.Log("nope");
+            }
+        }
+
     }
 
     void AssignArena()
@@ -75,7 +102,7 @@ public class VolleyBombManager : MonoBehaviour
         switch (playerNum)
         {
             case 4:
-                _actualArena = _arenas[0];
+                _actualArena = _arenas[2];
                 break;
             case 3:
                 _actualArena = _arenas[1]; // TODO : a modifier

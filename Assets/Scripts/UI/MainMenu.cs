@@ -31,7 +31,7 @@ public class MainMenu : MonoBehaviour
     IEnumerator SelectScreenCoroutine()
     {
         m_playerSelectPanel.SetActive(true);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.1f);
         m_gm.GetPlayerManager().SetPlayerManagerState(PlayerManager.PlayerManagerState.SEARCHING);
     }
 }

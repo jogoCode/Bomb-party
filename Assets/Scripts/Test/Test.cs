@@ -28,7 +28,6 @@ public class Test : MonoBehaviour
 
     public void InitPlayersPosition()
     {
-        Debug.Log("LESTGOO");
         List<PlayerController> players = m_pm.GetPlayerList();
         foreach (PlayerController player in players) {
             player.WarpToPosition(m_playersSpawns[player.PlayerId].transform.position);

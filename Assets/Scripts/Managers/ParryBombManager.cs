@@ -25,11 +25,17 @@ public class ParryBombManager : MonoBehaviour
         m_players = m_gameManager.GetPlayerManager().GetActivePlayers();
         m_parryBomb = FindObjectOfType<ParryBomb>();
         m_parryBomb.OnPlayerTouched += HasAWinner;
+        m_parryBomb.OnExplode +=TimeOver;
+        Initialize();
     }
 
     void Initialize()
     {
-
+        foreach (PlayerController player in m_players)
+        {
+            player.EnabledPlayerParryBomb(true);
+            Debug.Log(player.name);
+        }
     }
 
     void HasAWinner()
@@ -43,18 +49,27 @@ public class ParryBombManager : MonoBehaviour
             case 1:
                 GameFinished($"P{m_players[0].PlayerId+1} WIN !");
             break;
-
         }
+    }
+
+
+    void TimeOver(PlayerController winner)
+    {
+        if(winner == null)
+        {
+            GameFinished("DRAW!");
+            return;
+        }
+        GameFinished($"P{winner.PlayerId + 1} WIN !");
     }
 
     void GameFinished(string message)
     {
         FeedBackManager fbm = FeedBackManager.Instance;
-        fbm.FreezeFrame(1f, 0.6f);
+        fbm.FreezeFrame(2f, 0.6f);
         Debug.Log(message);
-       
+        GameManager.Instance.RestartGame();
     }
-
 
 
 
