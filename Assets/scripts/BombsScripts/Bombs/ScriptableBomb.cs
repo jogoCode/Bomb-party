@@ -10,5 +10,8 @@ public class ScriptableBomb : ScriptableObject
     [SerializeField] bool _fakeBomb;
     [SerializeField] TypeOfBombs _type;
     [SerializeField] float _radius;
+    public Transform bombTransform; // Position de la bombe
+    private List<PlayerController> playersInRange = new List<PlayerController>(); // Liste des joueurs touchés par la bombe
+    private ScoreManager scoreManager;
 
 }
