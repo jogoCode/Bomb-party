@@ -34,16 +34,16 @@ public class VolleyBombManager : MonoBehaviour
         _playersSpawners = new List<GameObject>();
         _zone = FindObjectOfType<VolleyBombZone>();
         _bombDidntSpawn = true;
+        Init();
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            Init();
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Backspace))
+    //    {
+    //    }
+    //}
 
-    private void Init()
+    public void Init()
     {
         _playersList = _gameManager.GetPlayerManager().GetPlayerList(); // TODO : replace avec un "GetActifPlayers"
         switch (_playersList.Count)

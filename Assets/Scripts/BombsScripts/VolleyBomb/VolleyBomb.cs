@@ -38,13 +38,15 @@ public class VolleyBomb : MonoBehaviour
     void Lost()
     {
         _RB.isKinematic = true;
-        
+        PlayerController player;
         switch (_playerId) 
         {
             case 0:
                 _P1Lost = true;
                 Debug.Log("Player 1 Lost");
-                _volleyBombManager._playersList.Remove(_volleyBombManager._playersList[_playerId]);
+                player = _volleyBombManager._playersList[_playerId];
+                _volleyBombManager._playersList.Remove(player);
+                player.gameObject.SetActive(false);
                 _goundCollision = false;
                 _boom = false;
                 break;
@@ -52,7 +54,9 @@ public class VolleyBomb : MonoBehaviour
             case 1:
                 _P2Lost = true;
                 Debug.Log("Player 2 Lost");
-                _volleyBombManager._playersList.Remove(_volleyBombManager._playersList[_playerId]);
+                player = _volleyBombManager._playersList[_playerId];
+                _volleyBombManager._playersList.Remove(player);
+                player.gameObject.SetActive(false);
                 _goundCollision = false;
                 _boom = false;
                 break;
@@ -60,7 +64,9 @@ public class VolleyBomb : MonoBehaviour
             case 2:
                 _P3Lost = true;
                 Debug.Log("Player 3 Lost");
-                _volleyBombManager._playersList.Remove(_volleyBombManager._playersList[_playerId]);
+                player = _volleyBombManager._playersList[_playerId];
+                _volleyBombManager._playersList.Remove(player);
+                player.gameObject.SetActive(false);
                 _goundCollision = false;
                 _boom = false;
                 break;
@@ -68,11 +74,14 @@ public class VolleyBomb : MonoBehaviour
             case 3:
                 _P4Lost = true;
                 Debug.Log("Player 4 Lost");
-                _volleyBombManager._playersList.Remove(_volleyBombManager._playersList[_playerId]);
+                player = _volleyBombManager._playersList[_playerId];
+                _volleyBombManager._playersList.Remove(player);
+                player.gameObject.SetActive(false);
                 _goundCollision = false;
                 _boom = false;
                 break;
         }
+        _volleyBombManager.Init();
     }
 
     void BombTimer()
