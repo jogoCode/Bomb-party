@@ -760,7 +760,8 @@ MonoBehaviour:
   m_playerMovement: {fileID: 0}
   m_playerVisual: {fileID: 0}
   m_playerParryBomb: {fileID: 0}
-  _score: {fileID: 0}
+  _score: 0
+  m_nom: 
 --- !u!114 &3278899701764599895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,6 +782,9 @@ MonoBehaviour:
   m_dashSpeed: 45
   m_dashDuration: 0.15
   m_dashCooldown: 1
+  m_impulseFriction: 15
+  m_impulseForce: 15
+  m_impulseVel: {x: 0, y: 0, z: 0}
   m_vSpeed: 0.01
   m_vVelFactor: 4
 --- !u!114 &4928344797725933354
@@ -1892,6 +1896,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 9177799372375326672}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ac33e59823aae0d4494737bdd1e8d4d4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1059268299927992018}
   m_SourcePrefab: {fileID: 100100000, guid: ac33e59823aae0d4494737bdd1e8d4d4, type: 3}
 --- !u!1 &1186885826974745645 stripped
 GameObject:
@@ -1964,8 +1972,20 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 4.55, y: 2, z: 2}
-  m_Center: {x: 0, y: 1.17, z: 2.23}
+  m_Size: {x: 4.55, y: 2, z: 2.7293148}
+  m_Center: {x: 0, y: 1.1700001, z: 1.8653426}
+--- !u!114 &1059268299927992018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186885826974745645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540f59b34750d46419b5045bd2b2c6c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1960045449405980311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ac33e59823aae0d4494737bdd1e8d4d4,

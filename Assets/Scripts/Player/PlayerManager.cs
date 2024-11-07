@@ -116,6 +116,62 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public void SetPlayersSpeed(float speed)
+    {
+        foreach (PlayerController player in m_players)
+        {
+            player.GetPlayerMovement().SetPlayerSpeed(speed);
+        }
+    }
+
+    public void SetPlayersJumpForce(float jumpForce)
+    {
+        foreach (PlayerController player in m_players)
+        {
+            player.GetPlayerMovement().SetJumpForce(jumpForce);
+        }
+    }
+
+    public void SetPlayersDashCoolDown(float dashCoolDown)
+    {
+        foreach (PlayerController player in m_players)
+        {
+            player.GetPlayerMovement().SetDashCooldown(dashCoolDown);
+        }
+    }
+
+    public void  SetPlayersDashSpeed(float dashSpeed)
+    {
+        foreach (PlayerController player in m_players)
+        {
+            player.GetPlayerMovement().SetDashSpeed(dashSpeed);
+        }
+    }
+
+
+    public void EnabledPlayersParryBomb()
+    {
+        foreach (PlayerController player in m_players)
+        {
+            player.EnabledPlayerParryBomb(true);
+        }
+    }
+
+    public void DisabledPlayersParryBomb()
+    {
+        foreach (PlayerController player in m_players)
+        {
+            player.EnabledPlayerParryBomb(false);
+        }
+    }
+
+    public void ResetPlayersMovementValues()
+    {
+        foreach (PlayerController player in m_players)
+        {
+            player.GetPlayerMovement().ResetMovementValues();
+        }
+    }
 
 
     #region ACCESORS

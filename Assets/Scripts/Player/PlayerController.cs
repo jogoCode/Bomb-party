@@ -159,7 +159,16 @@ public class PlayerController : MonoBehaviour
     }
 
  
-  
+    public void ApplyImpulse(Vector3 direction, float impulseFoce)
+    {
+        m_playerMovement.ApplyImpulse(direction, impulseFoce);
+    }
+
+    public void StartOscillator(float impulse)
+    {
+        m_playerVisual.Oscillator.StartOscillator(impulse);
+    }
+
 
     #region ACCESORS
     public PlayerVisual GetPlayerVisual() => m_playerVisual;

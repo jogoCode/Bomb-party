@@ -14,6 +14,12 @@ public class PlayerMovement : MonoBehaviour
     PlayerController m_playerController;
     CharacterController m_characterController;
 
+    public const float BASE_SPEED = 4;
+    public const float BASE_JUMP_FORCE = 2;
+    public const float BASE_DASH_CD = 1;
+    public const float BASE_DASH_SPEED = 45;
+
+
     [SerializeField] float m_jumpForce = 10;
     [SerializeField] float m_gravity = 9.81f;
     [SerializeField] float m_speed = 4;
@@ -24,6 +30,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float m_dashSpeed = 20;
     [SerializeField] float m_dashDuration = 0.2f;
     [SerializeField] float m_dashCooldown = 1f;
+
+
+
+    [SerializeField] float m_impulseFriction = 2;
+    [SerializeField] float m_impulseForce = 15;
+    [SerializeField] Vector3 m_impulseVel;
+
 
     float m_dashTimeRemaining;
     float m_dashCooldownRemaining;
@@ -56,6 +69,15 @@ public class PlayerMovement : MonoBehaviour
         get { return m_speed; } 
     }
 
+    public float JumpForce
+    {
+        get { return m_jumpForce; }
+    }
+
+    public float DashCoolDown
+    {
+        get { return m_jumpForce; }
+    }
 
     #region BUILT-IN
     void Awake()
@@ -69,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerController pc = m_playerController;
         HandleDash();
+        ImpulseHandler();
         if (pc.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.ATK) return;
         Vector2 inputDir = m_playerController.GetInputDir();
         bool jumped = m_playerController.GetJumped();
@@ -77,8 +100,11 @@ public class PlayerMovement : MonoBehaviour
         bool isGrounded =  m_characterController.isGrounded;
         pc.PlayerVisual.CheckGrounded(m_characterController.isGrounded);
 
+        Debug.Log(m_characterController.isGrounded);
+
         if(!m_wasGrounded && isGrounded) {
             m_vVel.y = -1;
+            m_vSpeed = 0;
             pc.JustGrounded();         
 
         }
@@ -94,6 +120,9 @@ public class PlayerMovement : MonoBehaviour
             ResetCoyoteTimer();
         }
 
+        if (Input.GetKey(KeyCode.KeypadEnter)){ 
+            ApplyImpulse(new Vector3(m_playerController.GetLastInputDir().x,0, m_playerController.GetLastInputDir().y), 15);
+        }
 
 
         HandleJumpBuffer();
@@ -112,6 +141,29 @@ public class PlayerMovement : MonoBehaviour
     void Movement(Vector3 direction, float speed)
     {
         m_characterController.Move(direction*speed*Time.deltaTime);
+    }
+
+
+    void ImpulseHandler()
+    {
+        // Appliquer le mouvement en fonction de la vitesse
+        if (m_impulseVel.magnitude != 0)
+        {
+            m_characterController.Move(m_impulseVel * Time.deltaTime);
+        }
+        
+        // Réduire progressivement la vitesse horizontale avec la "décélération"
+        m_impulseVel.x = Mathf.Lerp(m_impulseVel.x, 0, m_impulseFriction * Time.deltaTime);
+        m_impulseVel.y = m_vVel.y;
+        m_impulseVel.z = Mathf.Lerp(m_impulseVel.z, 0, m_impulseFriction * Time.deltaTime);
+    }
+
+
+    public void ApplyImpulse(Vector3 direction, float impulseForce)
+    {
+        // Ajouter l'impulsion dans la direction donnée
+        Debug.Log("aaaa");
+        m_impulseVel = direction.normalized * impulseForce;
     }
 
 
@@ -164,13 +216,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
+        if (JumpForce == 0) return;
         m_jumpBufferTimer = 0;
         ResetCoyoteTimer();
         m_vSpeed = 0;
         m_vVel.y = 0;
         m_vVel.y += m_jumpForce;
         m_playerController.JustGrounded();
-        
+             
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -200,6 +253,35 @@ public class PlayerMovement : MonoBehaviour
         m_coyoteTimer = m_coyoteTime;
     }
 
+
+    #region Set Variables
+
+    public void ResetMovementValues()
+    {
+        m_speed = BASE_SPEED;
+        m_jumpForce = BASE_JUMP_FORCE;
+        m_dashCooldown = BASE_DASH_CD;
+    }
+
+    public void SetPlayerSpeed(float speed)
+    {
+        m_speed = speed;
+    }
+    public void SetJumpForce(float jumpForce)
+    {
+        m_jumpForce = jumpForce;
+    }
+    public void SetDashSpeed(float dashSpeed)
+    {
+        m_dashSpeed = dashSpeed;
+    }
+
+    public void SetDashCooldown(float dashCoolDown)
+    {
+        m_dashCooldown = dashCoolDown;
+    }
+
+    #endregion
 
 
     #region Get Variables

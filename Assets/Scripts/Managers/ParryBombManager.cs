@@ -26,17 +26,10 @@ public class ParryBombManager : MonoBehaviour
         m_parryBomb = FindObjectOfType<ParryBomb>();
         m_parryBomb.OnPlayerTouched += HasAWinner;
         m_parryBomb.OnExplode +=TimeOver;
-        Initialize();
+
     }
 
-    void Initialize()
-    {
-        foreach (PlayerController player in m_players)
-        {
-            player.EnabledPlayerParryBomb(true);
-            Debug.Log(player.name);
-        }
-    }
+ 
 
     void HasAWinner()
     {
