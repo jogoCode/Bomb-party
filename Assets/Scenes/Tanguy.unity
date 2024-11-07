@@ -2908,6 +2908,8 @@ MonoBehaviour:
   _interTime: 4
   _intertime: {fileID: 1755286889}
   _intertimeDisplay: {fileID: 2086713000}
+  _intertiming: 0
+  _playersPoints: 0000000000000000
 --- !u!4 &916076427
 Transform:
   m_ObjectHideFlags: 0

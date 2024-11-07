@@ -66,8 +66,7 @@ public class VolleyBomb : MonoBehaviour
                 else
                 {
                     _volleyBombManager._playersList.Remove(player);
-                    PlayerController winner = _volleyBombManager._playersList[0];
-                    Debug.Log("player " + (winner.PlayerId + 1) + "won");
+                    _volleyBombManager._playersList[0].GetPlayerVolleyBomb().IncresePoints();
                     _volleyBombManager._playersList.Add(player);
                     _volleyBombManager._intertiming = _volleyBombManager._interTime;
                     _volleyBombManager.Init();
@@ -88,8 +87,7 @@ public class VolleyBomb : MonoBehaviour
                 else
                 {
                     _volleyBombManager._playersList.Remove(player);
-                    PlayerController winner = _volleyBombManager._playersList[0];
-                    Debug.Log("player " + (winner.PlayerId + 1) + "won");
+                    _volleyBombManager._playersList[0].GetPlayerVolleyBomb().IncresePoints();
                     _volleyBombManager._playersList.Add(player);
                     _volleyBombManager._intertiming = _volleyBombManager._interTime;
                     _volleyBombManager.Init();
@@ -112,6 +110,9 @@ public class VolleyBomb : MonoBehaviour
                     _volleyBombManager._playersList.Remove(player);
                     PlayerController winner = _volleyBombManager._playersList[0];
                     Debug.Log("player " + (winner.PlayerId + 1) + "won");
+                    int index = _volleyBombManager._playersList.FindIndex(x => x.Equals(winner));
+                    _volleyBombManager._playersPoints[index]++;
+                    Debug.Log("index " + index);
                     _volleyBombManager._playersList.Add(player);
                     _volleyBombManager._intertiming = _volleyBombManager._interTime;
                     _volleyBombManager.Init();
@@ -134,6 +135,9 @@ public class VolleyBomb : MonoBehaviour
                     _volleyBombManager._playersList.Remove(player);
                     PlayerController winner = _volleyBombManager._playersList[0];
                     Debug.Log("player " + (winner.PlayerId + 1) + "won");
+                    int index = _volleyBombManager._playersList.FindIndex(x => x.Equals(winner));
+                    _volleyBombManager._playersPoints[index]++;
+                    Debug.Log("index " + index);
                     _volleyBombManager._playersList.Add(player);
                     _volleyBombManager._intertiming = _volleyBombManager._interTime;
                     _volleyBombManager.Init();
