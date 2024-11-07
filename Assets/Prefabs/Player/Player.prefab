@@ -777,6 +777,7 @@ MonoBehaviour:
   m_playerVisual: {fileID: 0}
   m_playerParryBomb: {fileID: 0}
   m_playerBombTag: {fileID: 0}
+  m_playerVolleyBomb: {fileID: 0}
   _score: 0
   m_nom: 
 --- !u!114 &3278899701764599895
@@ -1980,7 +1981,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186885826974745645}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 241733cd516ba7746a01d0d497de9ef7, type: 3}
   m_Name: 
