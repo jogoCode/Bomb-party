@@ -42,10 +42,11 @@ public class PlayerParryBomb : MonoBehaviour
 
     private void FeedBackHitplayer(PlayerController otherPlayer)
     {
-        otherPlayer.ApplyImpulse(new Vector3(m_playerController.GetLastInputDir().x, 0, m_playerController.GetLastInputDir().y), 50); // TODO hard value
+        otherPlayer.ApplyImpulse(new Vector3(m_playerController.GetLastInputDir().x, 0, m_playerController.GetLastInputDir().y), 50); // TODO replace hard value
+        otherPlayer.Hit();
         Vector3 particlePos = new Vector3(otherPlayer.transform.position.x, otherPlayer.transform.position.y+0.5f, otherPlayer.transform.position.z);
         FeedBackManager.Instance.InstantiateParticle(FeedBackManager.Instance.m_impactVfx, particlePos , otherPlayer.transform.rotation);
-        otherPlayer.StartOscillator(5); // TODO hard value
+        otherPlayer.StartOscillator(5); // TODO  replace hard value
     }
 
 

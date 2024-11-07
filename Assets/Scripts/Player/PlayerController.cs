@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public event Action<float,float> OnMoved;
     public event Action OnJumped;
     public event Action OnDashed;
+    public event Action OnHit;
     public event Action<bool> OnReady;
 
     public PlayerController(string name, int score)
@@ -110,14 +111,22 @@ public class PlayerController : MonoBehaviour
 
         OnDashed += m_playerMovement.Dash;
         OnJumped += m_playerMovement.Jump;
+      
+       
 
         OnJustGrounded += m_playerVisual.JustGrounded;
         OnParried += m_playerVisual.BatAnimation;
         OnMoved += m_playerVisual.MoveAnimation;
+        OnHit += m_playerVisual.HitAnimation;
 
         OnReady += GameManager.Instance.GetPlayerManager().PlayerInListIsReady;
 
 
+    }
+
+    public void Hit()
+    {
+        OnHit?.Invoke();
     }
 
     public void Jump()
