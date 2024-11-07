@@ -9,11 +9,6 @@ public class BombeCroix : MonoBehaviour
     public bool showGizmo = true;          // Afficher ou non le Gizmo dans la scène
     public Color gizmoColor = Color.red;   // Couleur du Gizmo
 
-    void Start()
-    {
-        // Déclenche l'explosion après un délai
-        Invoke(nameof(Explode), explosionDelay);
-    }
 
     void Explode()
     {
@@ -68,5 +63,11 @@ public class BombeCroix : MonoBehaviour
             Gizmos.DrawLine(transform.position, transform.position + Vector3.left * explosionRange);
             Gizmos.DrawLine(transform.position, transform.position + Vector3.right * explosionRange);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Déclenche l'explosion après un délai
+        Invoke(nameof(Explode), explosionDelay);
     }
 }

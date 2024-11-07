@@ -4,18 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerController : MonoBehaviour
 {
-
     int m_playerId;
     bool m_isReady = false;
 
     [SerializeField] PlayerMovement m_playerMovement;
     [SerializeField] PlayerVisual m_playerVisual;
     [SerializeField] PlayerParryBomb m_playerParryBomb;
+    [SerializeField] PlayerBombTag m_playerBombTag;
     PlayerStateManager m_playerStateManager;
 
+    public int _score;
+    public string m_nom;
 
     Vector2 m_inputDir = Vector2.zero;
     Vector2 m_lastInputDir = Vector2.zero;
@@ -30,6 +33,11 @@ public class PlayerController : MonoBehaviour
     public event Action<bool> OnReady;
 
 
+    public PlayerController(string name, int score)
+    {
+        m_nom = name;
+        _score = score;
+    }
 
 
     public bool IsReady
@@ -99,7 +107,7 @@ public class PlayerController : MonoBehaviour
         m_playerVisual = GetComponent<PlayerVisual>();
         m_playerParryBomb = GetComponentInChildren<PlayerParryBomb>();
         m_playerStateManager = GetComponentInChildren<PlayerStateManager>();
-
+        m_playerBombTag = GetComponentInChildren<PlayerBombTag>();
        
 
         OnDashed += m_playerMovement.Dash;
@@ -153,10 +161,21 @@ public class PlayerController : MonoBehaviour
     }
 
  
-  
+    public void ApplyImpulse(Vector3 direction, float impulseFoce)
+    {
+        m_playerMovement.ApplyImpulse(direction, impulseFoce);
+    }
+
+    public void StartOscillator(float impulse)
+    {
+        m_playerVisual.Oscillator.StartOscillator(impulse);
+    }
+
 
     #region ACCESORS
     public PlayerVisual GetPlayerVisual() => m_playerVisual;
+
+    public PlayerBombTag GetPlayerBombTag() => m_playerBombTag;
 
     public PlayerMovement GetPlayerMovement() => m_playerMovement;
 
