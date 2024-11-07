@@ -10,7 +10,7 @@ public class VolleyBombBombCenterChecker : MonoBehaviour
         _volleyBomb = FindObjectOfType<VolleyBomb>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.tag == "VolleyBombZoneP1") { _volleyBomb._playerId = 0; }
         if (other.tag == "VolleyBombZoneP2") { _volleyBomb._playerId = 1; }
