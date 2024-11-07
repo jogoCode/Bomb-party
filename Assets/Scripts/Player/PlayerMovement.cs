@@ -92,11 +92,14 @@ public class PlayerMovement : MonoBehaviour
         PlayerController pc = m_playerController;
         HandleDash();
         ImpulseHandler();
-        if (pc.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.ATK) return;
+       
         Vector2 inputDir = m_playerController.GetInputDir();
         bool jumped = m_playerController.GetJumped();
         Vector3 dir = new Vector3(inputDir.x,m_vVel.y, inputDir.y);
-
+        if (pc.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.ATK)
+        {
+            dir = new Vector3(0, m_vVel.y,0);
+        }
         bool isGrounded =  m_characterController.isGrounded;
         pc.PlayerVisual.CheckGrounded(m_characterController.isGrounded);
 
@@ -104,7 +107,6 @@ public class PlayerMovement : MonoBehaviour
 
         if(!m_wasGrounded && isGrounded) {
             m_vVel.y = -1;
-          
             if (m_vSpeed > 2)
             {
               
@@ -112,10 +114,8 @@ public class PlayerMovement : MonoBehaviour
 
             }
             m_vSpeed = 0;
-
         }
         m_wasGrounded = isGrounded;
-
 
         if (!m_characterController.isGrounded){      
             gravity();
@@ -138,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
     {
         m_vSpeed += m_vVelFactor * Time.deltaTime;
         m_vVel += Vector3.down * m_vSpeed * m_gravity * Time.deltaTime;
-        m_characterController.Move(m_vVel*Time.deltaTime);
+        //m_characterController.Move(m_vVel*Time.deltaTime);
     }
 
     void Movement(Vector3 direction, float speed)

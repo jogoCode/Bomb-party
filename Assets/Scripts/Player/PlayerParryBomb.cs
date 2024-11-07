@@ -37,7 +37,8 @@ public class PlayerParryBomb : MonoBehaviour
             Debug.Log("AAAAAAAAAAAAAAAAAAAAA");
 
             //1e-07
-            other.GetComponent<Rigidbody>().AddForce(new Vector3(m_playerController.GetLastInputDir().x,0, m_playerController.GetLastInputDir().y).normalized*50,ForceMode.Impulse);
+            other.GetComponent<Rigidbody>().AddForce(new Vector3(m_playerController.GetLastInputDir().x,1, m_playerController.GetLastInputDir().y).normalized*50,ForceMode.Impulse);
+            FeedBackManager.Instance.InstantiateParticle(FeedBackManager.Instance.m_impactVfx,other.transform.position,other.transform.rotation);
             return;
         }
 
