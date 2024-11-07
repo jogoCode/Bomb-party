@@ -100,12 +100,18 @@ public class PlayerMovement : MonoBehaviour
         bool isGrounded =  m_characterController.isGrounded;
         pc.PlayerVisual.CheckGrounded(m_characterController.isGrounded);
 
-        Debug.Log(m_characterController.isGrounded);
+       
 
         if(!m_wasGrounded && isGrounded) {
             m_vVel.y = -1;
+          
+            if (m_vSpeed > 2)
+            {
+              
+                pc.JustGrounded();
+
+            }
             m_vSpeed = 0;
-            pc.JustGrounded();         
 
         }
         m_wasGrounded = isGrounded;
@@ -118,10 +124,6 @@ public class PlayerMovement : MonoBehaviour
             
             m_vSpeed = 0f;
             ResetCoyoteTimer();
-        }
-
-        if (Input.GetKey(KeyCode.KeypadEnter)){ 
-            ApplyImpulse(new Vector3(m_playerController.GetLastInputDir().x,0, m_playerController.GetLastInputDir().y), 15);
         }
 
 
