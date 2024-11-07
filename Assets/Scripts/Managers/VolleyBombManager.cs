@@ -27,6 +27,9 @@ public class VolleyBombManager : MonoBehaviour
     [SerializeField] private GameObject _intertime;
     [SerializeField] private TMP_Text _intertimeDisplay;
     public float _intertiming;
+    
+    public List<int> _playersPoints;
+
     VolleyBombZone _zone;
 
 
@@ -57,7 +60,7 @@ public class VolleyBombManager : MonoBehaviour
 
     public void Init()
     {
-        _playersList = _gameManager.GetPlayerManager().GetPlayerList(); // TODO : replace avec un "GetActifPlayers"
+        _playersList = _gameManager.GetPlayerManager().GetActivePlayers(); // TODO : replace avec un "GetActifPlayers"
         switch (_playersList.Count)
         {
             case 2:
