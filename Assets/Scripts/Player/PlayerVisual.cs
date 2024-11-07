@@ -123,7 +123,7 @@ public class PlayerVisual : MonoBehaviour
         }
     }
 
-    #region
+    #region Events
     public void JustGrounded()
     {
         Oscillator.StartOscillator(10);

@@ -14,6 +14,12 @@ public class PlayerMovement : MonoBehaviour
     PlayerController m_playerController;
     CharacterController m_characterController;
 
+    public const float BASE_SPEED = 4;
+    public const float BASE_JUMP_FORCE = 2;
+    public const float BASE_DASH_CD = 1;
+    public const float BASE_DASH_SPEED = 45;
+
+
     [SerializeField] float m_jumpForce = 10;
     [SerializeField] float m_gravity = 9.81f;
     [SerializeField] float m_speed = 4;
@@ -63,6 +69,15 @@ public class PlayerMovement : MonoBehaviour
         get { return m_speed; } 
     }
 
+    public float JumpForce
+    {
+        get { return m_jumpForce; }
+    }
+
+    public float DashCoolDown
+    {
+        get { return m_jumpForce; }
+    }
 
     #region BUILT-IN
     void Awake()
@@ -131,22 +146,16 @@ public class PlayerMovement : MonoBehaviour
 
     void ImpulseHandler()
     {
-
-
-      
         // Appliquer le mouvement en fonction de la vitesse
         if (m_impulseVel.magnitude != 0)
         {
             m_characterController.Move(m_impulseVel * Time.deltaTime);
         }
         
-
         // Réduire progressivement la vitesse horizontale avec la "décélération"
         m_impulseVel.x = Mathf.Lerp(m_impulseVel.x, 0, m_impulseFriction * Time.deltaTime);
         m_impulseVel.y = m_vVel.y;
         m_impulseVel.z = Mathf.Lerp(m_impulseVel.z, 0, m_impulseFriction * Time.deltaTime);
-        
-
     }
 
 
@@ -207,13 +216,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
+        if (JumpForce == 0) return;
         m_jumpBufferTimer = 0;
         ResetCoyoteTimer();
         m_vSpeed = 0;
         m_vVel.y = 0;
         m_vVel.y += m_jumpForce;
         m_playerController.JustGrounded();
-        
+             
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -243,6 +253,35 @@ public class PlayerMovement : MonoBehaviour
         m_coyoteTimer = m_coyoteTime;
     }
 
+
+    #region Set Variables
+
+    public void ResetMovementValues()
+    {
+        m_speed = BASE_SPEED;
+        m_jumpForce = BASE_JUMP_FORCE;
+        m_dashCooldown = BASE_DASH_CD;
+    }
+
+    public void SetPlayerSpeed(float speed)
+    {
+        m_speed = speed;
+    }
+    public void SetJumpForce(float jumpForce)
+    {
+        m_jumpForce = jumpForce;
+    }
+    public void SetDashSpeed(float dashSpeed)
+    {
+        m_dashSpeed = dashSpeed;
+    }
+
+    public void SetDashCooldown(float dashCoolDown)
+    {
+        m_dashCooldown = dashCoolDown;
+    }
+
+    #endregion
 
 
     #region Get Variables
