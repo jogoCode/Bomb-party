@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ public class VolleyBombManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> _bombSpawnList;
     [SerializeField] private GameObject _bomb;
-    [SerializeField] private bool _bombDidntSpawn;
+    public bool _bombDidntSpawn;
     public List<PlayerController> _playersList;
     [SerializeField] private List<GameObject> _groundsList;
     [SerializeField] private List<VolleyBombZone> _zonesList;
@@ -21,6 +22,13 @@ public class VolleyBombManager : MonoBehaviour
     [SerializeField] private GameObject _map2J;
     [SerializeField] private GameObject _map3J;
     [SerializeField] private GameObject _map4J;
+
+    public float _interTime;
+    [SerializeField] private GameObject _intertime;
+    [SerializeField] private TMP_Text _intertimeDisplay;
+    public float _intertiming;
+    
+    public List<int> _playersPoints;
 
     VolleyBombZone _zone;
 
@@ -35,17 +43,24 @@ public class VolleyBombManager : MonoBehaviour
         _zone = FindObjectOfType<VolleyBombZone>();
         _bombDidntSpawn = true;
         Init();
+        _intertiming = _interTime;
     }
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Backspace))
-    //    {
-    //    }
-    //}
+    private void Update()
+    {
+        if(_intertiming > 1)
+        {
+            _intertiming -= Time.deltaTime;
+            _intertimeDisplay.text = ((int)_intertiming).ToString();
+        }
+        else
+        {
+            _intertimeDisplay.text = "GO";
+        }
+    }
 
     public void Init()
     {
-        _playersList = _gameManager.GetPlayerManager().GetPlayerList(); // TODO : replace avec un "GetActifPlayers"
+        _playersList = _gameManager.GetPlayerManager().GetActivePlayers(); // TODO : replace avec un "GetActifPlayers"
         switch (_playersList.Count)
         {
             case 2:
@@ -81,7 +96,7 @@ public class VolleyBombManager : MonoBehaviour
             if (_bombSpawnList[random].gameObject.activeInHierarchy == true)
             {
                 GameObject spawnerChoosed = _bombSpawnList[random];
-                Instantiate(_bomb, spawnerChoosed.transform.position,Quaternion.identity);
+                StartCoroutine(SpawnBomb(spawnerChoosed));
                 _bombDidntSpawn = false;
                 //Debug.Log("Hell yee !");
             }
@@ -93,7 +108,14 @@ public class VolleyBombManager : MonoBehaviour
         }
 
     }
-
+    IEnumerator SpawnBomb(GameObject spawnerChoosed)
+    {
+        _intertime.gameObject.SetActive(true);
+        yield return new WaitForSeconds(_interTime);
+        _intertime.gameObject.SetActive(false);
+        
+        Instantiate(_bomb, spawnerChoosed.transform.position,Quaternion.identity);
+    }
     void AssignArena()
     {
         int playerNum = _playersList.Count;

@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerMovement m_playerMovement;
     [SerializeField] PlayerVisual m_playerVisual;
     [SerializeField] PlayerParryBomb m_playerParryBomb;
+    [SerializeField] PlayerBombTag m_playerBombTag;
     PlayerStateManager m_playerStateManager;
 
     public int _score;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public event Action OnDashed;
     public event Action OnHit;
     public event Action<bool> OnReady;
+
 
     public PlayerController(string name, int score)
     {
@@ -106,7 +108,7 @@ public class PlayerController : MonoBehaviour
         m_playerVisual = GetComponent<PlayerVisual>();
         m_playerParryBomb = GetComponentInChildren<PlayerParryBomb>();
         m_playerStateManager = GetComponentInChildren<PlayerStateManager>();
-
+        m_playerBombTag = GetComponentInChildren<PlayerBombTag>();
        
 
         OnDashed += m_playerMovement.Dash;
@@ -181,6 +183,8 @@ public class PlayerController : MonoBehaviour
 
     #region ACCESORS
     public PlayerVisual GetPlayerVisual() => m_playerVisual;
+
+    public PlayerBombTag GetPlayerBombTag() => m_playerBombTag;
 
     public PlayerMovement GetPlayerMovement() => m_playerMovement;
 
