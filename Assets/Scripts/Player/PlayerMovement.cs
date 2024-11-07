@@ -128,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         HandleJumpBuffer();
+        if (pc.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.HIT) return;
         Movement(dir, m_speed);       
     }
 

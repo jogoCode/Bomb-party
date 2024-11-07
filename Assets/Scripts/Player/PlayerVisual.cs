@@ -76,6 +76,7 @@ public class PlayerVisual : MonoBehaviour
     {
         if (m_playerController.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.HIT) return;
         m_animator.SetTrigger("isHit");
+        Oscillator.StartOscillator(5);
     }
     public void MoveAnimation(float x,float speedPercent) // x = xvel for horizontalAnim . y = yVel for verticalAnim . speedPercent = Speed ratio
     {
