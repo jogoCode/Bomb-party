@@ -44,6 +44,10 @@ public class VolleyBombManager : MonoBehaviour
         _bombDidntSpawn = true;
         Init();
         _intertiming = _interTime;
+        //for(var i = 0; i <= 2; i++)
+        //{
+        //    _playersPoints.Add(0);
+        //}
     }
     private void Update()
     {
