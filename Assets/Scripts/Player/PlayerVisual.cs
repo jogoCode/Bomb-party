@@ -67,6 +67,7 @@ public class PlayerVisual : MonoBehaviour
 
     public void BatAnimation()
     {
+        if (m_playerController.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.ATK) return;
         if (m_playerBat.activeInHierarchy)
         {
             m_animator.SetTrigger("isBat");
@@ -76,7 +77,7 @@ public class PlayerVisual : MonoBehaviour
             m_animator.SetTrigger("isPush");
         }
      
-        if(m_playerController.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.ATK) return;
+        
         Oscillator.StartOscillator(15);
     }
 
