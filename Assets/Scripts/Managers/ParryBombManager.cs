@@ -61,7 +61,8 @@ public class ParryBombManager : MonoBehaviour
         FeedBackManager fbm = FeedBackManager.Instance;
         fbm.FreezeFrame(2f, 0.6f);
         Debug.Log(message);
-        GameManager.Instance.RestartGame();
+        m_parryBomb.gameObject.SetActive(false);
+        GameManager.Instance.GetPartyManager().ChangeMiniGame();
     }
 
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -42,6 +43,7 @@ public class PlayerManager : MonoBehaviour
     public void OnPlayerJoined(PlayerInput playerInput)
     {
 
+        if (m_playerManagerState == PlayerManagerState.DISABLE) return;// if player count equal max playercount change the player manager state
         PlayerController newPlayer = playerInput.gameObject.GetComponent<PlayerController>();
         AddPlayerInPlayerList(newPlayer);
         m_playersCount++;
@@ -110,10 +112,11 @@ public class PlayerManager : MonoBehaviour
 
     public void ActiveAllPlayerController()
     {
-        foreach (PlayerController player in m_players)
-        {
+        foreach (PlayerController player in m_players) {
             player.gameObject.SetActive(true);
         }
+        m_players.Clear();
+        m_players = FindObjectsOfType<PlayerController>().ToList<PlayerController>();
     }
 
     public void SetPlayersSpeed(float speed)
@@ -212,6 +215,18 @@ public class PlayerManager : MonoBehaviour
         foreach (PlayerController player in m_players)
         {
             if (player.gameObject.activeInHierarchy)
+            {
+                list.Add(player);
+            }
+        }
+        return list;
+    }
+    public List<PlayerController> GetInactivePlayers()
+    {
+        List<PlayerController> list = new List<PlayerController>();
+        foreach (PlayerController player in m_players)
+        {
+            if (!player.gameObject.activeInHierarchy)
             {
                 list.Add(player);
             }
