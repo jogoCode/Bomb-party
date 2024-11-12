@@ -32,6 +32,15 @@ public class PlayerParryBomb : MonoBehaviour
         {
             FeedBackHitplayer(playerController);
         }
+        if (other.GetComponent<VolleyBomb>() != null)
+        {
+            Debug.Log("AAAAAAAAAAAAAAAAAAAAA");
+
+            //1e-07
+            other.GetComponent<Rigidbody>().AddForce(new Vector3(m_playerController.GetLastInputDir().x,1, m_playerController.GetLastInputDir().y).normalized*50,ForceMode.Impulse);
+            FeedBackManager.Instance.InstantiateParticle(FeedBackManager.Instance.m_impactVfx,other.transform.position,other.transform.rotation);
+            return;
+        }
 
         ParryBomb bomb = other.GetComponent<ParryBomb>();
         if (bomb == null) return;
@@ -42,10 +51,11 @@ public class PlayerParryBomb : MonoBehaviour
 
     private void FeedBackHitplayer(PlayerController otherPlayer)
     {
-        otherPlayer.ApplyImpulse(new Vector3(m_playerController.GetLastInputDir().x, 0, m_playerController.GetLastInputDir().y), 50); // TODO hard value
+        otherPlayer.ApplyImpulse(new Vector3(m_playerController.GetLastInputDir().x, 0, m_playerController.GetLastInputDir().y), 50); // TODO replace hard value
+        otherPlayer.Hit();
         Vector3 particlePos = new Vector3(otherPlayer.transform.position.x, otherPlayer.transform.position.y+0.5f, otherPlayer.transform.position.z);
         FeedBackManager.Instance.InstantiateParticle(FeedBackManager.Instance.m_impactVfx, particlePos , otherPlayer.transform.rotation);
-        otherPlayer.StartOscillator(5); // TODO hard value
+        otherPlayer.StartOscillator(5); // TODO  replace hard value
     }
 
 

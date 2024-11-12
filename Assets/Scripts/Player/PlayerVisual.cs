@@ -14,6 +14,7 @@ public class PlayerVisual : MonoBehaviour
     [SerializeField] Renderer[] m_coloredParts;
     Material m_material;
     [SerializeField] float m_rotationSpeed;
+    [SerializeField] GameObject m_playerBat;
 
     public const float SPEED_ANIM_RATIO = 5;
 
@@ -66,9 +67,26 @@ public class PlayerVisual : MonoBehaviour
 
     public void BatAnimation()
     {
-        m_animator.SetTrigger("isBat");
-        if(m_playerController.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.ATK) return;
+        if (m_playerController.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.ATK) return;
+        if (m_playerBat.activeInHierarchy)
+        {
+            m_animator.SetTrigger("isBat");
+        }
+        else
+        {
+            m_animator.SetTrigger("isPush");
+        }
+     
+        
         Oscillator.StartOscillator(15);
+    }
+
+
+    public void HitAnimation()
+    {
+        if (m_playerController.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.HIT) return;
+        m_animator.SetTrigger("isHit");
+        Oscillator.StartOscillator(5);
     }
     public void MoveAnimation(float x,float speedPercent) // x = xvel for horizontalAnim . y = yVel for verticalAnim . speedPercent = Speed ratio
     {
@@ -89,6 +107,15 @@ public class PlayerVisual : MonoBehaviour
     }
 
 #endregion
+    public void ActiveBatModel()
+    {
+        m_playerBat.SetActive(true);
+    }
+
+    public void DesactiveBatModel()
+    {
+        m_playerBat.SetActive(false);
+    }
 
     void SetMaterial()
     {
