@@ -92,24 +92,29 @@ public class PlayerMovement : MonoBehaviour
         PlayerController pc = m_playerController;
         HandleDash();
         ImpulseHandler();
-        if (pc.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.ATK) return;
+       
         Vector2 inputDir = m_playerController.GetInputDir();
         bool jumped = m_playerController.GetJumped();
         Vector3 dir = new Vector3(inputDir.x,m_vVel.y, inputDir.y);
-
+        if (pc.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.ATK)
+        {
+            dir = new Vector3(0, m_vVel.y,0);
+        }
         bool isGrounded =  m_characterController.isGrounded;
         pc.PlayerVisual.CheckGrounded(m_characterController.isGrounded);
 
-        //Debug.Log(m_characterController.isGrounded);
 
         if(!m_wasGrounded && isGrounded) {
             m_vVel.y = -1;
-            m_vSpeed = 0;
-            pc.JustGrounded();         
+            if (m_vSpeed > 2)
+            {
+              
+                pc.JustGrounded();
 
+            }
+            m_vSpeed = 0;
         }
         m_wasGrounded = isGrounded;
-
 
         if (!m_characterController.isGrounded){      
             gravity();
@@ -120,12 +125,9 @@ public class PlayerMovement : MonoBehaviour
             ResetCoyoteTimer();
         }
 
-        if (Input.GetKey(KeyCode.KeypadEnter)){ 
-            ApplyImpulse(new Vector3(m_playerController.GetLastInputDir().x,0, m_playerController.GetLastInputDir().y), 15);
-        }
-
 
         HandleJumpBuffer();
+        if (pc.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.HIT) return;
         Movement(dir, m_speed);       
     }
 
@@ -135,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
     {
         m_vSpeed += m_vVelFactor * Time.deltaTime;
         m_vVel += Vector3.down * m_vSpeed * m_gravity * Time.deltaTime;
-        m_characterController.Move(m_vVel*Time.deltaTime);
+        //m_characterController.Move(m_vVel*Time.deltaTime);
     }
 
     void Movement(Vector3 direction, float speed)
@@ -152,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
             m_characterController.Move(m_impulseVel * Time.deltaTime);
         }
         
-        // Réduire progressivement la vitesse horizontale avec la "décélération"
+        // RÃ©duire progressivement la vitesse horizontale avec la "dÃ©cÃ©lÃ©ration"
         m_impulseVel.x = Mathf.Lerp(m_impulseVel.x, 0, m_impulseFriction * Time.deltaTime);
         m_impulseVel.y = m_vVel.y;
         m_impulseVel.z = Mathf.Lerp(m_impulseVel.z, 0, m_impulseFriction * Time.deltaTime);
@@ -161,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void ApplyImpulse(Vector3 direction, float impulseForce)
     {
-        // Ajouter l'impulsion dans la direction donnée
+        // Ajouter l'impulsion dans la direction donnÃ©e
         Debug.Log("aaaa");
         m_impulseVel = direction.normalized * impulseForce;
     }

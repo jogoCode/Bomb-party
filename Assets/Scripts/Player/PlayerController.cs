@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerVisual m_playerVisual;
     [SerializeField] PlayerParryBomb m_playerParryBomb;
     [SerializeField] PlayerBombTag m_playerBombTag;
+    [SerializeField] PlayerVolleyBomb m_playerVolleyBomb;
     PlayerStateManager m_playerStateManager;
 
     public int _score;
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public event Action<float,float> OnMoved;
     public event Action OnJumped;
     public event Action OnDashed;
+    public event Action OnHit;
     public event Action<bool> OnReady;
 
 
@@ -108,18 +110,27 @@ public class PlayerController : MonoBehaviour
         m_playerParryBomb = GetComponentInChildren<PlayerParryBomb>();
         m_playerStateManager = GetComponentInChildren<PlayerStateManager>();
         m_playerBombTag = GetComponentInChildren<PlayerBombTag>();
-       
+        m_playerVolleyBomb = GetComponent<PlayerVolleyBomb>();
+
 
         OnDashed += m_playerMovement.Dash;
         OnJumped += m_playerMovement.Jump;
+      
+       
 
         OnJustGrounded += m_playerVisual.JustGrounded;
         OnParried += m_playerVisual.BatAnimation;
         OnMoved += m_playerVisual.MoveAnimation;
+        OnHit += m_playerVisual.HitAnimation;
 
         OnReady += GameManager.Instance.GetPlayerManager().PlayerInListIsReady;
 
 
+    }
+
+    public void Hit()
+    {
+        OnHit?.Invoke();
     }
 
     public void Jump()
@@ -181,6 +192,8 @@ public class PlayerController : MonoBehaviour
     public PlayerMovement GetPlayerMovement() => m_playerMovement;
 
     public PlayerStateManager GetPlayerStateManager() => m_playerStateManager;
+
+    public PlayerVolleyBomb GetPlayerVolleyBomb() => m_playerVolleyBomb;
 
     public Vector2 GetInputDir()=> m_inputDir;
 

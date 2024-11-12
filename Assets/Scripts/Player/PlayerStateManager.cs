@@ -14,7 +14,8 @@ public class PlayerStateManager : MonoBehaviour
         MOVE,
         JUMP,
         FALL,
-        ATK
+        ATK,
+        HIT
     }
 
 

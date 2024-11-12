@@ -35,10 +35,12 @@ public class PartyPlayerParameters : MonoBehaviour
         if (m_parryBombActions)
         {
             m_playerManager.EnabledPlayersParryBomb();
+            m_playerManager.ActiveBatModelPlayers();
         }
         else
         {
-            m_playerManager.DisabledPlayersParryBomb();
+
+            m_playerManager.DesactiveBatModelPlayers();
         }
     }
 
