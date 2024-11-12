@@ -34,8 +34,8 @@ public class BombTagManager : MonoBehaviour
         BombTimer();
         if (_boom)
         {
-            _hasBomb.gameObject.SetActive(false);
             _scoreManager.AddPlayerToList(_hasBomb, _scoreManager.Bonus);
+            _hasBomb.gameObject.SetActive(false);
             List<PlayerController> list = GameManager.Instance.GetPlayerManager().GetActivePlayers();
             if (list.Count > 1)
             {
