@@ -493,6 +493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1674482285}
   - component: {fileID: 1674482284}
+  - component: {fileID: 1674482286}
   m_Layer: 0
   m_Name: '[PARTY]'
   m_TagString: Untagged
@@ -512,7 +513,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 885e22889f16e3641bcf38656e7b7b9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _baseTimer: 30
+  _bombTimer: 30
+  _boom: 0
   _players: []
+  _baseSpeed: 0
+  _scoreManager: {fileID: 0}
+  _hasBomb: {fileID: 0}
 --- !u!4 &1674482285
 Transform:
   m_ObjectHideFlags: 0
@@ -528,6 +535,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1674482286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674482283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 075d563dee73296418f9d5be2e5e96d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerSpeed: 6
+  m_jumpForce: 2
+  m_dashSpeed: 45
+  m_dashCooldown: 3
+  m_parryBombActions: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
