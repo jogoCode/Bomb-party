@@ -12,7 +12,9 @@ public class BombTagManager : MonoBehaviour
     [SerializeField] float  _baseSpeed;
     public ScoreManager _scoreManager;
     PartyPlayerParameters _playerParameters;
+    PlayerBombTag _playerBombTag;
     public PlayerController _hasBomb;
+    
     public List<PlayerController> Players { get { return _players; } }
 
     private void Awake()
@@ -32,24 +34,39 @@ public class BombTagManager : MonoBehaviour
     void Update()
     {
         BombTimer();
+        List<PlayerController> list = GameManager.Instance.GetPlayerManager().GetActivePlayers();
+        if (list.Count == 1)
+        {
+            if (_hasBomb.GetPlayerBombTag().HasPoint == false)
+            {
+                FinDeGame();
+                _hasBomb.GetPlayerBombTag().HasPoint = true;
+            }
+        }
         if (_boom)
         {
-            _scoreManager.AddPlayerToList(_hasBomb, _scoreManager.Bonus);
-            _hasBomb.gameObject.SetActive(false);
-            List<PlayerController> list = GameManager.Instance.GetPlayerManager().GetActivePlayers();
+
+            if (_hasBomb.GetPlayerBombTag().HasPoint == false) 
+            {
+                _scoreManager.AddPlayerToList(_hasBomb, _scoreManager.Bonus);
+                _hasBomb.gameObject.SetActive(false);
+                _hasBomb.GetPlayerBombTag().HasPoint = true;
+            }
             if (list.Count > 1)
             {
+                // TODO : si la fine gagne des point return;
                 _bombTimer = _baseTimer;
                 AssignRandomBomb();
             }
-
         }
+
 
     }
 
     public void AssignRandomBomb()
     {
         _players = GameManager.Instance.GetPlayerManager().GetActivePlayers();
+
         // Réinitialiser tous les hasBomb à false
         foreach (PlayerController player in _players)
         {
@@ -75,6 +92,17 @@ public class BombTagManager : MonoBehaviour
 
             Debug.Log("sa a PETER");
         }
+    }
+
+    void FinDeGame()
+    {
+        List<PlayerController> list = GameManager.Instance.GetPlayerManager().GetActivePlayers();
+        
+        foreach (PlayerController playerController in list)
+        {
+            _scoreManager.OneWin();
+        }
+        
     }
     
 
