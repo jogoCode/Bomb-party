@@ -21,9 +21,9 @@ public class PlayerBombTag : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        BombTagManager bombTagManager = FindObjectOfType<BombTagManager>();
         if (hit.gameObject.GetComponent<PlayerBombTag>())
         {
+            BombTagManager bombTagManager = FindObjectOfType<BombTagManager>();
             if (bombTagManager._hasBomb == gameObject.GetComponent<PlayerController>())
             {
                
