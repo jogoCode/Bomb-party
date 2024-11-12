@@ -115,8 +115,6 @@ public class PlayerManager : MonoBehaviour
         foreach (PlayerController player in m_players) {
             player.gameObject.SetActive(true);
         }
-        m_players.Clear();
-        m_players = FindObjectsOfType<PlayerController>().ToList<PlayerController>();
     }
 
     public void SetPlayersSpeed(float speed)
