@@ -118,7 +118,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60367037363493855}
   serializedVersion: 4
-  m_Mass: 0.0000001
+  m_Mass: 1
   m_Drag: 1
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -162,6 +162,7 @@ MonoBehaviour:
   _bombeTimer: {fileID: 2342790846952679976}
   _bombeTimerDisplay: {fileID: 7782292043794226828}
   _camera: {fileID: 0}
+  _playerManager: {fileID: 0}
 --- !u!1 &1113944990946861443
 GameObject:
   m_ObjectHideFlags: 0

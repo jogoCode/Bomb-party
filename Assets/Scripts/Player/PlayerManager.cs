@@ -148,6 +148,21 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public void ActiveBatModelPlayers()
+    {
+        foreach (PlayerController player in m_players)
+        {
+            player.GetPlayerVisual().ActiveBatModel();
+        }
+    }
+    public void DesactiveBatModelPlayers()
+    {
+        foreach (PlayerController player in m_players)
+        {
+            player.GetPlayerVisual().DesactiveBatModel();
+        }
+    }
+
 
     public void EnabledPlayersParryBomb()
     {

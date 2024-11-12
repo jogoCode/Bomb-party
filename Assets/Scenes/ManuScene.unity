@@ -1397,7 +1397,7 @@ PrefabInstance:
     - target: {fileID: 4274006936517997615, guid: 56f38920ea6c6a7438ff33b910466f55,
         type: 3}
       propertyPath: _explosionTime
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4274006936517997615, guid: 56f38920ea6c6a7438ff33b910466f55,
         type: 3}
