@@ -39,6 +39,7 @@ public class PartyPlayerParameters : MonoBehaviour
         }
         else
         {
+
             m_playerManager.DesactiveBatModelPlayers();
         }
     }
