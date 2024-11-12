@@ -103,7 +103,6 @@ public class PlayerMovement : MonoBehaviour
         bool isGrounded =  m_characterController.isGrounded;
         pc.PlayerVisual.CheckGrounded(m_characterController.isGrounded);
 
-       
 
         if(!m_wasGrounded && isGrounded) {
             m_vVel.y = -1;
@@ -155,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
             m_characterController.Move(m_impulseVel * Time.deltaTime);
         }
         
-        // Réduire progressivement la vitesse horizontale avec la "décélération"
+        // RÃ©duire progressivement la vitesse horizontale avec la "dÃ©cÃ©lÃ©ration"
         m_impulseVel.x = Mathf.Lerp(m_impulseVel.x, 0, m_impulseFriction * Time.deltaTime);
         m_impulseVel.y = m_vVel.y;
         m_impulseVel.z = Mathf.Lerp(m_impulseVel.z, 0, m_impulseFriction * Time.deltaTime);
@@ -164,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void ApplyImpulse(Vector3 direction, float impulseForce)
     {
-        // Ajouter l'impulsion dans la direction donnée
+        // Ajouter l'impulsion dans la direction donnÃ©e
         Debug.Log("aaaa");
         m_impulseVel = direction.normalized * impulseForce;
     }
