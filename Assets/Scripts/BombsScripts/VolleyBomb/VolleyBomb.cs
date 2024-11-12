@@ -125,7 +125,7 @@ public class VolleyBomb : MonoBehaviour
                     _volleyBombManager._playersList[0].GetPlayerVolleyBomb().IncresePoints();
                     if (_volleyBombManager._playersList[0].GetComponent<PlayerVolleyBomb>()._points == 3)
                     {
-                        //stop
+                        break;
                     }
                     else
                     {
