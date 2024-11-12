@@ -59,8 +59,8 @@ public class ScoreManager : MonoBehaviour
                 return;
             }       
         }
-        _playerDied.Add(player);
         AddScore(player, ajout);
+        _playerDied.Add(player);
     }
 
     public void ChangeGame()

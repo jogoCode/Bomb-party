@@ -12,6 +12,7 @@ public class PlayerBombTag : MonoBehaviour
     public float _stunTime = 1;
     public float _stunSpeed = 0;
     PartyPlayerParameters _playerParameters;
+    [SerializeField] public bool HasPoint { get; set; }
 
 
 
