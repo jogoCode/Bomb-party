@@ -284,6 +284,12 @@ public class PlayerMovement : MonoBehaviour
         m_dashCooldown = dashCoolDown;
     }
 
+    public void ResetVerticalVel()
+    {
+        m_vSpeed = 0;
+        m_vVel.y = 0;
+    }
+
     #endregion
 
 

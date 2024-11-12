@@ -154,6 +154,8 @@ public class PlayerController : MonoBehaviour
     Vector3 warpPosition = Vector3.zero;
     public void WarpToPosition(Vector3 newPosition)
     {
+        if (m_playerMovement.GetCharacterController() == null) return;
+        m_playerMovement.ResetVerticalVel();
         m_playerMovement.GetCharacterController().enabled = false;
         warpPosition = newPosition;
         transform.position = warpPosition;
