@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BombeTh : Bombe
 {
-    public float maxRadius = 5f;                    // Taille maximale du cercle
+    public float maxRadius = 1f;                    // Taille maximale du cercle
     public float expansionSpeed = 2f;                // Vitesse à laquelle le cercle grandit
     public float duration = 3f;                      // Durée avant que le cercle disparaisse
     public Color gizmoColor = Color.green;           // Couleur du Gizmo dans la scène
@@ -15,6 +15,7 @@ public class BombeTh : Bombe
 
     public SphereCollider sphereCollider;
     private float timer = 3f;
+
 
     void Update()
     {
@@ -58,7 +59,9 @@ public class BombeTh : Bombe
         // Vérifier si le prefab du VFX est assigné, puis l'instancier au centre de la sphère
         if (explosionVFXPrefab != null)
         {
+
             currentVFX = Instantiate(explosionVFXPrefab, transform.position, Quaternion.identity);
+            Destroy(currentVFX, timer+1);
         }
     }
     void OnDrawGizmos()
