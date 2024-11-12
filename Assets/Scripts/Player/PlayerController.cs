@@ -156,10 +156,12 @@ public class PlayerController : MonoBehaviour
     {
         if (m_playerMovement.GetCharacterController() == null) return;
         m_playerMovement.ResetVerticalVel();
+        m_playerVisual.Model.SetActive(false);
         m_playerMovement.GetCharacterController().enabled = false;
         warpPosition = newPosition;
         transform.position = warpPosition;
         m_playerMovement.GetCharacterController().enabled = true;
+        m_playerVisual.Model.SetActive(true);
     }
 
     public void JustGrounded()

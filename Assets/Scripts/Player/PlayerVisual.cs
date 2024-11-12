@@ -34,6 +34,11 @@ public class PlayerVisual : MonoBehaviour
         get { return m_ocscillator; }
     }
 
+    public GameObject Model
+    {
+        get { return m_model; }
+    }
+
     #region BUILT-IN
     void Awake()
     {

@@ -64,9 +64,9 @@ public class PlayerManager : MonoBehaviour
 
     IEnumerator DelaySpawnPlayer(PlayerController newPlayer)
     {
-        yield return new WaitForSeconds(0f);
+        yield return new WaitForSeconds(0.0f);
         newPlayer.WarpToPosition(m_playerSpawnerPoints[m_playersCount-1].transform.position);
-        StopCoroutine(m_spawnDelay);
+        
     }
 
     public void Restart()
