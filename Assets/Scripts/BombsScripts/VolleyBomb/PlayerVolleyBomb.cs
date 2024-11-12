@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerVolleyBomb : MonoBehaviour
 {
-    [SerializeField] private int _points;
+    public int _points;
 
     public void IncresePoints()
     {

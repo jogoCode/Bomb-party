@@ -28,7 +28,8 @@ public class VolleyBombManager : MonoBehaviour
     [SerializeField] private TMP_Text _intertimeDisplay;
     public float _intertiming;
     
-    public List<int> _playersPoints;
+    public TMP_Text _player1;
+    public TMP_Text _player2;
 
     VolleyBombZone _zone;
 
@@ -59,6 +60,11 @@ public class VolleyBombManager : MonoBehaviour
         else
         {
             _intertimeDisplay.text = "GO";
+        }
+        if(_playersList.Count <= 2) 
+        { 
+            _player1.text = _playersList[0].GetComponent<PlayerVolleyBomb>()._points.ToString();
+            _player2.text = _playersList[1].GetComponent<PlayerVolleyBomb>()._points.ToString();
         }
     }
 
@@ -100,6 +106,7 @@ public class VolleyBombManager : MonoBehaviour
             if (_bombSpawnList[random].gameObject.activeInHierarchy == true)
             {
                 GameObject spawnerChoosed = _bombSpawnList[random];
+                _intertiming = _interTime;
                 StartCoroutine(SpawnBomb(spawnerChoosed));
                 _bombDidntSpawn = false;
                 //Debug.Log("Hell yee !");
