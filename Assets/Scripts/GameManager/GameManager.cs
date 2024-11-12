@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     PlayerManager m_playerManager;
     CameraHandler m_camera;
     ScoreManager m_scoreManager;
+    PartyManager m_partyManager;
+    Animator m_sceneTransition;
 
 
     public const int PLAYER_PARRY_BOMB_LAYER = 8;
@@ -62,6 +64,8 @@ public class GameManager : MonoBehaviour
         m_playerManager = GetComponent<PlayerManager>();
         m_camera = Camera.main.gameObject.GetComponent<CameraHandler>();
         m_scoreManager = GetComponent<ScoreManager>();
+        m_partyManager = GetComponent<PartyManager>();
+        m_sceneTransition = GetComponentInChildren<Animator>();
     }
 
 
@@ -78,7 +82,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         m_playerManager.Restart();
         Destroy(gameObject);
-        SceneManager.LoadScene(0);
+        LoadScene(0);
     }
 
 
@@ -87,13 +91,31 @@ public class GameManager : MonoBehaviour
         //TODO faire une fonction pour le mini jeux 
         m_playerManager.SetPlayerManagerState(PlayerManager.PlayerManagerState.DISABLE);
         OnGameStarted?.Invoke();
-        SceneManager.LoadScene(1);
+        LoadScene(1);
+        //m_partyManager.ChangeMiniGame();
+    }
+
+    public void LoadScene(int scene)
+    {
+        StartCoroutine(LoadSceneCoroutine(scene));
+    }
+
+
+    IEnumerator LoadSceneCoroutine(int scene)
+    {
+        m_sceneTransition.SetTrigger("End");
+        yield return new WaitForSeconds(1f);
+        m_sceneTransition.SetTrigger("Start");
+        SceneManager.LoadScene(scene);
+        m_playerManager.ActiveAllPlayerController();
+   
     }
 
 
     public CameraHandler GetCameraHandler() => m_camera;
-    public PlayerManager GetPlayerManager()=> m_playerManager;
-    public ScoreManager GetScoreManager()=> m_scoreManager;
+    public PlayerManager GetPlayerManager() => m_playerManager;
+    public ScoreManager GetScoreManager() => m_scoreManager;
+    public PartyManager GetPartyManager() => m_partyManager;
 
 
 }
