@@ -14467,7 +14467,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf2b3336dcaf74646aa0609d6f878825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: []
+  _playerDied: []
+  _maxPlayer: []
+  _bonus: 0
+  _winGame: 4
 --- !u!114 &1810540782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14634,11 +14637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04290dc94730f1c498fde4ce2c5ad924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playersSpawns:
-  - {fileID: 1298725101}
-  - {fileID: 1677520491}
-  - {fileID: 1404900771}
-  - {fileID: 500470573}
+  m_playersSpawns: []
 --- !u!4 &1844996187
 Transform:
   m_ObjectHideFlags: 0

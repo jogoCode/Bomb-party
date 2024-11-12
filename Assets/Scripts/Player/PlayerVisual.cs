@@ -158,7 +158,7 @@ public class PlayerVisual : MonoBehaviour
     #region Events
     public void JustGrounded()
     {
-        Oscillator.StartOscillator(10);
+        Oscillator.StartOscillator(5);
     }
 
 

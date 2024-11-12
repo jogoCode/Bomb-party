@@ -220,7 +220,7 @@ public class PlayerMovement : MonoBehaviour
     public void Jump()
     {
         if (JumpForce == 0) return;
-        if(m_playerController.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.HIT)
+        //if (m_playerController.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.HIT) return;
         m_jumpBufferTimer = 0;
         ResetCoyoteTimer();
         m_vSpeed = 0;

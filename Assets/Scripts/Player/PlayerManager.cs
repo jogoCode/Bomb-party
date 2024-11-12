@@ -1,24 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Experimental.GraphView.GraphView;
+
 
 public class PlayerManager : MonoBehaviour
 {
 
 
-    public const int MAX_PLAYER_COUNT = 4;
+    public const int MAX_PLAYER_COUNT = 3;
 
 
 
     List<PlayerController> m_players = new List<PlayerController>();
     PlayerInputManager m_playerInputManager;
-    [SerializeField] GameObject[] m_playerSpawnerPoints;
+    public GameObject[] m_playerSpawnerPoints;
 
     Coroutine m_spawnDelay;
 
