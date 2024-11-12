@@ -34,7 +34,7 @@ public class PlayerParryBomb : MonoBehaviour
         }
         if (other.GetComponent<VolleyBomb>() != null)
         {
-            //Debug.Log("AAAAAAAAAAAAAAAAAAAAA");
+
 
             //1e-07
             other.GetComponent<Rigidbody>().AddForce(new Vector3(m_playerController.GetLastInputDir().x,1, m_playerController.GetLastInputDir().y).normalized*50,ForceMode.Impulse);
