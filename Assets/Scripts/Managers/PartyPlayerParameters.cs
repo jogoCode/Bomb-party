@@ -13,7 +13,7 @@ public class PartyPlayerParameters : MonoBehaviour
 
     [SerializeField] bool m_parryBombActions;
 
-    
+    public float PlayerBaseSpeed { get { return m_playerSpeed; } }
 
     private void Start()
     {

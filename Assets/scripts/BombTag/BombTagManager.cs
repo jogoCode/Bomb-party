@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class BombTagManager : MonoBehaviour
 {
@@ -8,22 +9,33 @@ public class BombTagManager : MonoBehaviour
     public float _bombTimer = 30;
     public bool _boom = false;
     [SerializeField] List<PlayerController> _players;
-
+    [SerializeField] float  _baseSpeed;
+    public ScoreManager _scoreManager;
+    PartyPlayerParameters _playerParameters;
     public PlayerController _hasBomb;
     public List<PlayerController> Players { get { return _players; } }
 
+    private void Awake()
+    {
+        _playerParameters = FindObjectOfType<PartyPlayerParameters>();
+    }
     private void Start()
     {
-        
         AssignRandomBomb();
+        _baseSpeed = _playerParameters.PlayerBaseSpeed;
+        _scoreManager = GameManager.Instance.GetScoreManager();
+        foreach (PlayerController playerController in _players)
+        {
+            playerController.GetPlayerBombTag().Init();
+        }
     }
     void Update()
     {
         BombTimer();
         if (_boom)
         {
-
             _hasBomb.gameObject.SetActive(false);
+            _scoreManager.AddPlayerToList(_hasBomb, _scoreManager.Bonus);
             List<PlayerController> list = GameManager.Instance.GetPlayerManager().GetActivePlayers();
             if (list.Count > 1)
             {
@@ -48,6 +60,7 @@ public class BombTagManager : MonoBehaviour
         int randomIndex = Random.Range(0, _players.Count);
         _players[randomIndex].GetPlayerBombTag()._hasBomb = true;
         _hasBomb = _players[randomIndex];
+        _hasBomb.GetPlayerMovement().SetPlayerSpeed(_baseSpeed+ 500f);
 
     }
     void BombTimer()
@@ -63,4 +76,6 @@ public class BombTagManager : MonoBehaviour
             Debug.Log("sa a PETER");
         }
     }
+    
+
 }

@@ -9,14 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 7ba61e12f9c35fc4ea6cda73e8533cf2
   - enabled: 1
-<<<<<<< Updated upstream
-    path: Assets/Scenes/ManuScene.unity
-    guid: 672cbcf3dce3d994e9b4023553192eb9
-=======
     path: Assets/Scenes/BombTag.unity
     guid: 6a699f5b418cd3b46a5fa0610203da84
->>>>>>> Stashed changes
   - enabled: 1
     path: Assets/Scenes/FredScene.unity
     guid: 3a749afa952284e468405b94d2e08392
+  - enabled: 1
+    path: Assets/Scenes/ManuScene.unity
+    guid: 672cbcf3dce3d994e9b4023553192eb9
   m_configObjects: {}

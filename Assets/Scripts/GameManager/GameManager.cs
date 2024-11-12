@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     CameraHandler m_camera;
     ScoreManager m_scoreManager;
 
+
     public const int PLAYER_PARRY_BOMB_LAYER = 8;
     public const int PLAYER_LAYER = 6;
     
@@ -93,5 +94,6 @@ public class GameManager : MonoBehaviour
     public CameraHandler GetCameraHandler() => m_camera;
     public PlayerManager GetPlayerManager()=> m_playerManager;
     public ScoreManager GetScoreManager()=> m_scoreManager;
+
 
 }

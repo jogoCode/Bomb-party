@@ -873,7 +873,8 @@ MonoBehaviour:
   _player: {fileID: 3176970474385277649}
   _hasBomb: 0
   _bomb: {fileID: 8902214110767288947}
-  _bombTag: {fileID: 0}
+  _stunTime: 5
+  _stunSpeed: 1
 --- !u!1001 &1722894428692724634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2145,7 +2146,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69a50b16c6dd4f34d9fe35010735ddc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bombTimer: 30
-  _boom: 0
-  _playerController: {fileID: 3176970474385277649}
-  _tagManager: {fileID: 0}
