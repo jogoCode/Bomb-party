@@ -96,7 +96,8 @@ public class PlayerManager : MonoBehaviour
     public void SetPlayerManagerState(PlayerManagerState newState)
     {
         m_playerManagerState=newState;
-        OnPlayerManagerStateChanged?.Invoke();
+        PlayerManagerStateChanged();
+        //OnPlayerManagerStateChanged?.Invoke();
     }
 
     void PlayerManagerStateChanged()
