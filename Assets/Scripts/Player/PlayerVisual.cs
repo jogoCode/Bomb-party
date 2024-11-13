@@ -34,6 +34,11 @@ public class PlayerVisual : MonoBehaviour
         get { return m_ocscillator; }
     }
 
+    public GameObject Model
+    {
+        get { return m_model; }
+    }
+
     #region BUILT-IN
     void Awake()
     {
@@ -153,7 +158,7 @@ public class PlayerVisual : MonoBehaviour
     #region Events
     public void JustGrounded()
     {
-        Oscillator.StartOscillator(10);
+        Oscillator.StartOscillator(5);
     }
 
 

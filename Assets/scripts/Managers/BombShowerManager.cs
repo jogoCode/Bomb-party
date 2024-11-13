@@ -5,20 +5,19 @@ using UnityEngine;
 
 public class BombShowerManager : MonoBehaviour
 {
-
     public event Action OnPlayerEliminated;
     public event Action OnGameFinished;
+    private ScoreManager _scoreManager;
     public GameManager m_gameManager;
 
     private void Start()
     {
         m_gameManager = GameManager.Instance;
-
+        _scoreManager = GameManager.Instance.GetScoreManager();
     }
 
     public void PlayerEliminated(PlayerController player)
     {
-        ScoreManager scoreManager = m_gameManager.GetScoreManager();
-        scoreManager.AddPlayerToList(player);
+        _scoreManager.AddPlayerToList(player, _scoreManager.Bonus);
     }
 }

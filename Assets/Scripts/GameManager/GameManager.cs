@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     PartyManager m_partyManager;
     Animator m_sceneTransition;
 
+
     public const int PLAYER_PARRY_BOMB_LAYER = 8;
     public const int PLAYER_LAYER = 6;
     
@@ -115,5 +116,6 @@ public class GameManager : MonoBehaviour
     public PlayerManager GetPlayerManager() => m_playerManager;
     public ScoreManager GetScoreManager() => m_scoreManager;
     public PartyManager GetPartyManager() => m_partyManager;
+
 
 }
