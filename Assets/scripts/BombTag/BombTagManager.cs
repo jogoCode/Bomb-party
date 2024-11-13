@@ -1,3 +1,5 @@
+using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
@@ -15,6 +17,9 @@ public class BombTagManager : MonoBehaviour
     PlayerBombTag _playerBombTag;
     public PlayerController _hasBomb;
     FeedBackManager _fBM;
+    [SerializeField] GameObject _rules;
+    public bool _gameReady = false;
+    [SerializeField] float _cd;
 
     public List<PlayerController> Players { get { return _players; } }
 
@@ -25,6 +30,7 @@ public class BombTagManager : MonoBehaviour
     }
     private void Start()
     {
+        StartCoroutine(TimerForRule());
         AssignRandomBomb();
         _baseSpeed = _playerParameters.PlayerBaseSpeed;
         _scoreManager = GameManager.Instance.GetScoreManager();
@@ -35,31 +41,34 @@ public class BombTagManager : MonoBehaviour
     }
     void Update()
     {
-        BombTimer();
-        List<PlayerController> list = GameManager.Instance.GetPlayerManager().GetActivePlayers();
-        if (list.Count == 1)
+        if (_gameReady)
         {
-            if (_hasBomb.GetPlayerBombTag().HasPoint == false)
+            BombTimer();
+            List<PlayerController> list = GameManager.Instance.GetPlayerManager().GetActivePlayers();
+            if (list.Count == 1)
             {
-                FinDeGame();
-                
-                _hasBomb.GetPlayerBombTag().HasPoint = true;
+                if (_hasBomb.GetPlayerBombTag().HasPoint == false)
+                {
+                    FinDeGame();
+
+                    _hasBomb.GetPlayerBombTag().HasPoint = true;
+                }
             }
-        }
-        if (_boom)
-        {
-            if (_hasBomb.GetPlayerBombTag().HasPoint == false) 
+            if (_boom)
             {
-                _scoreManager.AddPlayerToList(_hasBomb, _scoreManager.Bonus);
-                _fBM.InstantiateParticle(_fBM.m_explosionVfx, _hasBomb.gameObject.transform.position, _hasBomb.gameObject.transform.rotation);
-                _hasBomb.gameObject.SetActive(false);
-                _hasBomb.GetPlayerBombTag().HasPoint = true;
-            }
-            if (list.Count >= 2)
-            {
-                // TODO : si la fine gagne des point return;
-                _bombTimer = _baseTimer;
-                AssignRandomBomb();
+                if (_hasBomb.GetPlayerBombTag().HasPoint == false)
+                {
+                    _scoreManager.AddPlayerToList(_hasBomb, _scoreManager.Bonus);
+                    _fBM.InstantiateParticle(_fBM.m_explosionVfx, _hasBomb.gameObject.transform.position, _hasBomb.gameObject.transform.rotation);
+                    _hasBomb.gameObject.SetActive(false);
+                    _hasBomb.GetPlayerBombTag().HasPoint = true;
+                }
+                if (list.Count >= 2)
+                {
+                    // TODO : si la fine gagne des point return;
+                    _bombTimer = _baseTimer;
+                    AssignRandomBomb();
+                }
             }
         }
     }
@@ -75,7 +84,7 @@ public class BombTagManager : MonoBehaviour
         }
 
         // Choisir un joueur au hasard pour lui donner la bombe
-        int randomIndex = Random.Range(0, _players.Count);
+        int randomIndex = UnityEngine.Random.Range(0, _players.Count);
         _players[randomIndex].GetPlayerBombTag()._hasBomb = true;
         _hasBomb = _players[randomIndex];
         _hasBomb.GetPlayerMovement().SetPlayerSpeed(_baseSpeed+ 500f);
@@ -103,6 +112,11 @@ public class BombTagManager : MonoBehaviour
         }
         GameManager.Instance.GetPartyManager().ChangeMiniGame();
     }
-    
+    IEnumerator TimerForRule()
+    {
+        yield return new WaitForSeconds(_cd);
+        _rules.SetActive(false);
+        _gameReady = true;
+    }
 
 }

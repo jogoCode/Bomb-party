@@ -9,19 +9,25 @@ public class BombShowerManager : MonoBehaviour
     public event Action OnGameFinished;
     private ScoreManager _scoreManager;
     public GameManager m_gameManager;
+    public BombShower _spawn;
     public float _time;
     float _baseTime;
     bool _isTimerRunning;
     FeedBackManager _fbM;
     bool _finish;
+    [SerializeField] GameObject _rules;
+    public bool _gameReady = false;
+    [SerializeField] float _cd;
 
     private void Start()
     {
+        _spawn = FindObjectOfType<BombShower>();
+        _spawn.enabled = false;
+        StartCoroutine(TimerForRule());
         //foreach (PlayerController i in GameManager.Instance.GetPlayerManager().GetPlayerList())
         //{
         //    i.gameObject.SetActive(true);
         //}
-        
         _fbM = FeedBackManager.Instance;
         m_gameManager = GameManager.Instance;
         _scoreManager = m_gameManager.GetScoreManager();
@@ -39,7 +45,10 @@ public class BombShowerManager : MonoBehaviour
 
     private void Update()
     {
-        UpdateTimer();
+        if (_gameReady)
+        {
+          UpdateTimer();
+        }
     }
 
     void UpdateTimer()
@@ -75,5 +84,12 @@ public class BombShowerManager : MonoBehaviour
         {
             _finish = false;
         }
+    }
+    IEnumerator TimerForRule()
+    {
+        yield return new WaitForSeconds(_cd);
+        _spawn.enabled = true;
+        _rules.SetActive(false);
+        _gameReady = true;
     }
 }
