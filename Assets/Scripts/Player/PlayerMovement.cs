@@ -165,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
     public void ApplyImpulse(Vector3 direction, float impulseForce)
     {
         // Ajouter l'impulsion dans la direction donnée
-        Debug.Log("aaaa");
+        //Debug.Log("aaaa");
         m_impulseVel = direction.normalized * impulseForce;
     }
 

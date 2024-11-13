@@ -61,7 +61,7 @@ public class VolleyBombManager : MonoBehaviour
         {
             _intertimeDisplay.text = "GO";
         }
-        if(_playersList.Count <= 2) 
+        if(_playersList.Count == 2) 
         { 
             _player1.text = _playersList[0].GetComponent<PlayerVolleyBomb>()._points.ToString();
             _player2.text = _playersList[1].GetComponent<PlayerVolleyBomb>()._points.ToString();
