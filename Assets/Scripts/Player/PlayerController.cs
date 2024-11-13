@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 {
     int m_playerId;
     bool m_isReady = false;
+    bool m_inCage = false;
 
     [SerializeField] PlayerMovement m_playerMovement;
     [SerializeField] PlayerVisual m_playerVisual;
@@ -42,6 +43,11 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    public bool InCage
+    {
+        get { return m_inCage; }
+        set { m_inCage = value; }
+    }
     public bool IsReady
     {
         get {return m_isReady;}
@@ -79,6 +85,7 @@ public class PlayerController : MonoBehaviour
         if (context.action.triggered) {
             if (m_playerParryBomb.isActiveAndEnabled)
             {
+                if (m_inCage) return;
                 OnParried?.Invoke();
             }
         }
@@ -172,7 +179,10 @@ public class PlayerController : MonoBehaviour
 
     public void EnabledPlayerParryBomb(bool state)
     {
-        m_playerParryBomb.enabled = state;   
+        m_playerParryBomb.enabled = state;
+        if (state == false) {
+            m_playerVisual.DesactiveBatModel();
+        }
     }
 
  

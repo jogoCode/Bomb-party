@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PartyManager : MonoBehaviour
 {
@@ -47,7 +47,9 @@ public class PartyManager : MonoBehaviour
         if (AllMapsWasUsed())
         {
             InitMapList();
-            ChangeMiniGame();
+            //TODO FONCTION POUR DRAW
+            GameManager.Instance.LoadScene(5);
+            //ChangeMiniGame();
             return;
         }
         while(rng == m_lastMiniGame || m_mapList[rng] == -1)
@@ -80,6 +82,17 @@ public class PartyManager : MonoBehaviour
         }else{
             return false;
         }
+    }
+
+    void CheckForFinalist()
+    {
+        List<PlayerController> players = GameManager.Instance.GetPlayerManager().GetPlayerList();
+        players.Sort((p1, p2) => p2._score.CompareTo(p1._score));
+        var duplicateScores = players
+         .GroupBy(player => player._score)
+         .Where(group => group.Count() > 1)
+         .Select(group => group.Key)
+         .ToList();
     }
 
 }

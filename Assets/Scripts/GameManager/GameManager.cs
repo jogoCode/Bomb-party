@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.GraphicsBuffer;
 
 public class GameManager : MonoBehaviour
 {
@@ -80,19 +81,23 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1.0f;
-        m_playerManager.Restart();
-        Destroy(gameObject);
+     
         LoadScene(0);
     }
 
 
     public void GameStart()
     {
-        //TODO faire une fonction pour le mini jeux 
         m_playerManager.SetPlayerManagerState(PlayerManager.PlayerManagerState.DISABLE);
         OnGameStarted?.Invoke();
         LoadScene(1);
         //m_partyManager.ChangeMiniGame();
+    }
+
+    public void GameFinished()
+    {
+        OnGameStarted?.Invoke();
+        LoadScene(5);
     }
 
     public void LoadScene(int scene)
@@ -107,6 +112,16 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         m_sceneTransition.SetTrigger("Start");
         SceneManager.LoadScene(scene);
+        if (scene == 0)
+        {
+            m_playerManager.Restart();
+            foreach (Component component in GetComponents<MonoBehaviour>())
+            {
+                Destroy(component);
+                SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
+            }
+            Destroy(SoundManager.Instance.gameObject);
+        };
         m_playerManager.ActiveAllPlayerController();
    
     }

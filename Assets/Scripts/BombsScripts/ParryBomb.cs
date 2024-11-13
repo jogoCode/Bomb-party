@@ -50,12 +50,17 @@ public class ParryBomb : MonoBehaviour
         m_oscillator = GetComponent<Oscillator>();  
         OnParried += m_oscillator.StartOscillator;
         m_gm = GameManager.Instance;
-        m_rb.AddForce(new Vector3(-1,0,1) * 15, ForceMode.Impulse); //TODO replace this hard value
+       
     }
 
     void Update()
     {
         BombTimer();
+    }
+
+    public void StartParryBomb()
+    {
+        m_rb.AddForce(new Vector3(-1, 0, 1) * 15, ForceMode.Impulse); //TODO replace this hard value
     }
 
 
