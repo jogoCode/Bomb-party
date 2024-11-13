@@ -42,6 +42,8 @@ public class PartyManager : MonoBehaviour
     public void ChangeMiniGame()
     {
         int rng = Random.Range(1,MAX_MINI_GAME);
+        ScoreManager sm = GameManager.Instance.GetScoreManager();    
+        sm.ChangeGame();
         if (AllMapsWasUsed())
         {
             InitMapList();
