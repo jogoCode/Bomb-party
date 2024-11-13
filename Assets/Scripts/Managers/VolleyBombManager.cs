@@ -10,6 +10,7 @@ public class VolleyBombManager : MonoBehaviour
     GameManager _gameManager;
 
     [SerializeField] private List<GameObject> _bombSpawnList;
+    [SerializeField] GameObject m_rules;
     [SerializeField] private GameObject _bomb;
     public bool _bombDidntSpawn;
     public List<PlayerController> _playersList;
@@ -59,6 +60,7 @@ public class VolleyBombManager : MonoBehaviour
         }
         else
         {
+            m_rules.SetActive(false);
             _intertimeDisplay.text = "GO";
         }
         if(_playersList.Count == 2) 
