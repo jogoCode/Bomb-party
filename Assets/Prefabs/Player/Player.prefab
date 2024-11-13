@@ -889,8 +889,9 @@ MonoBehaviour:
   _player: {fileID: 3176970474385277649}
   _hasBomb: 0
   _bomb: {fileID: 8902214110767288947}
-  _stunTime: 5
-  _stunSpeed: 1
+  _stunTime: 2
+  _stuned: 0
+  _playerMovement: {fileID: 3278899701764599895}
 --- !u!1001 &1722894428692724634
 PrefabInstance:
   m_ObjectHideFlags: 0

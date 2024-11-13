@@ -14,12 +14,14 @@ public class BombTagManager : MonoBehaviour
     PartyPlayerParameters _playerParameters;
     PlayerBombTag _playerBombTag;
     public PlayerController _hasBomb;
-    
+    FeedBackManager _fBM;
+
     public List<PlayerController> Players { get { return _players; } }
 
     private void Awake()
     {
         _playerParameters = FindObjectOfType<PartyPlayerParameters>();
+        _fBM = FeedBackManager.Instance;
     }
     private void Start()
     {
@@ -40,27 +42,26 @@ public class BombTagManager : MonoBehaviour
             if (_hasBomb.GetPlayerBombTag().HasPoint == false)
             {
                 FinDeGame();
+                
                 _hasBomb.GetPlayerBombTag().HasPoint = true;
             }
         }
         if (_boom)
         {
-
             if (_hasBomb.GetPlayerBombTag().HasPoint == false) 
             {
                 _scoreManager.AddPlayerToList(_hasBomb, _scoreManager.Bonus);
+                _fBM.InstantiateParticle(_fBM.m_explosionVfx, _hasBomb.gameObject.transform.position, _hasBomb.gameObject.transform.rotation);
                 _hasBomb.gameObject.SetActive(false);
                 _hasBomb.GetPlayerBombTag().HasPoint = true;
             }
-            if (list.Count > 1)
+            if (list.Count >= 2)
             {
                 // TODO : si la fine gagne des point return;
                 _bombTimer = _baseTimer;
                 AssignRandomBomb();
             }
         }
-
-
     }
 
     public void AssignRandomBomb()
@@ -89,8 +90,6 @@ public class BombTagManager : MonoBehaviour
         else
         {
             _boom = true;
-
-            Debug.Log("sa a PETER");
         }
     }
 
@@ -102,7 +101,7 @@ public class BombTagManager : MonoBehaviour
         {
             _scoreManager.OneWin();
         }
-        
+        GameManager.Instance.GetPartyManager().ChangeMiniGame();
     }
     
 

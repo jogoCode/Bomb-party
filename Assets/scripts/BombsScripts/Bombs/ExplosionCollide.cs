@@ -22,10 +22,10 @@ public class ExplosionCollide : MonoBehaviour
         {
            PlayerController _player = other.gameObject.GetComponent<PlayerController>();
 
-            OnPlayerEliminated?.Invoke(_player);
             //_scoreManager.AddScore(_player);
-            
+            OnPlayerEliminated?.Invoke(_player);
             other.gameObject.SetActive(false);
+            _bombShowerManager.HasAWinner();
         }
     }
 }
