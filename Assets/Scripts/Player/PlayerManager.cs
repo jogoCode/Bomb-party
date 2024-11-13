@@ -1,23 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Experimental.GraphView.GraphView;
+
 
 public class PlayerManager : MonoBehaviour
 {
 
 
-    public const int MAX_PLAYER_COUNT = 4;
+    public const int MAX_PLAYER_COUNT = 3;
 
 
 
     List<PlayerController> m_players = new List<PlayerController>();
     PlayerInputManager m_playerInputManager;
+    public GameObject[] m_playerSpawnerPoints;
+
+    Coroutine m_spawnDelay;
 
     public event Action OnPlayerManagerStateChanged;
     public event Action OnPlayerInListIsReady;
@@ -46,17 +46,24 @@ public class PlayerManager : MonoBehaviour
         if (m_playerManagerState == PlayerManagerState.DISABLE) return;// if player count equal max playercount change the player manager state
         PlayerController newPlayer = playerInput.gameObject.GetComponent<PlayerController>();
         AddPlayerInPlayerList(newPlayer);
+      
+        m_spawnDelay = StartCoroutine(DelaySpawnPlayer(newPlayer));
+        Debug.Log(m_playerSpawnerPoints[m_playersCount].name);
         m_playersCount++;
         Debug.Log("Nouveau joueur ajouté : " + playerInput.gameObject.name);
-        if(m_playersCount == MAX_PLAYER_COUNT) // if player count equal max playercount change the player manager state
+        if (m_playersCount == MAX_PLAYER_COUNT) // if player count equal max playercount change the player manager state
         {
             SetPlayerManagerState(PlayerManagerState.DISABLE);
         }
     }
 
-    public void JoinAFakePlayer()
-    {
 
+
+    IEnumerator DelaySpawnPlayer(PlayerController newPlayer)
+    {
+        yield return new WaitForSeconds(0.0f);
+        newPlayer.WarpToPosition(m_playerSpawnerPoints[m_playersCount-1].transform.position);
+        
     }
 
     public void Restart()

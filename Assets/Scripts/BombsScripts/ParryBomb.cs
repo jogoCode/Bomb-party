@@ -12,6 +12,7 @@ public class ParryBomb : MonoBehaviour
 
     ParryBombManager m_parryBombManager;
     Rigidbody m_rb;
+    GameManager m_gm;
 
 
     PlayerController m_owner = null;
@@ -48,6 +49,7 @@ public class ParryBomb : MonoBehaviour
         m_bombTimerDisplay = GetComponentInChildren<TMP_Text>();
         m_oscillator = GetComponent<Oscillator>();  
         OnParried += m_oscillator.StartOscillator;
+        m_gm = GameManager.Instance;
         m_rb.AddForce(new Vector3(-1,0,1) * 15, ForceMode.Impulse); //TODO replace this hard value
     }
 
@@ -99,6 +101,8 @@ public class ParryBomb : MonoBehaviour
         if(player.name.Contains("Player") && player != m_owner)  //Player was touched
         {
             FeedBackManager.Instance.InstantiateParticle(FeedBackManager.Instance.m_explosionVfx,player.transform.position,player.transform.rotation);
+            ScoreManager sm = m_gm.GetScoreManager();
+            sm.AddPlayerToList(player,sm.Bonus);
             other.gameObject.SetActive(false);
             ResetBombTimer();
             m_rb.velocity = Vector3.zero; //TODO METTRE DANS UN FONCTION RESET

@@ -220,6 +220,7 @@ public class PlayerMovement : MonoBehaviour
     public void Jump()
     {
         if (JumpForce == 0) return;
+        //if (m_playerController.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.HIT) return;
         m_jumpBufferTimer = 0;
         ResetCoyoteTimer();
         m_vSpeed = 0;
@@ -282,6 +283,12 @@ public class PlayerMovement : MonoBehaviour
     public void SetDashCooldown(float dashCoolDown)
     {
         m_dashCooldown = dashCoolDown;
+    }
+
+    public void ResetVerticalVel()
+    {
+        m_vSpeed = 0;
+        m_vVel.y = 0;
     }
 
     #endregion

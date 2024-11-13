@@ -13,7 +13,7 @@ public class StopCollid : MonoBehaviour
 
     IEnumerator AttendreUneSeconde()
     {
-        yield return new WaitForSeconds(1f); // Attendre 1 seconde
+        yield return new WaitForSeconds(0.5f); // Attendre 1 seconde
         _collider.enabled = false;
 
     }
