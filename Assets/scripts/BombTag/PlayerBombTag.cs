@@ -11,6 +11,7 @@ public class PlayerBombTag : MonoBehaviour
     public GameObject _bomb;
     public float _stunTime = 1;
     public float _stunSpeed = 0;
+    public bool _stuned;
     PartyPlayerParameters _playerParameters;
     [SerializeField] public bool HasPoint { get; set; }
 
@@ -31,8 +32,8 @@ public class PlayerBombTag : MonoBehaviour
                 bombTagManager._hasBomb = hit.gameObject.GetComponent<PlayerController>();
                 _hasBomb = false;
                 attraped._hasBomb = true;
-                StartCoroutine(Stuned(attraped._player));
-                // TODO : mettre un mini stun pour laisser le joueur s'enfuir ?
+
+                StartCoroutine(Stuned(bombTagManager._hasBomb));
             }
         }
     }
@@ -42,6 +43,7 @@ public class PlayerBombTag : MonoBehaviour
         {
 
             _bomb.SetActive(true);
+            if(!_stuned)
             _player.GetPlayerMovement().SetPlayerSpeed(_playerParameters.PlayerBaseSpeed + 3f);
         }
         else
@@ -53,10 +55,13 @@ public class PlayerBombTag : MonoBehaviour
 
    public  IEnumerator  Stuned(PlayerController Player)
     {
-        //Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        _stuned = true;
         Player.GetPlayerMovement().SetPlayerSpeed(_stunSpeed); // TO DO : Anim de Stun
         Player.ApplyImpulse(new Vector3(_player.GetLastInputDir().x,0, _player.GetLastInputDir().y),15);
-        yield return new WaitForSeconds(_stunTime);
+        Debug.Log("jsuis Stun");
+        yield return new WaitForSeconds (_stunTime);
+        Debug.Log("jsuis plus Stun");
+        _stuned = false;
 
     }
 

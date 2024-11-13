@@ -101,6 +101,7 @@ public class BombTagManager : MonoBehaviour
         foreach (PlayerController playerController in list)
         {
             _scoreManager.OneWin();
+            GameManager.Instance.GetPartyManager().ChangeMiniGame();
         }
         
     }
