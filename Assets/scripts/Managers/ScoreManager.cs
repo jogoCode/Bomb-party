@@ -27,7 +27,7 @@ public class ScoreManager : MonoBehaviour
 
         if (_playerDied.Count == _maxPlayer.Count - 1 || _playerDied.Count == _maxPlayer.Count)
         { // Met à jour le score des joueurs et trie la liste à la fin de la partie
-            EndGame();
+            //EndGame();
         }
     }
 
@@ -38,7 +38,7 @@ public class ScoreManager : MonoBehaviour
         _playerDied.Sort((a, b) => b._score.CompareTo(a._score));
 
         // Affiche les scores triés
-        Debug.Log("Classement des joueurs: ");
+        //Debug.Log("Classement des joueurs: ");
         foreach (var player in _playerDied)
         {
             Debug.Log($"P{player.PlayerId + 1} : {player._score} points");

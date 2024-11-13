@@ -1080,6 +1080,7 @@ MonoBehaviour:
   m_jumpForce: 2
   m_dashSpeed: 45
   m_dashCooldown: 3
+  m_disableBombTagModel: 0
   m_parryBombActions: 1
 --- !u!1 &2102003909
 GameObject:

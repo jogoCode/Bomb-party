@@ -10,8 +10,8 @@ public class PlayerBombTag : MonoBehaviour
     public bool _hasBomb;
     public GameObject _bomb;
     public float _stunTime = 1;
-    public float _stunSpeed = 0;
     public bool _stuned;
+    public PlayerMovement _playerMovement;
     PartyPlayerParameters _playerParameters;
     [SerializeField] public bool HasPoint { get; set; }
 
@@ -33,7 +33,7 @@ public class PlayerBombTag : MonoBehaviour
                 _hasBomb = false;
                 attraped._hasBomb = true;
 
-                StartCoroutine(Stuned(bombTagManager._hasBomb));
+                StartCoroutine(attraped.Stuned());
             }
         }
     }
@@ -53,15 +53,16 @@ public class PlayerBombTag : MonoBehaviour
 
     }
 
-   public  IEnumerator  Stuned(PlayerController Player)
+   public  IEnumerator  Stuned()
     {
         _stuned = true;
-        Player.GetPlayerMovement().SetPlayerSpeed(_stunSpeed); // TO DO : Anim de Stun
-        Player.ApplyImpulse(new Vector3(_player.GetLastInputDir().x,0, _player.GetLastInputDir().y),15);
-        Debug.Log("jsuis Stun");
-        yield return new WaitForSeconds (_stunTime);
-        Debug.Log("jsuis plus Stun");
+        _playerMovement.enabled = false; // Désactive le script de mouvement
+
+        // Attendre la durée du stun
+        yield return new WaitForSeconds(_stunTime);
+
         _stuned = false;
+        _playerMovement.enabled = true; // Réactive le script de mouvement
 
     }
 

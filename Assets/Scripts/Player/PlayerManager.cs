@@ -171,6 +171,20 @@ public class PlayerManager : MonoBehaviour
             player.GetPlayerVisual().DesactiveBatModel();
         }
     }
+    public void DesactiveBombTagModel()
+    {
+        foreach (PlayerController player in m_players)
+        {
+            player.GetPlayerBombTag()._bomb.GetComponent<Renderer>().enabled = false;
+        }
+    }
+    public void ActiveBombTagModel()
+    {
+        foreach (PlayerController player in m_players)
+        {
+            player.GetPlayerBombTag()._bomb.GetComponent<Renderer>().enabled = true;
+        }
+    }
 
 
     public void EnabledPlayersParryBomb()
