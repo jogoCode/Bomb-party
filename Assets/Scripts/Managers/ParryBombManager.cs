@@ -37,9 +37,12 @@ public class ParryBombManager : MonoBehaviour
         switch(m_players.Count)
         {
             case 0:
+
                 GameFinished("DRAW");
             break;
             case 1:
+                ScoreManager sm = GameManager.Instance.GetScoreManager();
+                sm.OneWin();
                 GameFinished($"P{m_players[0].PlayerId+1} WIN !");
             break;
         }
@@ -59,6 +62,7 @@ public class ParryBombManager : MonoBehaviour
     void GameFinished(string message)
     {
         FeedBackManager fbm = FeedBackManager.Instance;
+        ScoreManager sm = GameManager.Instance.GetScoreManager();
         fbm.FreezeFrame(2f, 0.6f);
         Debug.Log(message);
         m_parryBomb.gameObject.SetActive(false);

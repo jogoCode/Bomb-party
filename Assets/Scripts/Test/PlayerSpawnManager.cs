@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Test : MonoBehaviour
+public class PlayerSpawnManager : MonoBehaviour
 {
     GameManager m_gm;
     PlayerManager m_pm;
@@ -18,13 +18,7 @@ public class Test : MonoBehaviour
         Debug.Log(m_gm.gameObject.name);
         InitPlayersPosition();
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            SceneManager.LoadScene(2);
-        } 
-    }
+   
 
     public void InitPlayersPosition()
     {

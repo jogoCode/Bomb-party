@@ -154,10 +154,14 @@ public class PlayerController : MonoBehaviour
     Vector3 warpPosition = Vector3.zero;
     public void WarpToPosition(Vector3 newPosition)
     {
+        if (m_playerMovement.GetCharacterController() == null) return;
+        m_playerMovement.ResetVerticalVel();
+        m_playerVisual.Model.SetActive(false);
         m_playerMovement.GetCharacterController().enabled = false;
         warpPosition = newPosition;
         transform.position = warpPosition;
         m_playerMovement.GetCharacterController().enabled = true;
+        m_playerVisual.Model.SetActive(true);
     }
 
     public void JustGrounded()
