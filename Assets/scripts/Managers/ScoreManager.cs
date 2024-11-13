@@ -24,10 +24,10 @@ public class ScoreManager : MonoBehaviour
 
         // ajout de  _playerDied.Count == _maxPlayer.Count si 2 joueurs arrivent a mourir en meme temps
 
-        if (_playerDied.Count == _maxPlayer.Count-1 || _playerDied.Count == _maxPlayer.Count)
-        { // Met à jour le score des joueurs et trie la liste à la fin de la partie
-            EndGame();
-        }
+        //if (_playerDied.Count == _maxPlayer.Count-1 || _playerDied.Count == _maxPlayer.Count)
+        //{ // Met à jour le score des joueurs et trie la liste à la fin de la partie
+        //    EndGame();
+        //}
     }
 
     void EndGame()
