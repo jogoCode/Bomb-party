@@ -50,15 +50,17 @@ public class VolleyBomb : MonoBehaviour
 
     void Lost()
     {
-        _RB.isKinematic = true;
+        ScoreManager scoreManager = GameManager.Instance.GetScoreManager();
         PlayerController player;
+        _RB.isKinematic = true;
         switch (_playerId) 
         {
             case 0:
                 _P1Lost = true;
                 Debug.Log("Player 1 Lost");
                 player = _volleyBombManager._playersList[_playerId];
-                if(_volleyBombManager._playersList.Count > 2)
+                scoreManager.AddPlayerToList(player);
+                if (_volleyBombManager._playersList.Count > 2)
                 {
                     _volleyBombManager._playersList.Remove(player);
                     player.gameObject.SetActive(false);
@@ -69,7 +71,7 @@ public class VolleyBomb : MonoBehaviour
                     _volleyBombManager._playersList[0].GetPlayerVolleyBomb().IncresePoints();
                     if (_volleyBombManager._playersList[0].GetComponent<PlayerVolleyBomb>()._points == 3)
                     {
-                        //stop
+                        GameManager.Instance.GetPartyManager().ChangeMiniGame();
                     }
                     else
                     {
@@ -86,6 +88,7 @@ public class VolleyBomb : MonoBehaviour
                 _P2Lost = true;
                 Debug.Log("Player 2 Lost");
                 player = _volleyBombManager._playersList[_playerId];
+                scoreManager.AddPlayerToList(player);
                 if (_volleyBombManager._playersList.Count > 2)
                 {
                     _volleyBombManager._playersList.Remove(player);
@@ -97,7 +100,7 @@ public class VolleyBomb : MonoBehaviour
                     _volleyBombManager._playersList[0].GetPlayerVolleyBomb().IncresePoints();
                     if (_volleyBombManager._playersList[0].GetComponent<PlayerVolleyBomb>()._points == 3)
                     {
-                        //stop
+                        GameManager.Instance.GetPartyManager().ChangeMiniGame();
                     }
                     else
                     {
@@ -114,6 +117,7 @@ public class VolleyBomb : MonoBehaviour
                 _P3Lost = true;
                 Debug.Log("Player 3 Lost");
                 player = _volleyBombManager._playersList[_playerId];
+                scoreManager.AddPlayerToList(player);
                 if (_volleyBombManager._playersList.Count > 2)
                 {
                     _volleyBombManager._playersList.Remove(player);
@@ -125,7 +129,7 @@ public class VolleyBomb : MonoBehaviour
                     _volleyBombManager._playersList[0].GetPlayerVolleyBomb().IncresePoints();
                     if (_volleyBombManager._playersList[0].GetComponent<PlayerVolleyBomb>()._points == 3)
                     {
-                        break;
+                        GameManager.Instance.GetPartyManager().ChangeMiniGame();
                     }
                     else
                     {
@@ -142,6 +146,7 @@ public class VolleyBomb : MonoBehaviour
                 _P4Lost = true;
                 Debug.Log("Player 4 Lost");
                 player = _volleyBombManager._playersList[_playerId];
+                scoreManager.AddPlayerToList(player);
                 if (_volleyBombManager._playersList.Count > 2)
                 {
                     _volleyBombManager._playersList.Remove(player);
@@ -153,7 +158,7 @@ public class VolleyBomb : MonoBehaviour
                     _volleyBombManager._playersList[0].GetPlayerVolleyBomb().IncresePoints();
                     if (_volleyBombManager._playersList[0].GetComponent<PlayerVolleyBomb>()._points == 3)
                     {
-                        //stop
+                        GameManager.Instance.GetPartyManager().ChangeMiniGame();
                     }
                     else
                     {
