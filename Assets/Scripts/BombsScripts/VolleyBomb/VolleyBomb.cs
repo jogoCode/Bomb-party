@@ -53,17 +53,17 @@ public class VolleyBomb : MonoBehaviour
         ScoreManager scoreManager = GameManager.Instance.GetScoreManager();
         PlayerController player;
         _RB.isKinematic = true;
-        switch (_playerId)
+        switch (_playerId) 
         {
             case 0:
                 _P1Lost = true;
-                //Debug.Log("Player 1 Lost");
+                Debug.Log("Player 1 Lost");
                 player = _volleyBombManager._playersList[_playerId];
+                scoreManager.AddPlayerToList(player, scoreManager.Bonus);
                 if (_volleyBombManager._playersList.Count > 2)
                 {
                     _volleyBombManager._playersList.Remove(player);
                     player.gameObject.SetActive(false);
-                    scoreManager.AddPlayerToList(player, scoreManager.Bonus);
                 }
                 else
                 {
@@ -71,12 +71,6 @@ public class VolleyBomb : MonoBehaviour
                     _volleyBombManager._playersList[0].GetPlayerVolleyBomb().IncresePoints();
                     if (_volleyBombManager._playersList[0].GetComponent<PlayerVolleyBomb>()._points == 3)
                     {
-                        player.gameObject.SetActive(false);
-                        scoreManager.AddPlayerToList(player, scoreManager.Bonus);
-                        scoreManager.OneWin();
-                        Instantiate(_bombVFX, transform.position, transform.rotation);
-                        _volleyBombManager._bombDidntSpawn = true;
-                        Destroy(gameObject);
                         GameManager.Instance.GetPartyManager().ChangeMiniGame();
                     }
                     else
@@ -89,16 +83,16 @@ public class VolleyBomb : MonoBehaviour
                 _goundCollision = false;
                 _boom = false;
                 break;
-
+            
             case 1:
                 _P2Lost = true;
-                //Debug.Log("Player 2 Lost");
+                Debug.Log("Player 2 Lost");
                 player = _volleyBombManager._playersList[_playerId];
+                scoreManager.AddPlayerToList(player, scoreManager.Bonus);
                 if (_volleyBombManager._playersList.Count > 2)
                 {
                     _volleyBombManager._playersList.Remove(player);
                     player.gameObject.SetActive(false);
-                    scoreManager.AddPlayerToList(player, scoreManager.Bonus);
                 }
                 else
                 {
@@ -106,12 +100,6 @@ public class VolleyBomb : MonoBehaviour
                     _volleyBombManager._playersList[0].GetPlayerVolleyBomb().IncresePoints();
                     if (_volleyBombManager._playersList[0].GetComponent<PlayerVolleyBomb>()._points == 3)
                     {
-                        player.gameObject.SetActive(false);
-                        scoreManager.AddPlayerToList(player, scoreManager.Bonus);
-                        scoreManager.OneWin();
-                        Instantiate(_bombVFX, transform.position, transform.rotation);
-                        _volleyBombManager._bombDidntSpawn = true;
-                        Destroy(gameObject);
                         GameManager.Instance.GetPartyManager().ChangeMiniGame();
                     }
                     else
@@ -124,16 +112,16 @@ public class VolleyBomb : MonoBehaviour
                 _goundCollision = false;
                 _boom = false;
                 break;
-
+            
             case 2:
                 _P3Lost = true;
-                //Debug.Log("Player 3 Lost");
+                Debug.Log("Player 3 Lost");
                 player = _volleyBombManager._playersList[_playerId];
+                scoreManager.AddPlayerToList(player, scoreManager.Bonus);
                 if (_volleyBombManager._playersList.Count > 2)
                 {
                     _volleyBombManager._playersList.Remove(player);
                     player.gameObject.SetActive(false);
-                    scoreManager.AddPlayerToList(player, scoreManager.Bonus);
                 }
                 else
                 {
@@ -141,12 +129,6 @@ public class VolleyBomb : MonoBehaviour
                     _volleyBombManager._playersList[0].GetPlayerVolleyBomb().IncresePoints();
                     if (_volleyBombManager._playersList[0].GetComponent<PlayerVolleyBomb>()._points == 3)
                     {
-                        player.gameObject.SetActive(false);
-                        scoreManager.AddPlayerToList(player, scoreManager.Bonus);
-                        scoreManager.OneWin();
-                        Instantiate(_bombVFX, transform.position, transform.rotation);
-                        _volleyBombManager._bombDidntSpawn = true;
-                        Destroy(gameObject);
                         GameManager.Instance.GetPartyManager().ChangeMiniGame();
                     }
                     else
@@ -159,16 +141,16 @@ public class VolleyBomb : MonoBehaviour
                 _goundCollision = false;
                 _boom = false;
                 break;
-
+            
             case 3:
                 _P4Lost = true;
-                //Debug.Log("Player 4 Lost");
+                Debug.Log("Player 4 Lost");
                 player = _volleyBombManager._playersList[_playerId];
+                scoreManager.AddPlayerToList(player, scoreManager.Bonus);
                 if (_volleyBombManager._playersList.Count > 2)
                 {
                     _volleyBombManager._playersList.Remove(player);
                     player.gameObject.SetActive(false);
-                    scoreManager.AddPlayerToList(player,scoreManager.Bonus);
                 }
                 else
                 {
@@ -176,12 +158,6 @@ public class VolleyBomb : MonoBehaviour
                     _volleyBombManager._playersList[0].GetPlayerVolleyBomb().IncresePoints();
                     if (_volleyBombManager._playersList[0].GetComponent<PlayerVolleyBomb>()._points == 3)
                     {
-                        player.gameObject.SetActive(false);
-                        scoreManager.AddPlayerToList(player, scoreManager.Bonus);
-                        scoreManager.OneWin();
-                        Instantiate(_bombVFX, transform.position, transform.rotation);
-                        _volleyBombManager._bombDidntSpawn = true;
-                        Destroy(gameObject);
                         GameManager.Instance.GetPartyManager().ChangeMiniGame();
                     }
                     else
@@ -196,7 +172,7 @@ public class VolleyBomb : MonoBehaviour
                 break;
         }
         _volleyBombManager.Init();
-        Instantiate(_bombVFX, transform.position, transform.rotation);
+        Instantiate(_bombVFX,transform.position,transform.rotation);
         _volleyBombManager._bombDidntSpawn = true;
         Destroy(gameObject);
         _volleyBombManager.Init();
