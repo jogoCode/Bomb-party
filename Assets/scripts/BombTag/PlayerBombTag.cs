@@ -42,7 +42,9 @@ public class PlayerBombTag : MonoBehaviour
         {
 
             _bomb.SetActive(true);
-        }else
+            _player.GetPlayerMovement().SetPlayerSpeed(_playerParameters.PlayerBaseSpeed + 3f);
+        }
+        else
         {
             _bomb.SetActive(false);
         }
@@ -54,7 +56,6 @@ public class PlayerBombTag : MonoBehaviour
         //Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         Player.GetPlayerMovement().SetPlayerSpeed(_stunSpeed); // TO DO : Anim de Stun
         Player.ApplyImpulse(new Vector3(_player.GetLastInputDir().x,0, _player.GetLastInputDir().y),15);
-        Player.GetPlayerMovement().SetPlayerSpeed(_playerParameters.PlayerBaseSpeed + 3f);
         yield return new WaitForSeconds(_stunTime);
 
     }
