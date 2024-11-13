@@ -69,8 +69,8 @@ public class ParryBombManager : MonoBehaviour
         fbm.FreezeFrame(2f, 0.6f);
         Debug.Log(message);
         m_parryBomb.gameObject.SetActive(false);
-        GameManager.Instance.GameFinished();
-        //GameManager.Instance.GetPartyManager().ChangeMiniGame();
+        //GameManager.Instance.GameFinished();
+        GameManager.Instance.GetPartyManager().ChangeMiniGame();
     }
 
     IEnumerator StartTimer()
