@@ -28,6 +28,7 @@ public class PartyPlayerParameters : MonoBehaviour
     {
         m_playerManager.SetPlayersSpeed(m_playerSpeed);
         m_playerManager.SetPlayersJumpForce(m_jumpForce);
+        m_playerManager.SetPlayersDashSpeed(m_dashSpeed);
         m_playerManager.SetPlayersDashCoolDown(m_dashCooldown);
         if (m_disableBombTagModel)
         {

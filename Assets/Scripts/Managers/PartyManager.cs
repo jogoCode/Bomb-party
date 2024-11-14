@@ -44,7 +44,6 @@ public class PartyManager : MonoBehaviour
     {
         int rng = Random.Range(1,MAX_MINI_GAME);
         ScoreManager sm = GameManager.Instance.GetScoreManager();
-        //TODO FIX LA BOUCLE INFINI
         sm.ChangeGame();
         if (AllMapsWasUsed())
         {
@@ -54,17 +53,23 @@ public class PartyManager : MonoBehaviour
             //ChangeMiniGame();
             return;
         }
-        while(rng == m_lastMiniGame || m_mapList[rng] == -1)
-        {
+       
+        //while(rng == m_lastMiniGame || m_mapList[rng] == -1)
+        //{
+        //    if(m_mapList[rng] == -1)
+        //    {
+        //        count++;
+        //    }
+        //    rng = Random.Range(1, MAX_MINI_GAME);
+        //}
+        rng = Random.Range(0, m_mapList.Count-1);
+   
 
-            rng = Random.Range(1, MAX_MINI_GAME);
-        }
-    
         m_lastMiniGame = rng;
         if (m_mapList[rng] != -1)
         {
-            GameManager.Instance.LoadScene(rng);
-            m_mapList[rng] = -1;
+            GameManager.Instance.LoadScene(m_mapList[rng]);
+            m_mapList.RemoveAt(rng);
         }
 
     }
