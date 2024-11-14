@@ -17,10 +17,12 @@ public class BombShowerManager : MonoBehaviour
     bool _finish;
     [SerializeField] GameObject _rules;
     public bool _gameReady = false;
-    [SerializeField] float _cd;
+    [SerializeField] float _timeForRule;
+    public WhoWin _whoWin;
 
     private void Start()
     {
+        _whoWin = FindObjectOfType<WhoWin>();
         _spawn = FindObjectOfType<BombShower>();
         _spawn.enabled = false;
         StartCoroutine(TimerForRule());
@@ -48,6 +50,11 @@ public class BombShowerManager : MonoBehaviour
         if (_gameReady)
         {
           UpdateTimer();
+        }
+        if (_whoWin._isFinish)
+        {
+            GameManager.Instance.GetPartyManager().ChangeMiniGame();
+            _whoWin._isFinish = false;
         }
     }
 
@@ -78,16 +85,18 @@ public class BombShowerManager : MonoBehaviour
         if (m_gameManager.GetPlayerManager().GetActivePlayers().Count <= 1)
         {
             _time = 0;
-            m_gameManager.GetPartyManager().ChangeMiniGame();
+            _spawn.enabled = false;
+            _whoWin.WinnerUI();
         }
         if (_finish)
         {
-            _finish = false;
+            _spawn.enabled = false;
+            _whoWin.WinnerUI();
         }
     }
     IEnumerator TimerForRule()
     {
-        yield return new WaitForSeconds(_cd);
+        yield return new WaitForSeconds(_timeForRule);
         _spawn.enabled = true;
         _rules.SetActive(false);
         _gameReady = true;

@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log(PLAYER_LAYER);
+        //Debug.Log(PLAYER_LAYER);
         InitMaterials();
         if(Instance != null)
         {

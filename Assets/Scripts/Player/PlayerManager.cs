@@ -48,9 +48,9 @@ public class PlayerManager : MonoBehaviour
         AddPlayerInPlayerList(newPlayer);
       
         m_spawnDelay = StartCoroutine(DelaySpawnPlayer(newPlayer));
-        Debug.Log(m_playerSpawnerPoints[m_playersCount].name);
+        //Debug.Log(m_playerSpawnerPoints[m_playersCount].name);
         m_playersCount++;
-        Debug.Log("Nouveau joueur ajouté : " + playerInput.gameObject.name);
+        //Debug.Log("Nouveau joueur ajouté : " + playerInput.gameObject.name);
         if (m_playersCount == MAX_PLAYER_COUNT) // if player count equal max playercount change the player manager state
         {
             SetPlayerManagerState(PlayerManagerState.DISABLE);
