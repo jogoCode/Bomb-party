@@ -13,6 +13,7 @@ public class PlayerBombTag : MonoBehaviour
     public bool _stuned;
     public PlayerMovement _playerMovement;
     PartyPlayerParameters _playerParameters;
+    public int _hasBombSpeed;
     [SerializeField] public bool HasPoint { get; set; }
 
 
@@ -44,7 +45,7 @@ public class PlayerBombTag : MonoBehaviour
 
             _bomb.SetActive(true);
             if(!_stuned)
-            _player.GetPlayerMovement().SetPlayerSpeed(_playerParameters.PlayerBaseSpeed + 3f);
+            _player.GetPlayerMovement().SetPlayerSpeed(_playerParameters.PlayerBaseSpeed + _hasBombSpeed);
         }
         else
         {
