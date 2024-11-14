@@ -9,6 +9,7 @@ public class ParryBombManager : MonoBehaviour
 
     PlayerController m_winner;
 
+    [SerializeField]GameObject m_rules;
     GameManager m_gameManager;
     List<PlayerController> m_players;
 
@@ -26,6 +27,8 @@ public class ParryBombManager : MonoBehaviour
         m_parryBomb = FindObjectOfType<ParryBomb>();
         m_parryBomb.OnPlayerTouched += HasAWinner;
         m_parryBomb.OnExplode +=TimeOver;
+        m_parryBomb.gameObject.SetActive(false);
+        StartCoroutine(StartTimer());
 
     }
 
@@ -66,7 +69,16 @@ public class ParryBombManager : MonoBehaviour
         fbm.FreezeFrame(2f, 0.6f);
         Debug.Log(message);
         m_parryBomb.gameObject.SetActive(false);
+        //GameManager.Instance.GameFinished();
         GameManager.Instance.GetPartyManager().ChangeMiniGame();
+    }
+
+    IEnumerator StartTimer()
+    {
+        yield return new WaitForSeconds(5);
+        m_rules.SetActive(false);
+        m_parryBomb.gameObject.SetActive(true);
+        m_parryBomb.StartParryBomb();
     }
 
 

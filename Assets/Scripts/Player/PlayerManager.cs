@@ -96,7 +96,8 @@ public class PlayerManager : MonoBehaviour
     public void SetPlayerManagerState(PlayerManagerState newState)
     {
         m_playerManagerState=newState;
-        OnPlayerManagerStateChanged?.Invoke();
+        PlayerManagerStateChanged();
+        //OnPlayerManagerStateChanged?.Invoke();
     }
 
     void PlayerManagerStateChanged()
@@ -168,6 +169,20 @@ public class PlayerManager : MonoBehaviour
         foreach (PlayerController player in m_players)
         {
             player.GetPlayerVisual().DesactiveBatModel();
+        }
+    }
+    public void DesactiveBombTagModel()
+    {
+        foreach (PlayerController player in m_players)
+        {
+            player.GetPlayerBombTag()._bomb.GetComponent<Renderer>().enabled = false;
+        }
+    }
+    public void ActiveBombTagModel()
+    {
+        foreach (PlayerController player in m_players)
+        {
+            player.GetPlayerBombTag()._bomb.GetComponent<Renderer>().enabled = true;
         }
     }
 
