@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Zone : MonoBehaviour
 {
-    public float shrinkRate = 1.0f; // La vitesse de réduction en unités par seconde
-    public float minSize = 1.0f; // La taille minimum de la zone
+    public BombTagManager _bombTagManager;
+    public float _shrinkRate = 1.0f; // La vitesse de réduction en unités par seconde
+    public float _minSize = 1.0f; // La taille minimum de la zone
 
     private Vector3 initialScale; // Sauvegarder l'échelle initiale
 
@@ -16,18 +17,21 @@ public class Zone : MonoBehaviour
     }
     void Update()
     {
-        // Rétrécir la zone progressivement si elle n'a pas atteint la taille minimum
-        if (transform.localScale.x > minSize && transform.localScale.y > minSize && transform.localScale.z > minSize)
+        if (_bombTagManager._gameReady) 
         {
-            float shrinkAmount = shrinkRate * Time.deltaTime;
-            transform.localScale -= new Vector3(shrinkAmount, shrinkAmount, shrinkAmount);
+            // Rétrécir la zone progressivement si elle n'a pas atteint la taille minimum
+            if (transform.localScale.x > _minSize && transform.localScale.y > _minSize && transform.localScale.z > _minSize)
+            {
+                float shrinkAmount = _shrinkRate * Time.deltaTime;
+                transform.localScale -= new Vector3(shrinkAmount, shrinkAmount, shrinkAmount);
 
-            // Empêche la zone de rétrécir au-delà de la taille minimale
-            transform.localScale = new Vector3(
-                Mathf.Max(transform.localScale.x, minSize),
-                Mathf.Max(transform.localScale.y) ,
-                Mathf.Max(transform.localScale.z, minSize)
-            );
+                // Empêche la zone de rétrécir au-delà de la taille minimale
+                transform.localScale = new Vector3(
+                    Mathf.Max(transform.localScale.x, _minSize),
+                    Mathf.Max(transform.localScale.y) ,
+                    Mathf.Max(transform.localScale.z, _minSize)
+                );
+            }
         }
     }
     public void ResetZone()

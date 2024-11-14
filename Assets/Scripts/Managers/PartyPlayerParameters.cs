@@ -14,6 +14,7 @@ public class PartyPlayerParameters : MonoBehaviour
     [SerializeField] bool m_disableBombTagModel = true; 
 
     [SerializeField] bool m_parryBombActions;
+    [SerializeField] bool m_playerBombTag = false;
 
     public float PlayerBaseSpeed { get { return m_playerSpeed; } }
 
@@ -30,6 +31,7 @@ public class PartyPlayerParameters : MonoBehaviour
         m_playerManager.SetPlayersJumpForce(m_jumpForce);
         m_playerManager.SetPlayersDashSpeed(m_dashSpeed);
         m_playerManager.SetPlayersDashCoolDown(m_dashCooldown);
+
         if (m_disableBombTagModel)
         {
             DisableBombTagModel();
@@ -50,7 +52,6 @@ public class PartyPlayerParameters : MonoBehaviour
         }
         else
         {
-
             m_playerManager.DesactiveBatModelPlayers();
         }
     }
@@ -62,6 +63,11 @@ public class PartyPlayerParameters : MonoBehaviour
     void EnableBombTagModel()
     {
         m_playerManager.ActiveBombTagModel();
+    }
+
+    private void EnablePlayerBombTag()
+    {
+       m_playerManager.EnablePlayersBombTag();
     }
 
 

@@ -101,10 +101,14 @@ public class PlayerController : MonoBehaviour
 
     public void OnInputReady(InputAction.CallbackContext context)
     {
-        if (context.action.triggered)
+        LobbyManager lobby = FindObjectOfType<LobbyManager>();
+        if (lobby != null)
         {
-            m_isReady = !m_isReady;
-            OnReady?.Invoke(m_isReady);
+            if (context.action.triggered)
+            {
+                m_isReady = !m_isReady;
+                OnReady?.Invoke(m_isReady);
+            }
         }
     }
 
@@ -184,8 +188,16 @@ public class PlayerController : MonoBehaviour
             m_playerVisual.DesactiveBatModel();
         }
     }
+    public void EnabledPlayerBombTag(bool state)
+    {
+        m_playerParryBomb.enabled = state;
+        if (state == false)
+        {
+            m_playerBombTag.enabled = state;
+        }
+    }
 
- 
+
     public void ApplyImpulse(Vector3 direction, float impulseFoce)
     {
         m_playerMovement.ApplyImpulse(direction, impulseFoce);

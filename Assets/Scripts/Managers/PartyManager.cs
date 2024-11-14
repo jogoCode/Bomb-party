@@ -83,9 +83,9 @@ public class PartyManager : MonoBehaviour
                 count++;
             }     
         }
-        Debug.Log("COUNT "+count);
         if (count == m_mapList.Count)
         {
+            Debug.Log("COUNT " + count);
             return true;
         }else{
             return false;

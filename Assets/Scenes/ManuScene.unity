@@ -17070,7 +17070,9 @@ MonoBehaviour:
   m_jumpForce: 0
   m_dashSpeed: 4
   m_dashCooldown: 0.3
+  m_disableBombTagModel: 1
   m_parryBombActions: 1
+  m_playerBombTag: 0
 --- !u!1001 &597533236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26424,7 +26426,7 @@ Transform:
   m_GameObject: {fileID: 926682925}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.77, y: 2.66, z: -12.219999}
+  m_LocalPosition: {x: 15.77, y: 8.860001, z: -12.219999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34714,7 +34716,7 @@ Transform:
   m_GameObject: {fileID: 1273205488}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.53, y: 3.9, z: 19.57}
+  m_LocalPosition: {x: -13.53, y: 10.1, z: 19.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -54861,7 +54863,7 @@ Transform:
   m_GameObject: {fileID: 2032304450}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.450035, y: 3.9, z: 21.04}
+  m_LocalPosition: {x: 13.450035, y: 10.1, z: 21.04}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -57422,7 +57424,7 @@ Transform:
   m_GameObject: {fileID: 2114417487}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.349964, y: 2.66, z: -12.219999}
+  m_LocalPosition: {x: -14.349964, y: 8.860001, z: -12.219999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
