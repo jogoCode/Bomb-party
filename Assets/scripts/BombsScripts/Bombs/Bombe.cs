@@ -15,13 +15,14 @@ public class Bombe : MonoBehaviour
     {
         _bombeInstance = Instantiate(_bombe);
         _rb = GetComponent<Rigidbody>();
+        
 
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+     
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
@@ -35,7 +36,6 @@ public class Bombe : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-
         if (collision != null && collision.gameObject.GetComponent<PlayerController>())
         {
             if (_bombe._timerExplosion <= 0)

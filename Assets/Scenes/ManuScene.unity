@@ -98,8 +98,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 099680d4a3452664cab874626f76f085,
     type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 2ba5a95b0c278c24fb01330cdf59c8b0,
-    type: 2}
+  m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -23250,7 +23249,7 @@ Transform:
   m_GameObject: {fileID: 809710708}
   serializedVersion: 2
   m_LocalRotation: {x: 0.12059037, y: 0.37941012, z: 0.04994988, w: -0.9159754}
-  m_LocalPosition: {x: 53.918, y: 25.5, z: -53.918}
+  m_LocalPosition: {x: 53.918, y: 31.5, z: -53.918}
   m_LocalScale: {x: 62.026417, y: 0.92425, z: 110.91}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41483,8 +41482,13 @@ PrefabInstance:
     - target: {fileID: 1937916074608246571, guid: 56f38920ea6c6a7438ff33b910466f55,
         type: 3}
       propertyPath: m_Constraints
-      value: 116
+      value: 112
       objectReference: {fileID: 0}
+    - target: {fileID: 4274006936517997615, guid: 56f38920ea6c6a7438ff33b910466f55,
+        type: 3}
+      propertyPath: m_rb
+      value: 
+      objectReference: {fileID: 1561536756}
     - target: {fileID: 4274006936517997615, guid: 56f38920ea6c6a7438ff33b910466f55,
         type: 3}
       propertyPath: _bombTimer
@@ -41514,12 +41518,12 @@ PrefabInstance:
     - target: {fileID: 8150083182514946342, guid: 56f38920ea6c6a7438ff33b910466f55,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.8
+      value: 0.16
       objectReference: {fileID: 0}
     - target: {fileID: 8150083182514946342, guid: 56f38920ea6c6a7438ff33b910466f55,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.79
+      value: 4.02
       objectReference: {fileID: 0}
     - target: {fileID: 8150083182514946342, guid: 56f38920ea6c6a7438ff33b910466f55,
         type: 3}
@@ -41610,6 +41614,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 56f38920ea6c6a7438ff33b910466f55, type: 3}
+--- !u!54 &1561536756 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 1937916074608246571, guid: 56f38920ea6c6a7438ff33b910466f55,
+    type: 3}
+  m_PrefabInstance: {fileID: 1561536755}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1561824077
 GameObject:
   m_ObjectHideFlags: 0

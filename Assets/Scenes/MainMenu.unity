@@ -397,13 +397,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_musicSource: {fileID: 296993884}
   m_sfxSource: {fileID: 296993883}
-  m_musicClips: []
-  m_minPitch: 0
+  m_musicClips:
+  - {fileID: 8300000, guid: b6ac449bea2029d41b69c3799c778ac7, type: 3}
+  - {fileID: 8300000, guid: 1feb1d14f1dba814786cc7d419b234ac, type: 3}
+  - {fileID: 8300000, guid: 500588a1cb319ae41862f4a1939af3a9, type: 3}
+  - {fileID: 8300000, guid: d6738a8fd7700114b951504cae3c2a7a, type: 3}
+  - {fileID: 8300000, guid: aebcbe8a6e00e0044b4ab3942083ab6e, type: 3}
+  - {fileID: 8300000, guid: aa8a4db601aa9df4a841378b572859d8, type: 3}
+  m_minPitch: 1
   m_maxPitch: 1.1
   m_sfxClips:
   - {fileID: 8300000, guid: b51e310bab2580c45b8263dd6d8761f5, type: 3}
-  m_musicVolume: 0.5
-  m_sfxVolume: 0.5
+  - {fileID: 8300000, guid: 3aa25ce8ac2dd3148ba69d521dfc8546, type: 3}
+  - {fileID: 8300000, guid: c3984b6948c2b054fbc921a4b5f548ef, type: 3}
+  - {fileID: 8300000, guid: 886e80a6b3150da47aab0d15df59f0e5, type: 3}
+  - {fileID: 8300000, guid: e70f0d6a23d85304db8dc02b73e98eb9, type: 3}
+  - {fileID: 8300000, guid: c3984b6948c2b054fbc921a4b5f548ef, type: 3}
+  - {fileID: 8300000, guid: 68eac5c5f1eadf641b0b087eddc9610c, type: 3}
+  - {fileID: 8300000, guid: 61cc9eb68b6453948910f87f87e1d606, type: 3}
+  - {fileID: 8300000, guid: 6d52483e8d0731f45bb6fa31fe711d6e, type: 3}
+  - {fileID: 8300000, guid: 61a5424722d7ad040bbfc1c4af995e0a, type: 3}
+  - {fileID: 8300000, guid: 7ee7d9cdbe449cd4b81433ce872b38c9, type: 3}
+  - {fileID: 8300000, guid: 3b368dffca8606a4cb941c50c4efa6f7, type: 3}
+  - {fileID: 8300000, guid: fcb78e65e5b586847bf77dfbd2c14680, type: 3}
+  - {fileID: 8300000, guid: c3984b6948c2b054fbc921a4b5f548ef, type: 3}
+  - {fileID: 8300000, guid: de86ee3947271374eb0ceb2cc2042b99, type: 3}
+  m_musicVolume: 0.197
+  m_sfxVolume: 0.52
 --- !u!4 &296993882
 Transform:
   m_ObjectHideFlags: 0

@@ -63,6 +63,7 @@ public class VolleyBomb : MonoBehaviour
         ScoreManager scoreManager = GameManager.Instance.GetScoreManager();
         PlayerController player;
         _RB.isKinematic = true;
+        SoundManager.Instance.PlaySFX("Explosion");
         switch (_playerId) 
         {
             case 0:

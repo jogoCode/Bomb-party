@@ -108,6 +108,7 @@ public class PlayerController : MonoBehaviour
             if (context.action.triggered)
             {
                 m_isReady = !m_isReady;
+                SoundManager.Instance.PlaySFX("PlayerIsReady");
                 OnReady?.Invoke(m_isReady);
             }
         }

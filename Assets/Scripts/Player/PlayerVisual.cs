@@ -39,6 +39,11 @@ public class PlayerVisual : MonoBehaviour
         get { return m_model; }
     }
 
+    public bool BatModel
+    {
+        get { return m_playerBat.activeInHierarchy;}
+    }
+
     #region BUILT-IN
     void Awake()
     {

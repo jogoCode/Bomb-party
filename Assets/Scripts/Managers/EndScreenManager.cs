@@ -19,6 +19,7 @@ public class EndScreenManager : MonoBehaviour
         InitClassement();
         PlacePlayer();
         StartCoroutine(TimerToRestart());
+        SoundManager.Instance.PlayMusic(SoundManager.Instance.m_musicClips[5]);
     }
 
     void InitClassement()

@@ -31,6 +31,7 @@ public class ParryBombManager : MonoBehaviour
         m_parryBomb.gameObject.SetActive(false);
         m_whoWin = FindObjectOfType<WhoWin>();
         StartCoroutine(StartTimer());
+        SoundManager.Instance.PlayMusic(SoundManager.Instance.m_musicClips[2]);
 
     }
 
@@ -76,7 +77,7 @@ public class ParryBombManager : MonoBehaviour
     {
         FeedBackManager fbm = FeedBackManager.Instance;
         ScoreManager sm = GameManager.Instance.GetScoreManager();
-
+        SoundManager.Instance.PlayMusic(SoundManager.Instance.m_musicClips[2]);
         fbm.FreezeFrame(2f, 0.6f);
         Debug.Log(message);
         m_parryBomb.gameObject.SetActive(false);
