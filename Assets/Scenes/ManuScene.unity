@@ -17054,6 +17054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rules: {fileID: 1642190419}
+  m_whoWin: {fileID: 0}
 --- !u!114 &581294464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17068,7 +17069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerSpeed: 16
   m_jumpForce: 0
-  m_dashSpeed: 4
+  m_dashSpeed: 35
   m_dashCooldown: 0.3
   m_disableBombTagModel: 1
   m_parryBombActions: 1
