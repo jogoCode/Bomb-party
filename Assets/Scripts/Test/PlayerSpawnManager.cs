@@ -15,7 +15,7 @@ public class PlayerSpawnManager : MonoBehaviour
     {
         m_gm = GameManager.Instance;
         m_pm = m_gm.GetPlayerManager();
-        Debug.Log(m_gm.gameObject.name);
+        //Debug.Log(m_gm.gameObject.name);
         InitPlayersPosition();
     }
    
