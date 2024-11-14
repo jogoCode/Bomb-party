@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] PlayerBombTag m_playerBombTag;
     [SerializeField] PlayerVolleyBomb m_playerVolleyBomb;
     PlayerStateManager m_playerStateManager;
+    public PlayerInput m_playerInput;
+    public InputDevice m_device;
 
     public int _score;
     public string m_nom;
@@ -25,8 +27,7 @@ public class PlayerController : MonoBehaviour
     Vector2 m_inputDir = Vector2.zero;
     Vector2 m_lastInputDir = Vector2.zero;
     bool m_jumped = false;
-
-
+   
     public event Action OnJustGrounded;
     public event Action OnParried;
     public event Action<float,float> OnMoved;

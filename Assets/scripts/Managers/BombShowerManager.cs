@@ -82,7 +82,7 @@ public class BombShowerManager : MonoBehaviour
     }
     public void HasAWinner()
     {
-        if (m_gameManager.GetPlayerManager().GetActivePlayers().Count <= 1)
+        if (m_gameManager.GetPlayerManager().GetActivePlayers().Count <2)
         {
             _time = 0;
             _spawn.enabled = false;
