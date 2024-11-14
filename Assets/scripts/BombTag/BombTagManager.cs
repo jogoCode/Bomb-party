@@ -62,13 +62,15 @@ public class BombTagManager : MonoBehaviour
                     _fBM.InstantiateParticle(_fBM.m_explosionVfx, _hasBomb.gameObject.transform.position, _hasBomb.gameObject.transform.rotation);
                     _hasBomb.gameObject.SetActive(false);
                     _hasBomb.GetPlayerBombTag().HasPoint = true;
+                    _bombTimer = _baseTimer;
                 }
                 if (list.Count >= 2)
                 {
                     // TODO : si la fine gagne des point return;
-                    _bombTimer = _baseTimer;
                     AssignRandomBomb();
+                    
                 }
+                _boom = false;
             }
         }
     }
@@ -87,7 +89,7 @@ public class BombTagManager : MonoBehaviour
         int randomIndex = UnityEngine.Random.Range(0, _players.Count);
         _players[randomIndex].GetPlayerBombTag()._hasBomb = true;
         _hasBomb = _players[randomIndex];
-        _hasBomb.GetPlayerMovement().SetPlayerSpeed(_baseSpeed+ 500f);
+        _hasBomb.GetPlayerMovement().SetPlayerSpeed(_baseSpeed+ _hasBomb.GetPlayerBombTag()._hasBombSpeed);
 
     }
     void BombTimer()
@@ -96,7 +98,7 @@ public class BombTagManager : MonoBehaviour
         {
             _bombTimer = Mathf.Clamp(_bombTimer, 0, _baseTimer) - Time.deltaTime; // diminue le timer de la bombe au fine du temps 
         }
-        else
+        else if (_bombTimer <= 0)
         {
             _boom = true;
         }
