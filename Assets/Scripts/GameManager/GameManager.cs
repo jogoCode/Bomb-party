@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
+     
         m_playerManager.SetPlayerManagerState(PlayerManager.PlayerManagerState.DISABLE);
         OnGameStarted?.Invoke();
         //LoadScene(1);

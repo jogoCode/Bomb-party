@@ -23,8 +23,11 @@ public class MainMenu : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            m_titlePanel.SetActive(false);
-            StartCoroutine(SelectScreenCoroutine());
+            if (m_titlePanel.activeInHierarchy)
+            {
+                StartCoroutine(SelectScreenCoroutine());
+            }
+            m_titlePanel.SetActive(false);   
         }
     }
 

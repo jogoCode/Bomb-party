@@ -102,6 +102,7 @@ public class PlayerManager : MonoBehaviour
 
     void PlayerManagerStateChanged()
     {
+        if (m_playerInputManager == null) return;    
         switch (m_playerManagerState)
         {
             case PlayerManagerState.DISABLE:
@@ -194,6 +195,22 @@ public class PlayerManager : MonoBehaviour
             player.EnabledPlayerParryBomb(true);
         }
     }
+
+    public void EnablePlayersBombTag()
+    {
+        foreach (PlayerController player in m_players)
+        {
+            player.EnabledPlayerBombTag(true);
+        }
+    }
+    public void DisablePlayersBombTag()
+    {
+        foreach (PlayerController player in m_players)
+        {
+            player.EnabledPlayerBombTag(true);
+        }
+    }
+
 
     public void DisabledPlayersParryBomb()
     {
