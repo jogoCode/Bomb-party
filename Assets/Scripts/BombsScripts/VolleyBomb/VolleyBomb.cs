@@ -19,32 +19,42 @@ public class VolleyBomb : MonoBehaviour
     [SerializeField] private GameObject _bombCenterChecker;
     Rigidbody _RB;
     VolleyBombManager _volleyBombManager;
+    [SerializeField] private GameObject _volleybombmanagerobject;
     [SerializeField] private GameObject _bombVFX;
     [SerializeField] private GameObject _bombeTimer;
     [SerializeField] private TMP_Text _bombeTimerDisplay;
     [SerializeField] private Camera _camera;
     [SerializeField] private PlayerManager _playerManager;
+    public WhoWin _whoWin;
 
     private void Start()
     {
+        _volleybombmanagerobject = FindObjectOfType<VolleyBombManager>().gameObject;
+        _volleybombmanagerobject.gameObject.SetActive(true);
+        
         _RB = GetComponent<Rigidbody>();
         _volleyBombManager = FindObjectOfType<VolleyBombManager>();
-        _camera = FindObjectOfType<Camera>();   
+        _camera = FindObjectOfType<Camera>();  
         _playerManager = GameManager.Instance.GetPlayerManager();
+        
+        _whoWin = FindObjectOfType<WhoWin>();
     }
 
     void Update()
     {
-        var vec = _RB.velocity;
-        var force = Mathf.Clamp(vec.magnitude,0,20);
-        var newvec = vec.normalized * force;
-        _RB.velocity = newvec;
-        BombTimer();
-        _bombCenterChecker.transform.position = transform.position;
-        if(_goundCollision == true || _boom == true)
+        if(_volleybombmanagerobject != null)
         {
-            Lost();
-            gameObject.SetActive(false);
+            var vec = _RB.velocity;
+            var force = Mathf.Clamp(vec.magnitude,0,20);
+            var newvec = vec.normalized * force;
+            _RB.velocity = newvec;
+            BombTimer();
+            _bombCenterChecker.transform.position = transform.position;
+            if(_goundCollision == true || _boom == true)
+            {
+                Lost();
+                gameObject.SetActive(false);
+            }
         }
     }
 
@@ -71,7 +81,9 @@ public class VolleyBomb : MonoBehaviour
                     _volleyBombManager._playersList[0].GetPlayerVolleyBomb().IncresePoints();
                     if (_volleyBombManager._playersList[0].GetComponent<PlayerVolleyBomb>()._points == 3)
                     {
-                        GameManager.Instance.GetPartyManager().ChangeMiniGame();
+                        player.gameObject.SetActive(false) ;
+                        _volleybombmanagerobject.gameObject.SetActive(false);
+                        _whoWin.WinnerUI();
                     }
                     else
                     {
@@ -100,7 +112,9 @@ public class VolleyBomb : MonoBehaviour
                     _volleyBombManager._playersList[0].GetPlayerVolleyBomb().IncresePoints();
                     if (_volleyBombManager._playersList[0].GetComponent<PlayerVolleyBomb>()._points == 3)
                     {
-                        GameManager.Instance.GetPartyManager().ChangeMiniGame();
+                        player.gameObject.SetActive(false);
+                        _volleybombmanagerobject.gameObject.SetActive(false);
+                        _whoWin.WinnerUI();
                     }
                     else
                     {
@@ -129,7 +143,9 @@ public class VolleyBomb : MonoBehaviour
                     _volleyBombManager._playersList[0].GetPlayerVolleyBomb().IncresePoints();
                     if (_volleyBombManager._playersList[0].GetComponent<PlayerVolleyBomb>()._points == 3)
                     {
-                        GameManager.Instance.GetPartyManager().ChangeMiniGame();
+                        player.gameObject.SetActive(false);
+                        _volleybombmanagerobject.gameObject.SetActive(false);
+                        _whoWin.WinnerUI();
                     }
                     else
                     {
@@ -158,7 +174,9 @@ public class VolleyBomb : MonoBehaviour
                     _volleyBombManager._playersList[0].GetPlayerVolleyBomb().IncresePoints();
                     if (_volleyBombManager._playersList[0].GetComponent<PlayerVolleyBomb>()._points == 3)
                     {
-                        GameManager.Instance.GetPartyManager().ChangeMiniGame();
+                        player.gameObject.SetActive(false);
+                        _volleybombmanagerobject.gameObject.SetActive(false);
+                        _whoWin.WinnerUI();
                     }
                     else
                     {
@@ -171,7 +189,6 @@ public class VolleyBomb : MonoBehaviour
                 _boom = false;
                 break;
         }
-        _volleyBombManager.Init();
         Instantiate(_bombVFX,transform.position,transform.rotation);
         _volleyBombManager._bombDidntSpawn = true;
         Destroy(gameObject);
