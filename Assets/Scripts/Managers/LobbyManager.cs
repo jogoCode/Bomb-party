@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LobbyManager : MonoBehaviour
 {
@@ -46,6 +47,7 @@ public class LobbyManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1);       
         }
+        //Destroy(m_playerManager.GetComponent<PlayerInputManager>());
         GameManager.Instance.GameStart();
     }
     

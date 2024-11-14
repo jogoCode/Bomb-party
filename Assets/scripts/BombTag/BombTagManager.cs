@@ -2,7 +2,6 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class BombTagManager : MonoBehaviour
 {
@@ -19,12 +18,17 @@ public class BombTagManager : MonoBehaviour
     FeedBackManager _fBM;
     [SerializeField] GameObject _rules;
     public bool _gameReady = false;
-    [SerializeField] float _cd;
+    [SerializeField] float _seeRuleCD;
+    
+    public WhoWin _whoWin;
+    private bool _gameEnded = false;
 
+    public event Action OnGameFinished;
     public List<PlayerController> Players { get { return _players; } }
 
     private void Awake()
     {
+        
         _playerParameters = FindObjectOfType<PartyPlayerParameters>();
         _fBM = FeedBackManager.Instance;
     }
@@ -34,6 +38,7 @@ public class BombTagManager : MonoBehaviour
         AssignRandomBomb();
         _baseSpeed = _playerParameters.PlayerBaseSpeed;
         _scoreManager = GameManager.Instance.GetScoreManager();
+        _whoWin = FindObjectOfType<WhoWin>();
         foreach (PlayerController playerController in _players)
         {
             playerController.GetPlayerBombTag().Init();
@@ -41,7 +46,7 @@ public class BombTagManager : MonoBehaviour
     }
     void Update()
     {
-        if (_gameReady)
+        if (_gameReady && !_gameEnded)
         {
             BombTimer();
             List<PlayerController> list = GameManager.Instance.GetPlayerManager().GetActivePlayers();
@@ -49,9 +54,8 @@ public class BombTagManager : MonoBehaviour
             {
                 if (_hasBomb.GetPlayerBombTag().HasPoint == false)
                 {
-                    FinDeGame();
-
                     _hasBomb.GetPlayerBombTag().HasPoint = true;
+                    FinDeGame();
                 }
             }
             if (_boom)
@@ -72,6 +76,11 @@ public class BombTagManager : MonoBehaviour
                 }
                 _boom = false;
             }
+        }
+        if (_whoWin._isFinish)
+        {
+            GameManager.Instance.GetPartyManager().ChangeMiniGame();
+            _whoWin._isFinish = false;
         }
     }
 
@@ -106,17 +115,18 @@ public class BombTagManager : MonoBehaviour
 
     void FinDeGame()
     {
+        if (_gameEnded) return;
         List<PlayerController> list = GameManager.Instance.GetPlayerManager().GetActivePlayers();
         
         foreach (PlayerController playerController in list)
         {
             _scoreManager.OneWin();
         }
-        GameManager.Instance.GetPartyManager().ChangeMiniGame();
+        _whoWin.WinnerUI();
     }
     IEnumerator TimerForRule()
     {
-        yield return new WaitForSeconds(_cd);
+        yield return new WaitForSeconds(_seeRuleCD);
         _rules.SetActive(false);
         _gameReady = true;
     }

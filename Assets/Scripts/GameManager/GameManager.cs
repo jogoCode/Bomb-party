@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log(PLAYER_LAYER);
+        //Debug.Log(PLAYER_LAYER);
         InitMaterials();
         if(Instance != null)
         {
@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
+     
         m_playerManager.SetPlayerManagerState(PlayerManager.PlayerManagerState.DISABLE);
         OnGameStarted?.Invoke();
         //LoadScene(1);
