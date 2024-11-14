@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using UnityEngine;
 
 public class PartyManager : MonoBehaviour
@@ -42,7 +43,8 @@ public class PartyManager : MonoBehaviour
     public void ChangeMiniGame()
     {
         int rng = Random.Range(1,MAX_MINI_GAME);
-        ScoreManager sm = GameManager.Instance.GetScoreManager();    
+        ScoreManager sm = GameManager.Instance.GetScoreManager();
+        //TODO FIX LA BOUCLE INFINI
         sm.ChangeGame();
         if (AllMapsWasUsed())
         {
@@ -54,6 +56,7 @@ public class PartyManager : MonoBehaviour
         }
         while(rng == m_lastMiniGame || m_mapList[rng] == -1)
         {
+
             rng = Random.Range(1, MAX_MINI_GAME);
         }
     
@@ -76,7 +79,7 @@ public class PartyManager : MonoBehaviour
             }     
         }
         Debug.Log("COUNT "+count);
-        if (count == m_mapList.Count-1)
+        if (count == m_mapList.Count)
         {
             return true;
         }else{
