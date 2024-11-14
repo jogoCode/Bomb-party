@@ -198,6 +198,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (m_dashCooldownRemaining <= 0)
         {
+            if (m_dashSpeed == 0) return;
             m_isDashing = true;
             m_dashTimeRemaining = m_dashDuration;
             m_dashCooldownRemaining = m_dashCooldown;

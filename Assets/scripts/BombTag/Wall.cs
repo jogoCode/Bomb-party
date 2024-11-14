@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
+    public BombTagManager _bombtagM;
+
+    private void Start()
+    {
+        _bombtagM = FindObjectOfType<BombTagManager>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("ff");
@@ -16,6 +22,10 @@ public class Wall : MonoBehaviour
             ScoreManager score = GameManager.Instance.GetScoreManager();
 
             score.AddPlayerToList(player, score.Bonus);
+            if (other.gameObject.GetComponent<PlayerBombTag>()._hasBomb) 
+            {
+                _bombtagM.AssignRandomBomb();
+            }
         }
     }
 
