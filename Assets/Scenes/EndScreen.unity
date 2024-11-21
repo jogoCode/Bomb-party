@@ -756,7 +756,9 @@ MonoBehaviour:
   m_jumpForce: 1
   m_dashSpeed: 2
   m_dashCooldown: 0.3
+  m_disableBombTagModel: 1
   m_parryBombActions: 1
+  m_playerBombTag: 0
 --- !u!4 &512490141
 Transform:
   m_ObjectHideFlags: 0
