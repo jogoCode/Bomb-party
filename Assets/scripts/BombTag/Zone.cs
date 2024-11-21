@@ -10,6 +10,8 @@ public class Zone : MonoBehaviour
 
     private Vector3 initialScale; // Sauvegarder l'échelle initiale
 
+    public float _startWall = 15f;
+
     void Start()
     {
         // Sauvegarde de l'échelle initiale de la zone
@@ -17,7 +19,7 @@ public class Zone : MonoBehaviour
     }
     void Update()
     {
-        if (_bombTagManager._gameReady) 
+        if (_bombTagManager._gameReady && _bombTagManager._bombTimer <= _startWall) 
         {
             // Rétrécir la zone progressivement si elle n'a pas atteint la taille minimum
             if (transform.localScale.x > _minSize && transform.localScale.y > _minSize && transform.localScale.z > _minSize)
