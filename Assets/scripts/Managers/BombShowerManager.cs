@@ -43,6 +43,7 @@ public class BombShowerManager : MonoBehaviour
     {
         _scoreManager.AddPlayerToList(player, _scoreManager.Bonus);
         SoundManager.Instance.PlaySFX("Explosion");
+        SoundManager.Instance.PlaySFX("Crowd");
         _fbM.InstantiateParticle(_fbM.m_explosionVfx, player.gameObject.transform.position, player.gameObject.transform.rotation);
         HasAWinner();
     }

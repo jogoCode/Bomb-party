@@ -47,7 +47,7 @@ public class BombeTh : Bombe
         if (collision != null) // && collision != gameObject.GetComponent<PlayerController>())
         {
             TriggerExplosionVFX();
-            SoundManager.Instance.PlaySFX("PushSurBomb");
+            SoundManager.Instance.PlaySFX("BatSurBomb");
             SoundManager.Instance.PlaySFX("BombThermique");
             // Démarrer l'expansion de la sphère
             _isStarted = true;
