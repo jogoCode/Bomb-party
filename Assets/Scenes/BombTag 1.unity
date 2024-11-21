@@ -20843,7 +20843,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -484, y: -15.764038}
+  m_AnchoredPosition: {x: -484, y: -15.76416}
   m_SizeDelta: {x: -936.544, y: 47.528}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &753309101
@@ -43718,7 +43718,8 @@ MonoBehaviour:
   _hasBomb: {fileID: 0}
   _rules: {fileID: 1811090378}
   _gameReady: 0
-  _cd: 5
+  _seeRuleCD: 0
+  _whoWin: {fileID: 0}
 --- !u!4 &1674482285
 Transform:
   m_ObjectHideFlags: 0

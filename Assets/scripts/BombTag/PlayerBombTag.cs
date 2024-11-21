@@ -6,7 +6,14 @@ public class PlayerBombTag : MonoBehaviour
 {
     [SerializeField]PlayerController _player;
     public bool _hasBomb;
+    
+    //tkt c'est la deums
     public GameObject _bomb;
+    public GameObject _light;
+    public GameObject _fx1;
+    public GameObject _fx2;
+    //
+
     public float _stunTime = 1;
     public bool _stuned;
     public PlayerMovement _playerMovement;
@@ -31,7 +38,9 @@ public class PlayerBombTag : MonoBehaviour
                 bombTagManager._hasBomb = hit.gameObject.GetComponent<PlayerController>();
                 _hasBomb = false;
                 attraped._hasBomb = true;
-
+                SoundManager.Instance.PlaySFX("siren");
+                SoundManager.Instance.PlaySFX("PushSurPlayer");
+                SoundManager.Instance.PlaySFX("WooshBatBomb");
                 StartCoroutine(attraped.Stuned());
             }
         }

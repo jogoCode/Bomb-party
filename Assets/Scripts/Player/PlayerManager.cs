@@ -180,6 +180,9 @@ public class PlayerManager : MonoBehaviour
         foreach (PlayerController player in m_players)
         {
             player.GetPlayerBombTag()._bomb.GetComponent<Renderer>().enabled = false;
+            player.GetPlayerBombTag()._light.GetComponent<Light>().enabled = false;
+            player.GetPlayerBombTag()._fx1.GetComponent<ParticleSystem>().Stop();
+            player.GetPlayerBombTag()._fx2.GetComponent<ParticleSystem>().Stop();
         }
     }
     public void ActiveBombTagModel()

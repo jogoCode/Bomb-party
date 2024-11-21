@@ -62,6 +62,7 @@ public class BombTagManager : MonoBehaviour
             if (_boom)
             {
                 SoundManager.Instance.PlaySFX("Explosion");
+                SoundManager.Instance.PlaySFX("Crowd");
                 if (_hasBomb.GetPlayerBombTag().HasPoint == false)
                 {
                     _scoreManager.AddPlayerToList(_hasBomb, _scoreManager.Bonus);
