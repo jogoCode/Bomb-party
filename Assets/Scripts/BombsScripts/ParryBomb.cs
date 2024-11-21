@@ -1,6 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Random = UnityEngine.Random;
 using UnityEngine;
 using TMPro;
 
@@ -11,7 +10,7 @@ public class ParryBomb : MonoBehaviour
     public const float MIN_VEL_MAGNITUDE = 15;
 
     ParryBombManager m_parryBombManager;
-    Rigidbody m_rb;
+    [SerializeField] Rigidbody m_rb;
     GameManager m_gm;
 
 
@@ -60,7 +59,10 @@ public class ParryBomb : MonoBehaviour
 
     public void StartParryBomb()
     {
-        m_rb.AddForce(new Vector3(-1, 0, 1) * 15, ForceMode.Impulse); //TODO replace this hard value
+        Vector3 randVect = new Vector3(Random.Range(-1f, 1f),0,Random.Range(-1f, 1f)).normalized;
+      
+        m_rb.AddForce(randVect * 15, ForceMode.Impulse); //TODO replace this hard value
+        Debug.Log(m_rb.ToString());
     }
 
 
@@ -85,26 +87,33 @@ public class ParryBomb : MonoBehaviour
         {
             _bombTimer = Mathf.Clamp(_bombTimer, 0, _explosionTime) - Time.deltaTime; // diminue le timer de la bombe au fine du temps 
             m_bombTimerDisplay.text = Math.Ceiling(_bombTimer).ToString();
+
         }   
         else
         {
             _boom = true;
+            SoundManager.Instance.PlaySFX("Explosion");
             gameObject.SetActive(false);
             FeedBackManager.Instance.InstantiateParticle(FeedBackManager.Instance.m_explosionVfx, transform.position, transform.rotation);
             OnExplode?.Invoke(m_owner);
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        SoundManager.Instance.PlaySFX("PushSurBomb");
+       
+        m_rb.constraints = RigidbodyConstraints.FreezePositionY;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        
-        Debug.Log(other.gameObject.name);
- 
         PlayerController player = other.gameObject.GetComponent<PlayerController>();
         if(player == null) return;
         // Check if the owner 
         if(player.name.Contains("Player") && player != m_owner)  //Player was touched
         {
+            SoundManager.Instance.PlaySFX("Explosion");
             FeedBackManager.Instance.InstantiateParticle(FeedBackManager.Instance.m_explosionVfx,player.transform.position,player.transform.rotation);
             ScoreManager sm = m_gm.GetScoreManager();
             sm.AddPlayerToList(player,sm.Bonus);

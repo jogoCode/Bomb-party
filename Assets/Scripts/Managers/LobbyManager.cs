@@ -18,6 +18,7 @@ public class LobbyManager : MonoBehaviour
     {
         m_playerManager = GameManager.Instance.GetPlayerManager();
         m_playerManager.OnPlayerInListIsReady += CanStartGame;
+        SoundManager.Instance.PlayMusic(SoundManager.Instance.m_musicClips[0]);     
     }
 
    

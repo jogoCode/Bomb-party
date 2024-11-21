@@ -14,7 +14,7 @@ public class BombeCroix : MonoBehaviour
     {
         // Générer l'explosion au centre
         CreateExplosion(transform.position);
-
+        SoundManager.Instance.PlaySFX("Explosion");
         // Exploser dans les quatre directions : haut, bas, gauche, droite
         ExplodeInDirection(transform.forward);
         ExplodeInDirection(-transform.forward);
@@ -40,6 +40,7 @@ public class BombeCroix : MonoBehaviour
             }
 
             // Créer une explosion à la position actuelle
+
             CreateExplosion(explosionPosition);
         }
     }
@@ -68,6 +69,7 @@ public class BombeCroix : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // Déclenche l'explosion après un délai
+        SoundManager.Instance.PlaySFX("PushSurBomb");
         Invoke(nameof(Explode), explosionDelay);
     }
 }

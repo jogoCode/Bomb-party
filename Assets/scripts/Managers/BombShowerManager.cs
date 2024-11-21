@@ -24,6 +24,7 @@ public class BombShowerManager : MonoBehaviour
     {
         _whoWin = FindObjectOfType<WhoWin>();
         _spawn = FindObjectOfType<BombShower>();
+        SoundManager.Instance.PlayMusic(SoundManager.Instance.m_musicClips[4]);
         _spawn.enabled = false;
         StartCoroutine(TimerForRule());
         //foreach (PlayerController i in GameManager.Instance.GetPlayerManager().GetPlayerList())
@@ -41,6 +42,7 @@ public class BombShowerManager : MonoBehaviour
     public void PlayerEliminated(PlayerController player)
     {
         _scoreManager.AddPlayerToList(player, _scoreManager.Bonus);
+        SoundManager.Instance.PlaySFX("Explosion");
         _fbM.InstantiateParticle(_fbM.m_explosionVfx, player.gameObject.transform.position, player.gameObject.transform.rotation);
         HasAWinner();
     }
@@ -82,7 +84,7 @@ public class BombShowerManager : MonoBehaviour
     }
     public void HasAWinner()
     {
-        if (m_gameManager.GetPlayerManager().GetActivePlayers().Count <= 1)
+        if (m_gameManager.GetPlayerManager().GetActivePlayers().Count <2)
         {
             _time = 0;
             _spawn.enabled = false;
