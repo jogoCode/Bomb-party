@@ -17800,6 +17800,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bombtagM: {fileID: 0}
+  _contactVFX: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7,
+    type: 3}
 --- !u!65 &664209486
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21779,6 +21781,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bombtagM: {fileID: 0}
+  _contactVFX: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7,
+    type: 3}
 --- !u!65 &782484939
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26402,6 +26406,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bombtagM: {fileID: 0}
+  _contactVFX: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7,
+    type: 3}
 --- !u!65 &961184427
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48721,6 +48727,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bombtagM: {fileID: 0}
+  _contactVFX: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7,
+    type: 3}
 --- !u!65 &1936241987
 BoxCollider:
   m_ObjectHideFlags: 0
