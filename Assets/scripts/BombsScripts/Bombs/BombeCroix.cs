@@ -18,8 +18,8 @@ public class BombeCroix : MonoBehaviour
         // Exploser dans les quatre directions : haut, bas, gauche, droite
         ExplodeInDirection(transform.forward);
         ExplodeInDirection(-transform.forward);
-        ExplodeInDirection(Vector3.left);
-        ExplodeInDirection(Vector3.right);
+        ExplodeInDirection(-transform.right);
+        ExplodeInDirection(transform.right);
 
         // Détruire la bombe après l'explosion
         Destroy(gameObject);
@@ -61,8 +61,8 @@ public class BombeCroix : MonoBehaviour
             // Dessiner une ligne de Gizmo dans les quatre directions de l'explosion
             Gizmos.DrawLine(transform.position, transform.position + transform.forward * explosionRange);
             Gizmos.DrawLine(transform.position, transform.position + -transform.forward * explosionRange);
-            Gizmos.DrawLine(transform.position, transform.position + Vector3.left * explosionRange);
-            Gizmos.DrawLine(transform.position, transform.position + Vector3.right * explosionRange);
+            Gizmos.DrawLine(transform.position, transform.position + transform.right * explosionRange);
+            Gizmos.DrawLine(transform.position, transform.position + -transform.right * explosionRange);
         }
     }
 
