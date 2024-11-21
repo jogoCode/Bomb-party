@@ -60,8 +60,8 @@ public class LobbyManager : MonoBehaviour
         }
         GameObject camera = Camera.main.gameObject;
         FeedBackManager.Instance.InstantiateParticle(FeedBackManager.Instance.m_explosionVfx,camera.transform.position+new Vector3(0.1f,0,0.5f),transform.rotation);
-        FeedBackManager.Instance.InstantiateParticle(FeedBackManager.Instance.m_explosionVfx, camera.transform.position + new Vector3(0f, 0, 0.8f), transform.rotation);
-        FeedBackManager.Instance.InstantiateParticle(FeedBackManager.Instance.m_explosionVfx, camera.transform.position + new Vector3(0f, 0, 2f), transform.rotation);
+        FeedBackManager.Instance.InstantiateParticle(FeedBackManager.Instance.m_explosionVfx, camera.transform.position + new Vector3(-0.1f, 0, 0.5f), transform.rotation);
+        FeedBackManager.Instance.InstantiateParticle(FeedBackManager.Instance.m_explosionVfx, camera.transform.position + new Vector3(0f, 0, 0.5f), transform.rotation);
         SoundManager.Instance.PlaySFX("Explosion");
         //Destroy(m_playerManager.GetComponent<PlayerInputManager>());
         GameManager.Instance.GameStart();

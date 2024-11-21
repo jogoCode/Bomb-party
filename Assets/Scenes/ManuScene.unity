@@ -41652,7 +41652,7 @@ PrefabInstance:
     - target: {fileID: 4274006936517997615, guid: 56f38920ea6c6a7438ff33b910466f55,
         type: 3}
       propertyPath: m_velMultiplier
-      value: 1.08
+      value: 1.35
       objectReference: {fileID: 0}
     - target: {fileID: 5224238442220434513, guid: 56f38920ea6c6a7438ff33b910466f55,
         type: 3}

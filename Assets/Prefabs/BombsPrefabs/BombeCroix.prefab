@@ -229,11 +229,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6740251306462881191, guid: dcbada8f81ac8434198ed5820f47643d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e6b6844c150504d468fd0b964ca962b9, type: 2}
+    - target: {fileID: -3560326548931791819, guid: dcbada8f81ac8434198ed5820f47643d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e6b6844c150504d468fd0b964ca962b9, type: 2}
     - target: {fileID: 919132149155446097, guid: dcbada8f81ac8434198ed5820f47643d,
         type: 3}
       propertyPath: m_Name
       value: CrossBombe
       objectReference: {fileID: 0}
+    - target: {fileID: 1565130815791172202, guid: dcbada8f81ac8434198ed5820f47643d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e6b6844c150504d468fd0b964ca962b9, type: 2}
+    - target: {fileID: 3584984617453414799, guid: dcbada8f81ac8434198ed5820f47643d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e6b6844c150504d468fd0b964ca962b9, type: 2}
+    - target: {fileID: 7042700761228436818, guid: dcbada8f81ac8434198ed5820f47643d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e6b6844c150504d468fd0b964ca962b9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

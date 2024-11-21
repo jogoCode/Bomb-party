@@ -273,6 +273,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ThermicBombe
       objectReference: {fileID: 0}
+    - target: {fileID: 4953301040939365011, guid: 8f8c931ad401ff34ea893a07f21102a0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e6b6844c150504d468fd0b964ca962b9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -11,6 +11,7 @@ public class WhoWin : MonoBehaviour
     public float _seeWhoWinCD = 3f;
     public GameObject _win;
     public bool _isFinish;
+    bool _isRestarted = false;
 
 
     private void Start()
@@ -34,7 +35,11 @@ public class WhoWin : MonoBehaviour
         {
             _winner.text = $"Draw";
         }
-        StartCoroutine(TimerToLook());
+        if (!_isFinish && !_isRestarted)
+        {
+            _isRestarted = true;
+            StartCoroutine(TimerToLook());
+        }
     }
     private IEnumerator TimerToLook()
     {

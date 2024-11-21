@@ -91,8 +91,8 @@ public class GameManager : MonoBehaviour
      
         m_playerManager.SetPlayerManagerState(PlayerManager.PlayerManagerState.DISABLE);
         OnGameStarted?.Invoke();
-        //LoadScene(1);
-        m_partyManager.ChangeMiniGame();
+        LoadScene(1);
+        //m_partyManager.ChangeMiniGame();
     }
 
     public void GameFinished()
