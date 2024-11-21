@@ -39,6 +39,7 @@ public class BombTagManager : MonoBehaviour
         _baseSpeed = _playerParameters.PlayerBaseSpeed;
         _scoreManager = GameManager.Instance.GetScoreManager();
         _whoWin = FindObjectOfType<WhoWin>();
+        _whoWin._isFinish = false;
         SoundManager.Instance.PlayMusic(SoundManager.Instance.m_musicClips[3]);
         foreach (PlayerController playerController in _players)
         {
@@ -68,7 +69,6 @@ public class BombTagManager : MonoBehaviour
                     _fBM.InstantiateParticle(_fBM.m_explosionVfx, _hasBomb.gameObject.transform.position, _hasBomb.gameObject.transform.rotation);
                     _hasBomb.gameObject.SetActive(false);
                     _hasBomb.GetPlayerBombTag().HasPoint = true;
-                    _bombTimer = _baseTimer;
                 }
                 if (list.Count >= 2)
                 {
@@ -88,7 +88,7 @@ public class BombTagManager : MonoBehaviour
 
     public void AssignRandomBomb()
     {
-        _players = GameManager.Instance.GetPlayerManager().GetActivePlayers();
+            _players = GameManager.Instance.GetPlayerManager().GetActivePlayers();
 
         // Réinitialiser tous les hasBomb à false
         foreach (PlayerController player in _players)
