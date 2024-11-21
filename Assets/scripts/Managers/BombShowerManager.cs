@@ -19,9 +19,11 @@ public class BombShowerManager : MonoBehaviour
     public bool _gameReady = false;
     [SerializeField] float _timeForRule;
     public WhoWin _whoWin;
+    bool _isRestarted;
 
     private void Start()
     {
+        _isRestarted = false;
         _whoWin = FindObjectOfType<WhoWin>();
         _spawn = FindObjectOfType<BombShower>();
         SoundManager.Instance.PlayMusic(SoundManager.Instance.m_musicClips[4]);
@@ -53,13 +55,13 @@ public class BombShowerManager : MonoBehaviour
         {
           UpdateTimer();
         }
-        if (_whoWin._isFinish)
+        if (_whoWin._isFinish && !_isRestarted)
         {
-            GameManager.Instance.GetPartyManager().ChangeMiniGame();
+            _isRestarted = true;
             _whoWin._isFinish = false;
+            GameManager.Instance.GetPartyManager().ChangeMiniGame();
         }
     }
-
     void UpdateTimer()
     {
         List<PlayerController> list = GameManager.Instance.GetPlayerManager().GetActivePlayers();
@@ -84,7 +86,7 @@ public class BombShowerManager : MonoBehaviour
     }
     public void HasAWinner()
     {
-        if (m_gameManager.GetPlayerManager().GetActivePlayers().Count <2)
+        if (m_gameManager.GetPlayerManager().GetActivePlayers().Count == 1)
         {
             _time = 0;
             _spawn.enabled = false;
