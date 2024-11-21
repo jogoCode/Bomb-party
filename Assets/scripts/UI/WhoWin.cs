@@ -47,7 +47,7 @@ public class WhoWin : MonoBehaviour
 
         // Attendre le délai spécifié
         yield return new WaitForSeconds(_seeWhoWinCD);
-
+        _isRestarted = false;
         Debug.Log("Timer ended"); // Vérification que la coroutine arrive à la fin
         _isFinish = true;
         // Masquer l'interface de victoire après le délai
