@@ -158,11 +158,13 @@ MonoBehaviour:
   _P3Lost: 0
   _P4Lost: 0
   _bombCenterChecker: {fileID: 6317980336778631908}
+  _volleybombmanagerobject: {fileID: 0}
   _bombVFX: {fileID: 725748389856807714, guid: 74bad2b95386c104b817454dbbef3274, type: 3}
   _bombeTimer: {fileID: 2342790846952679976}
   _bombeTimerDisplay: {fileID: 7782292043794226828}
   _camera: {fileID: 0}
   _playerManager: {fileID: 0}
+  _whoWin: {fileID: 0}
 --- !u!1 &1113944990946861443
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +286,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
+  - {fileID: 476703156861813515, guid: 447d02c5d65168349b4c1e1e66017a9f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -328,8 +330,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 60
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
-  m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 447d02c5d65168349b4c1e1e66017a9f, type: 2}
+  m_sharedMaterial: {fileID: 476703156861813515, guid: 447d02c5d65168349b4c1e1e66017a9f,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
