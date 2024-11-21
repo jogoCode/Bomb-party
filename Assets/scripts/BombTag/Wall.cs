@@ -28,6 +28,7 @@ public class Wall : MonoBehaviour
             if (other.gameObject.GetComponent<PlayerBombTag>()._hasBomb) 
             {
                 _bombtagM.AssignRandomBomb();
+                _bombtagM._bombTimer = _bombtagM._baseTimer;
             }
         }
     }
