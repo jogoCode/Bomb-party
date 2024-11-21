@@ -114,6 +114,7 @@ public class ParryBomb : MonoBehaviour
         if(player.name.Contains("Player") && player != m_owner)  //Player was touched
         {
             SoundManager.Instance.PlaySFX("Explosion");
+            SoundManager.Instance.PlaySFX("Crowd");
             FeedBackManager.Instance.InstantiateParticle(FeedBackManager.Instance.m_explosionVfx,player.transform.position,player.transform.rotation);
             ScoreManager sm = m_gm.GetScoreManager();
             sm.AddPlayerToList(player,sm.Bonus);

@@ -69,6 +69,7 @@ public class VolleyBomb : MonoBehaviour
             case 0:
                 _P1Lost = true;
                 Debug.Log("Player 1 Lost");
+                SoundManager.Instance.PlaySFX("Crowd");
                 player = _volleyBombManager._playersList[_playerId];
                 scoreManager.AddPlayerToList(player, scoreManager.Bonus);
                 if (_volleyBombManager._playersList.Count > 2)
@@ -100,6 +101,7 @@ public class VolleyBomb : MonoBehaviour
             case 1:
                 _P2Lost = true;
                 Debug.Log("Player 2 Lost");
+                SoundManager.Instance.PlaySFX("Crowd");
                 player = _volleyBombManager._playersList[_playerId];
                 scoreManager.AddPlayerToList(player, scoreManager.Bonus);
                 if (_volleyBombManager._playersList.Count > 2)
@@ -131,6 +133,7 @@ public class VolleyBomb : MonoBehaviour
             case 2:
                 _P3Lost = true;
                 Debug.Log("Player 3 Lost");
+                SoundManager.Instance.PlaySFX("Crowd");
                 player = _volleyBombManager._playersList[_playerId];
                 scoreManager.AddPlayerToList(player, scoreManager.Bonus);
                 if (_volleyBombManager._playersList.Count > 2)
@@ -162,6 +165,7 @@ public class VolleyBomb : MonoBehaviour
             case 3:
                 _P4Lost = true;
                 Debug.Log("Player 4 Lost");
+                SoundManager.Instance.PlaySFX("Crowd");
                 player = _volleyBombManager._playersList[_playerId];
                 scoreManager.AddPlayerToList(player, scoreManager.Bonus);
                 if (_volleyBombManager._playersList.Count > 2)

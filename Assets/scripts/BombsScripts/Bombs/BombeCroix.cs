@@ -69,7 +69,7 @@ public class BombeCroix : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // Déclenche l'explosion après un délai
-        SoundManager.Instance.PlaySFX("PushSurBomb");
+        SoundManager.Instance.PlaySFX("BatSurBomb");
         Invoke(nameof(Explode), explosionDelay);
     }
 }
