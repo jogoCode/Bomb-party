@@ -893,10 +893,10 @@ MonoBehaviour:
   _light: {fileID: 7962392782792291784}
   _fx1: {fileID: 5582778877226215126}
   _fx2: {fileID: 7099084289478331977}
-  _stunTime: 2
+  _stunTime: 1
   _stuned: 0
   _playerMovement: {fileID: 3278899701764599895}
-  _hasBombSpeed: 5
+  _hasBombSpeed: 3
 --- !u!1 &7962392782792291784
 GameObject:
   m_ObjectHideFlags: 0
@@ -2571,11 +2571,7 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6318827934788845376}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 03d75a9ef36b4ee45afd18fbbec17c25,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 932975570624359736}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03d75a9ef36b4ee45afd18fbbec17c25, type: 3}
 --- !u!4 &8124727089463118025 stripped
 Transform:
@@ -2589,15 +2585,3 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8595802963636399906}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &932975570624359736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8902214110767288947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69a50b16c6dd4f34d9fe35010735ddc4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

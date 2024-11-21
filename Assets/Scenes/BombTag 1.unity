@@ -43724,7 +43724,7 @@ MonoBehaviour:
   _hasBomb: {fileID: 0}
   _rules: {fileID: 1811090378}
   _gameReady: 0
-  _seeRuleCD: 0
+  _seeRuleCD: 7
   _whoWin: {fileID: 0}
 --- !u!4 &1674482285
 Transform:
