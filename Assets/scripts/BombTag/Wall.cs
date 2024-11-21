@@ -5,6 +5,7 @@ using UnityEngine;
 public class Wall : MonoBehaviour
 {
     public BombTagManager _bombtagM;
+    [SerializeField] GameObject _contactVFX;
 
     private void Start()
     {
@@ -17,6 +18,8 @@ public class Wall : MonoBehaviour
         {
             Debug.Log("ntm");
             PlayerController player = other.gameObject.GetComponent<PlayerController>();
+            Instantiate(_contactVFX, other.transform.position, other.transform.rotation);
+            SoundManager.Instance.PlaySFX("PushSurPlayer");
             other.gameObject.SetActive(false);
 
             ScoreManager score = GameManager.Instance.GetScoreManager();
