@@ -25,7 +25,7 @@ public class ExplosionCollide : MonoBehaviour
             //_scoreManager.AddScore(_player);
             OnPlayerEliminated?.Invoke(_player);
             other.gameObject.SetActive(false);
-            if (GameManager.Instance.GetPlayerManager().GetActivePlayers().Count > 1)
+            if (GameManager.Instance.GetPlayerManager().GetActivePlayers().Count >= 1)
             {
                 _bombShowerManager.HasAWinner();
             }

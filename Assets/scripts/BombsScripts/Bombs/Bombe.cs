@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class Bombe : MonoBehaviour
 {
-    [SerializeField] ScriptableBomb _bombe;
+    public ScriptableBomb _bombe;
     [SerializeField] ScriptableBomb _bombeInstance;
     [SerializeField] Rigidbody _rb;
     
