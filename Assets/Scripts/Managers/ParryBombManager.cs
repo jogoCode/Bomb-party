@@ -15,6 +15,7 @@ public class ParryBombManager : MonoBehaviour
 
     ParryBomb m_parryBomb;
 
+    public WhoWin m_whoWin;
 
     public event Action OnPlayerEliminated;
     public event Action OnGameFinished;
@@ -28,11 +29,21 @@ public class ParryBombManager : MonoBehaviour
         m_parryBomb.OnPlayerTouched += HasAWinner;
         m_parryBomb.OnExplode +=TimeOver;
         m_parryBomb.gameObject.SetActive(false);
+        m_whoWin = FindObjectOfType<WhoWin>();
         StartCoroutine(StartTimer());
+        SoundManager.Instance.PlayMusic(SoundManager.Instance.m_musicClips[2]);
 
     }
 
- 
+
+    private void Update()
+    {
+        if (m_whoWin._isFinish)
+        {
+            GameManager.Instance.GetPartyManager().ChangeMiniGame();
+            m_whoWin._isFinish = false;
+        }
+    }
 
     void HasAWinner()
     {
@@ -66,11 +77,12 @@ public class ParryBombManager : MonoBehaviour
     {
         FeedBackManager fbm = FeedBackManager.Instance;
         ScoreManager sm = GameManager.Instance.GetScoreManager();
+        SoundManager.Instance.PlayMusic(SoundManager.Instance.m_musicClips[2]);
         fbm.FreezeFrame(2f, 0.6f);
         Debug.Log(message);
         m_parryBomb.gameObject.SetActive(false);
+        m_whoWin.WinnerUI();
         //GameManager.Instance.GameFinished();
-        GameManager.Instance.GetPartyManager().ChangeMiniGame();
     }
 
     IEnumerator StartTimer()

@@ -199,6 +199,7 @@ public class PlayerMovement : MonoBehaviour
         if (m_dashCooldownRemaining <= 0)
         {
             if (m_dashSpeed == 0) return;
+            SoundManager.Instance.PlaySFX("Dash");
             m_isDashing = true;
             m_dashTimeRemaining = m_dashDuration;
             m_dashCooldownRemaining = m_dashCooldown;
@@ -222,6 +223,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (JumpForce == 0) return;
         //if (m_playerController.GetPlayerStateManager().GetState() == PlayerStateManager.PlayerStates.HIT) return;
+        SoundManager.Instance.PlaySFX("Jump");
         m_jumpBufferTimer = 0;
         ResetCoyoteTimer();
         m_vSpeed = 0;

@@ -43,6 +43,7 @@ public class VolleyBombManager : MonoBehaviour
         _playersList = _gameManager.GetPlayerManager().GetPlayerList();
         _playersSpawners = new List<GameObject>();
         _zone = FindObjectOfType<VolleyBombZone>();
+        SoundManager.Instance.PlayMusic(SoundManager.Instance.m_musicClips[1]);
         _bombDidntSpawn = true;
         Init();
         _intertiming = _interTime;

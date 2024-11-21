@@ -39,6 +39,7 @@ public class BombTagManager : MonoBehaviour
         _baseSpeed = _playerParameters.PlayerBaseSpeed;
         _scoreManager = GameManager.Instance.GetScoreManager();
         _whoWin = FindObjectOfType<WhoWin>();
+        SoundManager.Instance.PlayMusic(SoundManager.Instance.m_musicClips[3]);
         foreach (PlayerController playerController in _players)
         {
             playerController.GetPlayerBombTag().Init();
@@ -60,6 +61,7 @@ public class BombTagManager : MonoBehaviour
             }
             if (_boom)
             {
+                SoundManager.Instance.PlaySFX("Explosion");
                 if (_hasBomb.GetPlayerBombTag().HasPoint == false)
                 {
                     _scoreManager.AddPlayerToList(_hasBomb, _scoreManager.Bonus);

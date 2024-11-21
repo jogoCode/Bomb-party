@@ -45,8 +45,10 @@ public class PlayerManager : MonoBehaviour
 
         if (m_playerManagerState == PlayerManagerState.DISABLE) return;// if player count equal max playercount change the player manager state
         PlayerController newPlayer = playerInput.gameObject.GetComponent<PlayerController>();
+        newPlayer.m_device = playerInput.devices[0];
+        newPlayer.m_playerInput = playerInput;
         AddPlayerInPlayerList(newPlayer);
-      
+        Debug.Log(newPlayer.m_device);
         m_spawnDelay = StartCoroutine(DelaySpawnPlayer(newPlayer));
         //Debug.Log(m_playerSpawnerPoints[m_playersCount].name);
         m_playersCount++;
@@ -123,6 +125,7 @@ public class PlayerManager : MonoBehaviour
     {
         foreach (PlayerController player in m_players) {
             player.gameObject.SetActive(true);
+            player.m_playerInput.SwitchCurrentControlScheme(player.m_device);
         }
     }
 

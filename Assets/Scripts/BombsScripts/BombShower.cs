@@ -23,7 +23,7 @@ public class BombShower : MonoBehaviour
         float randomPosX = Random.Range(-_rangeDistance, _rangeDistance);
         float randomPosZ = Random.Range(-_rangeDistance, _rangeDistance);
         Vector3 randomPos = new Vector3(randomPosX, transform.position.y, randomPosZ);
-        
+        SoundManager.Instance.PlaySFX("BombQuiTombe");
         Instantiate(_BombPrefabs[randomBomb], randomPos, transform.rotation);
         StartCoroutine(SpawnCooldown());
     }
