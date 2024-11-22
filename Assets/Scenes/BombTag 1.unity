@@ -14,8 +14,8 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.14440194, g: 0.21406686, b: 0.5566038, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
@@ -43403,7 +43403,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 1.76
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -43724,7 +43724,7 @@ MonoBehaviour:
   _hasBomb: {fileID: 0}
   _rules: {fileID: 1811090378}
   _gameReady: 0
-  _seeRuleCD: 0
+  _seeRuleCD: 7
   _whoWin: {fileID: 0}
 --- !u!4 &1674482285
 Transform:
@@ -51468,6 +51468,7 @@ MonoBehaviour:
   _bombTagManager: {fileID: 1674482284}
   _shrinkRate: 0.05
   _minSize: 0.5
+  _startWall: 15
 --- !u!4 &2112287190
 Transform:
   m_ObjectHideFlags: 0
