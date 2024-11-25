@@ -179,21 +179,21 @@ public class PlayerManager : MonoBehaviour
     {
         foreach (PlayerController player in m_players)
         {
-            player.GetPlayerBombTag()._bomb.GetComponent<Renderer>().enabled = false;
+            player.GetPlayerBombTag().Bomb.GetComponent<Renderer>().enabled = false;
 
-            if (player.GetPlayerBombTag()._light == null) return;
-            if (player.GetPlayerBombTag()._fx1 == null) return;
-            if (player.GetPlayerBombTag()._fx2 == null) return;
-            player.GetPlayerBombTag()._light.GetComponent<Light>().enabled = false;
-            player.GetPlayerBombTag()._fx1.GetComponent<ParticleSystem>().Stop();
-            player.GetPlayerBombTag()._fx2.GetComponent<ParticleSystem>().Stop();
+            if (player.GetPlayerBombTag().Light == null) return;
+            if (player.GetPlayerBombTag().Fx1 == null) return;
+            if (player.GetPlayerBombTag().Fx2 == null) return;
+            player.GetPlayerBombTag().Light.GetComponent<Light>().enabled = false;
+            player.GetPlayerBombTag().Fx1.GetComponent<ParticleSystem>().Stop();
+            player.GetPlayerBombTag().Fx2.GetComponent<ParticleSystem>().Stop();
         }
     }
     public void ActiveBombTagModel()
     {
         foreach (PlayerController player in m_players)
         {
-            player.GetPlayerBombTag()._bomb.GetComponent<Renderer>().enabled = true;
+            player.GetPlayerBombTag().Bomb.GetComponent<Renderer>().enabled = true;
         }
     }
 

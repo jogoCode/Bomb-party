@@ -6,7 +6,7 @@ using UnityEngine;
 public class BombShowerUI : MonoBehaviour
 {
     BombShowerManager _bombShower;
-    public TMP_Text _timer;
+    [SerializeField] TMP_Text _timer;
 
     private void Start()
     {
@@ -14,6 +14,6 @@ public class BombShowerUI : MonoBehaviour
     }
     private void Update()
     {
-        _timer.text = Mathf.Ceil(_bombShower._time).ToString() + " s";
+        _timer.text = Mathf.Ceil(_bombShower.Timer).ToString() + " s";
     }
 }

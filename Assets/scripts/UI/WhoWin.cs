@@ -7,12 +7,13 @@ using UnityEngine;
 public class WhoWin : MonoBehaviour
 {
     GameManager _gM;
-    public TMP_Text _winner;
-    public float _seeWhoWinCD = 3f;
-    public GameObject _win;
-    public bool _isFinish;
+    [SerializeField] TMP_Text _winner;
+    [SerializeField] float _seeWhoWinCD = 3f;
+    [SerializeField] GameObject _win;
+    [SerializeField] bool _isFinish;
     bool _isRestarted = false;
 
+    public bool IsFinish { get { return _isFinish;} set {; } }
 
     private void Start()
     {

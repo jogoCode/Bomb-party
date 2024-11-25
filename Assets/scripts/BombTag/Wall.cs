@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-    public BombTagManager _bombtagM;
+    [SerializeField] BombTagManager _bombtagM;
     [SerializeField] GameObject _contactVFX;
 
     private void Start()
@@ -25,10 +25,9 @@ public class Wall : MonoBehaviour
             ScoreManager score = GameManager.Instance.GetScoreManager();
 
             score.AddPlayerToList(player, score.Bonus);
-            if (other.gameObject.GetComponent<PlayerBombTag>()._hasBomb) 
+            if (other.gameObject.GetComponent<PlayerBombTag>().HasABomb) 
             {
                 _bombtagM.AssignRandomBomb();
-                _bombtagM._bombTimer = _bombtagM._baseTimer;
             }
         }
     }

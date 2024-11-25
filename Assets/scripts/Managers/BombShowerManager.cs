@@ -5,21 +5,21 @@ using UnityEngine;
 
 public class BombShowerManager : MonoBehaviour
 {
-    public event Action OnPlayerEliminated;
-    public event Action OnGameFinished;
-    private ScoreManager _scoreManager;
-    public GameManager m_gameManager;
-    public BombShower _spawn;
-    public float _time;
+    ScoreManager _scoreManager;
+    GameManager m_gameManager;
+    BombShower _spawn;
+    float _time;
     float _baseTime;
     bool _isTimerRunning;
     FeedBackManager _fbM;
     bool _finish;
     [SerializeField] GameObject _rules;
-    public bool _gameReady = false;
+    bool _gameReady = false;
     [SerializeField] float _timeForRule;
-    public WhoWin _whoWin;
+    [SerializeField] WhoWin _whoWin;
     bool _isRestarted;
+
+    public float Timer { get => _time; }
 
     private void Start()
     {
@@ -56,10 +56,10 @@ public class BombShowerManager : MonoBehaviour
         {
           UpdateTimer();
         }
-        if (_whoWin._isFinish && !_isRestarted)
+        if (_whoWin.IsFinish && !_isRestarted)
         {
             _isRestarted = true;
-            _whoWin._isFinish = false;
+            _whoWin.IsFinish = false;
             GameManager.Instance.GetPartyManager().ChangeMiniGame();
         }
     }

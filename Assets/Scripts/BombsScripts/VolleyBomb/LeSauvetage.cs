@@ -12,10 +12,10 @@ public class LeSauvetage : MonoBehaviour
     }
     void Update()
     {
-       if (_whoWin._isFinish)
+       if (_whoWin.IsFinish)
        {
            GameManager.Instance.GetPartyManager().ChangeMiniGame();
-           _whoWin._isFinish = false;
+           _whoWin.IsFinish = false;
        }
     }
 }
