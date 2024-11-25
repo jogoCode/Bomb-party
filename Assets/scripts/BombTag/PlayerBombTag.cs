@@ -5,22 +5,32 @@ using UnityEngine;
 public class PlayerBombTag : MonoBehaviour
 {
     [SerializeField]PlayerController _player;
-    public bool _hasBomb;
-    
+    [SerializeField] bool _hasBomb;
+
     //tkt c'est la deums
-    public GameObject _bomb;
-    public GameObject _light;
-    public GameObject _fx1;
-    public GameObject _fx2;
+    [SerializeField] GameObject _bomb;
+    [SerializeField] GameObject _light;
+    [SerializeField] GameObject _fx1;
+    [SerializeField] GameObject _fx2;
     //
 
-    public float _stunTime = 1;
-    public bool _stuned;
-    public PlayerMovement _playerMovement;
+    [SerializeField] float _stunTime = 1;
+    [SerializeField] bool _stuned;
+    PlayerMovement _playerMovement;
     PartyPlayerParameters _playerParameters;
-    public int _hasBombSpeed;
-    [SerializeField] public bool HasPoint { get; set; }
+    [SerializeField] int _hasBombSpeed;
+    [SerializeField] bool _hasPoint;
 
+
+    public bool HasPoint { get { return _hasPoint; } set {; } }
+    public int HasBombSpeed { get { return _hasBombSpeed; } set {; } }
+    public bool HasABomb { get { return _hasBomb; } set {; } }
+    public GameObject Bomb { get { return _bomb; } }
+    public GameObject Light { get { return _light; } }
+
+    public GameObject Fx1 { get { return _fx1; } }
+
+    public GameObject Fx2 { get { return _fx2; } }
 
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
@@ -28,14 +38,14 @@ public class PlayerBombTag : MonoBehaviour
         if (hit.gameObject.GetComponent<PlayerBombTag>())
         {
             BombTagManager bombTagManager = FindObjectOfType<BombTagManager>();
-            if (bombTagManager._hasBomb == gameObject.GetComponent<PlayerController>())
+            if (bombTagManager.HasBomb == gameObject.GetComponent<PlayerController>())
             {
                 // remet la vitesse du player qui na pas la bombe a la normale
-                bombTagManager._hasBomb.GetPlayerMovement().SetPlayerSpeed(_playerParameters.PlayerBaseSpeed);
+                bombTagManager.HasBomb.GetPlayerMovement().SetPlayerSpeed(_playerParameters.PlayerBaseSpeed);
 
                 PlayerBombTag attraped = hit.gameObject.GetComponent<PlayerBombTag>();
 
-                bombTagManager._hasBomb = hit.gameObject.GetComponent<PlayerController>();
+                bombTagManager.HasBomb = hit.gameObject.GetComponent<PlayerController>();
                 _hasBomb = false;
                 attraped._hasBomb = true;
                 SoundManager.Instance.PlaySFX("siren");

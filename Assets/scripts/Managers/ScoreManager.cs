@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    public List<PlayerController> _playerDied;
-    public List<PlayerController> _maxPlayer;
+    [SerializeField] List<PlayerController> _playerDied;
+    [SerializeField] List<PlayerController> _maxPlayer;
     [SerializeField] int _bonus = 0;
     [SerializeField] int _winGame = 4;
 

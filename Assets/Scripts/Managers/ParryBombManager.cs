@@ -38,10 +38,10 @@ public class ParryBombManager : MonoBehaviour
 
     private void Update()
     {
-        if (m_whoWin._isFinish)
+        if (m_whoWin.IsFinish)
         {
             GameManager.Instance.GetPartyManager().ChangeMiniGame();
-            m_whoWin._isFinish = false;
+            m_whoWin.IsFinish = false;
         }
     }
 

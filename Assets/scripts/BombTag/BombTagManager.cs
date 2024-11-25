@@ -6,25 +6,26 @@ using UnityEngine;
 public class BombTagManager : MonoBehaviour
 {
 
-    public float _baseTimer = 30;
-    public float _bombTimer = 30;
-    public bool _boom = false;
+    [SerializeField] float _baseTimer = 30;
+    [SerializeField] float _bombTimer = 30;
+    [SerializeField] bool _boom = false;
     [SerializeField] List<PlayerController> _players;
     [SerializeField] float  _baseSpeed;
-    public ScoreManager _scoreManager;
-    PartyPlayerParameters _playerParameters;
-    PlayerBombTag _playerBombTag;
-    public PlayerController _hasBomb;
-    FeedBackManager _fBM;
+    [SerializeField] ScoreManager _scoreManager;
+    [SerializeField] PartyPlayerParameters _playerParameters;
+    [SerializeField] PlayerBombTag _playerBombTag;
+    [SerializeField] PlayerController _playerhasBomb;
     [SerializeField] GameObject _rules;
-    public bool _gameReady = false;
+    [SerializeField] bool _gameReady = false;
     [SerializeField] float _seeRuleCD;
-    
-    public WhoWin _whoWin;
-    private bool _gameEnded = false;
 
-    public event Action OnGameFinished;
-    public List<PlayerController> Players { get { return _players; } }
+    FeedBackManager _fBM;
+    WhoWin _whoWin;
+    private bool _gameEnded = false;
+    public bool GameReady { get { return _gameReady; } }
+    public float BombTime { get { return _bombTimer; } }
+
+    public PlayerController HasBomb { get { return _playerhasBomb; } set { ;} }
 
     private void Awake()
     {
@@ -39,7 +40,7 @@ public class BombTagManager : MonoBehaviour
         _baseSpeed = _playerParameters.PlayerBaseSpeed;
         _scoreManager = GameManager.Instance.GetScoreManager();
         _whoWin = FindObjectOfType<WhoWin>();
-        _whoWin._isFinish = false;
+        _whoWin.IsFinish = false;
         SoundManager.Instance.PlayMusic(SoundManager.Instance.m_musicClips[3]);
         foreach (PlayerController playerController in _players)
         {
@@ -54,9 +55,9 @@ public class BombTagManager : MonoBehaviour
             List<PlayerController> list = GameManager.Instance.GetPlayerManager().GetActivePlayers();
             if (list.Count == 1)
             {
-                if (_hasBomb.GetPlayerBombTag().HasPoint == false)
+                if (_playerhasBomb.GetPlayerBombTag().HasPoint == false)
                 {
-                    _hasBomb.GetPlayerBombTag().HasPoint = true;
+                    _playerhasBomb.GetPlayerBombTag().HasPoint = true;
                     FinDeGame();
                 }
             }
@@ -64,12 +65,12 @@ public class BombTagManager : MonoBehaviour
             {
                 SoundManager.Instance.PlaySFX("Explosion");
                 SoundManager.Instance.PlaySFX("Crowd");
-                if (_hasBomb.GetPlayerBombTag().HasPoint == false)
+                if (_playerhasBomb.GetPlayerBombTag().HasPoint == false)
                 {
-                    _scoreManager.AddPlayerToList(_hasBomb, _scoreManager.Bonus);
-                    _fBM.InstantiateParticle(_fBM.m_explosionVfx, _hasBomb.gameObject.transform.position, _hasBomb.gameObject.transform.rotation);
-                    _hasBomb.gameObject.SetActive(false);
-                    _hasBomb.GetPlayerBombTag().HasPoint = true;
+                    _scoreManager.AddPlayerToList(_playerhasBomb, _scoreManager.Bonus);
+                    _fBM.InstantiateParticle(_fBM.m_explosionVfx, _playerhasBomb.gameObject.transform.position, _playerhasBomb.gameObject.transform.rotation);
+                    _playerhasBomb.gameObject.SetActive(false);
+                    _playerhasBomb.GetPlayerBombTag().HasPoint = true;
                 }
                 if (list.Count >= 2)
                 {
@@ -80,28 +81,28 @@ public class BombTagManager : MonoBehaviour
                 _boom = false;
             }
         }
-        if (_whoWin._isFinish)
+        if (_whoWin.IsFinish)
         {
             GameManager.Instance.GetPartyManager().ChangeMiniGame();
-            _whoWin._isFinish = false;
+            _whoWin.IsFinish = false;
         }
     }
 
     public void AssignRandomBomb()
     {
-            _players = GameManager.Instance.GetPlayerManager().GetActivePlayers();
-
+        _bombTimer = _baseTimer;
+        _players = GameManager.Instance.GetPlayerManager().GetActivePlayers();
         // Réinitialiser tous les hasBomb à false
         foreach (PlayerController player in _players)
         {
-            player.GetPlayerBombTag()._hasBomb = false;
+            player.GetPlayerBombTag().HasABomb = false;
         }
 
         // Choisir un joueur au hasard pour lui donner la bombe
         int randomIndex = UnityEngine.Random.Range(0, _players.Count);
-        _players[randomIndex].GetPlayerBombTag()._hasBomb = true;
-        _hasBomb = _players[randomIndex];
-        _hasBomb.GetPlayerMovement().SetPlayerSpeed(_baseSpeed+ _hasBomb.GetPlayerBombTag()._hasBombSpeed);
+        _players[randomIndex].GetPlayerBombTag().HasABomb = true;
+        _playerhasBomb = _players[randomIndex];
+        _playerhasBomb.GetPlayerMovement().SetPlayerSpeed(_baseSpeed + _playerhasBomb.GetPlayerBombTag().HasBombSpeed);
 
     }
     void BombTimer()

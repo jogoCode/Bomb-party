@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Zone : MonoBehaviour
 {
-    public BombTagManager _bombTagManager;
-    public float _shrinkRate = 1.0f; // La vitesse de réduction en unités par seconde
-    public float _minSize = 1.0f; // La taille minimum de la zone
+    [SerializeField] BombTagManager _bombTagManager;
+    [SerializeField] float _shrinkRate = 1.0f; // La vitesse de réduction en unités par seconde
+    [SerializeField] float _minSize = 1.0f; // La taille minimum de la zone
 
     private Vector3 initialScale; // Sauvegarder l'échelle initiale
 
-    public float _startWall = 15f;
+    [SerializeField] float _startWall = 15f;
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class Zone : MonoBehaviour
     }
     void Update()
     {
-        if (_bombTagManager._gameReady && _bombTagManager._bombTimer <= _startWall) 
+        if (_bombTagManager.GameReady && _bombTagManager.BombTime <= _startWall) 
         {
             // Rétrécir la zone progressivement si elle n'a pas atteint la taille minimum
             if (transform.localScale.x > _minSize && transform.localScale.y > _minSize && transform.localScale.z > _minSize)
